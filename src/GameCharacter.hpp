@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-#include "Object.h"
+#include "Object.hpp"
 using namespace std;
 
 class GameCharacter: public Object

@@ -4,8 +4,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Object.h"
-#include "Player.h"
+#include "Object.hpp"
+#include "Player.hpp"
 using namespace std;
 
 class Player;

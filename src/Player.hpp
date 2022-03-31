@@ -4,9 +4,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "GameCharacter.h"
-#include "Room.h"
-#include "Item.h"
+#include "GameCharacter.hpp"
+#include "Room.hpp"
+#include "Item.hpp"
 
 using namespace std;
 

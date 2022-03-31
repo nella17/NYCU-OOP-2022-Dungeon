@@ -5,11 +5,11 @@
 #include <string>
 #include <vector>
 #include <exception>
-#include "Player.h"
-#include "Monster.h"
-#include "NPC.h"
-#include "Room.h"
-#include "Record.h"
+#include "Player.hpp"
+#include "Monster.hpp"
+#include "NPC.hpp"
+#include "Room.hpp"
+#include "Record.hpp"
 
 using namespace std;
 

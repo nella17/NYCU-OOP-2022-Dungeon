@@ -5,10 +5,10 @@
 #include <fstream>
 #include <vector>
 #include <sstream>
-#include "Item.h"
-#include "Monster.h"
-#include "NPC.h"
-#include "Player.h"
+#include "Item.hpp"
+#include "Monster.hpp"
+#include "NPC.hpp"
+#include "Player.hpp"
 
 using namespace std;
 

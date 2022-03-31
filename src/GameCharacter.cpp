@@ -1,2 +1,1 @@
-#include "GameCharacter.h"
-
+#include "GameCharacter.hpp"
