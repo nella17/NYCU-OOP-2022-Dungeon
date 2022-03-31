@@ -12,17 +12,17 @@ using namespace std;
 
 class Item;
 
-class Player: public GameCharacter
-{
+class Player: public GameCharacter {
 private:
     Room* currentRoom;
     Room* previousRoom;
     vector<Item> inventory;
+
 public:
     Player();
-    Player(string,int,int,int);
+    Player(string, int, int, int);
     void addItem(Item);
-    void increaseStates(int,int,int);
+    void increaseStates(int, int, int);
     void changeRoom(Room*);
 
     /* Virtual function that you need to complete   */

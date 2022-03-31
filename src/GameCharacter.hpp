@@ -6,17 +6,17 @@
 #include "Object.hpp"
 using namespace std;
 
-class GameCharacter: public Object
-{
+class GameCharacter: public Object {
 private:
     string name;
     int maxHealth;
     int currentHealth;
     int attack;
     int defense;
+
 public:
     GameCharacter();
-    GameCharacter(string,string,int,int,int);
+    GameCharacter(string, string, int, int, int);
     bool checkIsDead();
     int takeDamage(int);
 
@@ -30,4 +30,5 @@ public:
     int getAttack();
     int getDefense();
 };
+
 #endif // GAMECHARACTER_H_INCLUDED

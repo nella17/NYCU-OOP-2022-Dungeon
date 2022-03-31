@@ -8,8 +8,7 @@
 
 using namespace std;
 
-class Room
-{
+class Room {
 private:
     Room* upRoom;
     Room* downRoom;
@@ -18,6 +17,7 @@ private:
     bool isExit;
     int index;
     vector<Object*> objects; /*contain 1 or multiple objects, including monster, npc, etc*/
+
 public:
     Room();
     Room(bool, int, vector<Object*>);

@@ -17,8 +17,7 @@ using namespace std;
 /* that using pass by reference can prevent sending the   */
 /* whole vector to the function.                          */
 
-class Record
-{
+class Record {
 private:
     void savePlayer(Player*, ofstream&);
     void saveRooms(vector<Room>&, ofstream&);
@@ -29,7 +28,6 @@ public:
     Record();
     void saveToFile(Player*, vector<Room>&);
     void loadFromFile(Player*, vector<Room>&);
-
 };
 
 #endif // RECORD_H_INCLUDED

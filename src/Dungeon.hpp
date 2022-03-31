@@ -13,12 +13,14 @@
 
 using namespace std;
 
-class Dungeon{
+class Dungeon {
 private:
     Player player;
     vector<Room> rooms;
+
 public:
     Dungeon();
+
     /* Create a new player, and give him/her basic status */
     void createPlayer();
 
@@ -48,6 +50,5 @@ public:
     /* Deal with the whole game process */
     void runDungeon();
 };
-
 
 #endif // DUNGEON_H_INCLUDED

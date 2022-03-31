@@ -10,10 +10,10 @@ using namespace std;
 
 class Player;
 
-class Item: public Object
-{
+class Item: public Object {
 private:
-    int health,attack,defense;
+    int health, attack, defense;
+
 public:
     Item();
     Item(string, int, int, int);

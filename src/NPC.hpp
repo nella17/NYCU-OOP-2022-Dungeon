@@ -10,11 +10,11 @@
 
 using namespace std;
 
-class NPC: public GameCharacter
-{
+class NPC: public GameCharacter {
 private:
     string script;
     vector<Item> commodity;
+
 public:
     NPC();
     NPC(string, string, vector<Item>);
@@ -31,6 +31,5 @@ public:
     string getScript();
     vector<Item> getCommodity();
 };
-
 
 #endif // NPC_H_INCLUDED

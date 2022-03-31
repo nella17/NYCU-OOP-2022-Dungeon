@@ -7,14 +7,14 @@
 
 using namespace std;
 
-class Object
-{
+class Object {
 private:
     string name;
     string tag;
+
 public:
     Object();
-    Object(string,string);
+    Object(string, string);
 
     /* pure virtual function */
     virtual bool triggerEvent(Object*) = 0;
