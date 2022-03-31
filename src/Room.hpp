@@ -10,10 +10,7 @@ using namespace std;
 
 class Room {
 private:
-    Room* upRoom;
-    Room* downRoom;
-    Room* leftRoom;
-    Room* rightRoom;
+    int upRoom, downRoom, leftRoom, rightRoom;
     bool isExit;
     int index;
     vector<Object*> objects; /*contain 1 or multiple objects, including monster, npc, etc*/
@@ -24,20 +21,20 @@ public:
     bool popObject(Object*); /*pop out the specific object, used when the interaction is done*/
 
     /* Set & Get function*/
-    void setUpRoom(Room*);
-    void setDownRoom(Room*);
-    void setLeftRoom(Room*);
-    void setRightRoom(Room*);
+    void setUpRoom(int);
+    void setDownRoom(int);
+    void setLeftRoom(int);
+    void setRightRoom(int);
     void setIsExit(bool);
     void setIndex(int);
     void setObjects(vector<Object*>);
     bool getIsExit();
     int getIndex();
     vector<Object*> getObjects();
-    Room* getUpRoom();
-    Room* getDownRoom();
-    Room* getLeftRoom();
-    Room* getRightRoom();
+    int getUpRoom();
+    int getDownRoom();
+    int getLeftRoom();
+    int getRightRoom();
 };
 
 #endif // ROOM_H_INCLUDED

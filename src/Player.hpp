@@ -14,8 +14,7 @@ class Item;
 
 class Player: public GameCharacter {
 private:
-    Room* currentRoom;
-    Room* previousRoom;
+    int currentRoom, previousRoom;
     vector<Item> inventory;
 
 public:
@@ -23,7 +22,7 @@ public:
     Player(string, int, int, int);
     void addItem(Item);
     void increaseStates(int, int, int);
-    void changeRoom(Room*);
+    void changeRoom(int);
 
     /* Virtual function that you need to complete   */
     /* In Player, this function should show the     */
@@ -31,11 +30,11 @@ public:
     bool triggerEvent(Object*);
 
     /* Set & Get function*/
-    void setCurrentRoom(Room*);
-    void setPreviousRoom(Room*);
+    void setCurrentRoom(int);
+    void setPreviousRoom(int);
     void setInventory(vector<Item>);
-    Room* getCurrentRoom();
-    Room* getPreviousRoom();
+    int getCurrentRoom();
+    int getPreviousRoom();
     vector<Item> getInventory();
 };
 
