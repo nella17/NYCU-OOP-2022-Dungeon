@@ -13,8 +13,8 @@ using namespace std;
 int main(){
     set_no_buffer_mode();
 
-    /*Dungeon dungeon = Dungeon();
-    dungeon.runDungeon();*/
-    cout << "meow" << endl;
+    Dungeon dungeon = Dungeon();
+    dungeon.runDungeon();
+
     return 0;
 }
