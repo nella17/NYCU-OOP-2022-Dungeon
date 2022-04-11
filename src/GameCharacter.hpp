@@ -14,7 +14,7 @@ private:
     int defense;
 
 public:
-    GameCharacter(string, string, int, int, int);
+    GameCharacter(string, string, int = 0, int = 0, int = 0);
     bool checkIsDead();
     int takeDamage(int);
 
