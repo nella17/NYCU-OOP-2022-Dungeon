@@ -14,7 +14,6 @@ private:
     string tag;
 
 public:
-    Object();
     Object(string, string);
 
     /* pure virtual function */

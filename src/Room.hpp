@@ -17,7 +17,6 @@ private:
     vector<shared_ptr<Object>> objects; /*contain 1 or multiple objects, including monster, npc, etc*/
 
 public:
-    Room();
     Room(bool, int, vector<shared_ptr<Object>>);
     bool popObject(shared_ptr<Object>); /*pop out the specific object, used when the interaction is done*/
 

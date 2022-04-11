@@ -14,7 +14,6 @@ class Monster: public GameCharacter {
 private:
 
 public:
-    Monster();
     Monster(string, int, int, int);
 
     /* Virtual function that you need to complete   */

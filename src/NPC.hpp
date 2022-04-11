@@ -17,7 +17,6 @@ private:
     vector<Item> commodity;
 
 public:
-    NPC();
     NPC(string, string, vector<Item>);
     void listCommodity(); /*print all the Item in this NPC*/
 

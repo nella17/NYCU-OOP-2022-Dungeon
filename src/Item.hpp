@@ -16,7 +16,6 @@ private:
     int health, attack, defense;
 
 public:
-    Item();
     Item(string, int, int, int);
 
     /* Virtual function that you need to complete    */

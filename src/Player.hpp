@@ -19,7 +19,6 @@ private:
     vector<Item> inventory;
 
 public:
-    Player();
     Player(string, int, int, int);
     void addItem(Item);
     void increaseStates(int, int, int);
