@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 #include "GameCharacter.hpp"
 #include "Room.hpp"
 #include "Item.hpp"
@@ -27,7 +28,7 @@ public:
     /* Virtual function that you need to complete   */
     /* In Player, this function should show the     */
     /* status of player.                            */
-    bool triggerEvent(Object*);
+    bool triggerEvent(const shared_ptr<Object>);
 
     /* Set & Get function*/
     void setCurrentRoom(int);

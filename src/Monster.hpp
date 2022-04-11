@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 #include "GameCharacter.hpp"
 #include "Player.hpp"
 
@@ -19,7 +20,7 @@ public:
     /* Virtual function that you need to complete   */
     /* In Monster, this function should deal with   */
     /* the combat system.                           */
-    bool triggerEvent(Object*);
+    bool triggerEvent(const shared_ptr<Object>);
 };
 
 #endif // ENEMY_H_INCLUDED

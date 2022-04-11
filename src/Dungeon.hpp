@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 #include <exception>
 #include "Player.hpp"
 #include "Monster.hpp"
@@ -15,7 +16,7 @@ using namespace std;
 
 class Dungeon {
 private:
-    Player player;
+    shared_ptr<Player> player;
     vector<Room> rooms;
 
 public:
@@ -31,7 +32,7 @@ public:
     void handleMovement();
 
     /* Deal with player's iteraction with objects in that room */
-    void handleEvent(Object*);
+    void handleEvent(shared_ptr<Object>);
 
     /* Deal with all game initial setting       */
     /* Including create player, create map etc  */
@@ -41,7 +42,7 @@ public:
     /* including showing the action list */
     /* that player can do at that room   */
     /* and dealing with player's input   */
-    void chooseAction(vector<Object*>);
+    void chooseAction(const vector<shared_ptr<Object>>&);
 
     /* Check whether the game should end or not */
     /* Including player victory, or he/she dead */

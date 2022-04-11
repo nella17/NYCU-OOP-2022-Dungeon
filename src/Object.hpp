@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 
 using namespace std;
 
@@ -17,7 +18,7 @@ public:
     Object(string, string);
 
     /* pure virtual function */
-    virtual bool triggerEvent(Object*) = 0;
+    virtual bool triggerEvent(const shared_ptr<Object>) = 0;
 
     /* Set & Get function*/
     void setName(string);

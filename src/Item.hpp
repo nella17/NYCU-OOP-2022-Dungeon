@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 #include "Object.hpp"
 #include "Player.hpp"
 using namespace std;
@@ -22,7 +23,7 @@ public:
     /* In Item, this function should deal with the   */
     /* pick up action. You should add status to the  */
     /* player.                                       */
-    bool triggerEvent(Object*);
+    bool triggerEvent(const shared_ptr<Object>);
 
     /* Set & Get function*/
     int getHealth();

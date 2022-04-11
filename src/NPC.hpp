@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 #include "GameCharacter.hpp"
 #include "Player.hpp"
 #include "Item.hpp"
@@ -23,7 +24,7 @@ public:
     /* Virtual function that you need to complete   */
     /* In NPC, this function should deal with the   */
     /* transaction in easy implementation           */
-    bool triggerEvent(Object*);
+    bool triggerEvent(const shared_ptr<Object>);
 
     /* Set & Get function*/
     void setScript(string);
