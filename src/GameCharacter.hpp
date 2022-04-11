@@ -8,7 +8,6 @@ using namespace std;
 
 class GameCharacter: public Object {
 private:
-    string name;
     int maxHealth;
     int currentHealth;
     int attack;
