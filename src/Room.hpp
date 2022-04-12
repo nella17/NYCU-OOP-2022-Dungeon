@@ -4,23 +4,21 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
 #include <memory>
 #include "Object.hpp"
 
 using namespace std;
 
 enum class DIRECTION {
-    LEFT = 0,
-    RIGHT = 1,
-    UP = 2,
-    DOWN = 3,
+    LEFT, RIGHT, UP, DOWN,
 };
 
 class Room {
 private:
     bool isExit;
     int index;
-    array<int,4> neighborRooms;
+    map<DIRECTION, int> neighborRooms;
     vector<shared_ptr<Object>> objects; /*contain 1 or multiple objects, including monster, npc, etc*/
 
 public:
