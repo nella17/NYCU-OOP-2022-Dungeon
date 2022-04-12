@@ -9,7 +9,7 @@
 
 using namespace std;
 
-enum DIRECTION {
+enum class DIRECTION {
     LEFT = 0,
     RIGHT = 1,
     UP = 2,
