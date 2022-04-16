@@ -13,11 +13,11 @@ bool Room::popObject(shared_ptr<Object> object) {
 }
 
 /* Set & Get function*/
-void Room::setRoom(DIRECTION dir, int room) { neighborRooms[dir] = room; }
+void Room::setRoom(DIRECTION dir, Room* room) { neighborRooms[dir] = room; }
 void Room::setIsExit(bool _isExit) { isExit = _isExit; }
 void Room::setIndex(int _index) { index = _index; }
 void Room::setObjects(vector<shared_ptr<Object>> _objects) { objects = _objects; }
 bool Room::getIsExit() { return isExit; }
 int Room::getIndex() { return index; }
 vector<shared_ptr<Object>> Room::getObjects() { return objects; }
-int Room::getRoom(DIRECTION dir) { return neighborRooms[dir]; }
+Room* Room::getRoom(DIRECTION dir) { return neighborRooms[dir]; }

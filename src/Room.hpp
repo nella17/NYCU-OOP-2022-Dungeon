@@ -18,7 +18,7 @@ class Room {
 private:
     bool isExit;
     int index;
-    map<DIRECTION, int> neighborRooms;
+    map<DIRECTION, Room*> neighborRooms;
     vector<shared_ptr<Object>> objects; /*contain 1 or multiple objects, including monster, npc, etc*/
 
 public:
@@ -26,14 +26,14 @@ public:
     bool popObject(shared_ptr<Object>); /*pop out the specific object, used when the interaction is done*/
 
     /* Set & Get function*/
-    void setRoom(DIRECTION, int);
+    void setRoom(DIRECTION, Room*);
     void setIsExit(bool);
     void setIndex(int);
     void setObjects(vector<shared_ptr<Object>>);
     bool getIsExit();
     int getIndex();
     vector<shared_ptr<Object>> getObjects();
-    int getRoom(DIRECTION);
+    Room* getRoom(DIRECTION);
 };
 
 #endif // ROOM_H_INCLUDED
