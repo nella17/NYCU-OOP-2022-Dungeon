@@ -9,6 +9,8 @@
 
 using namespace std;
 
+extern mt19937 rng;
+
 #define DEFAULT_FD STDIN_FILENO
 
 void set_no_buffer_mode(int fd = DEFAULT_FD);
