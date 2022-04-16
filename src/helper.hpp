@@ -4,6 +4,10 @@
 #include <fcntl.h>
 #include <termios.h>
 #include <unistd.h>
+#include <random>
+#include <chrono>
+
+using namespace std;
 
 #define DEFAULT_FD STDIN_FILENO
 

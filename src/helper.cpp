@@ -1,5 +1,7 @@
 #include "helper.hpp"
 
+mt19937 rng((int)chrono::steady_clock::now().time_since_epoch().count());
+
 void set_no_buffer_mode(int fd) {
     struct termios tty;
     tcgetattr(fd, &tty);
