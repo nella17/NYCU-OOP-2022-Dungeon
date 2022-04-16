@@ -1,9 +1,10 @@
 PROGRAM		= dungeon
 
 SDIR		:= src
+IDIR		:= include
 
 CXX			?= g++
-INCLUDE		:= -I $(SDIR)
+INCLUDES	:= -I $(IDIR)
 C_FLAGS		:= -Wall -Wextra -Wshadow -std=c++17
 RC_FLAGS	:= -O2
 DC_FLAGS	:= -g -DDEBUG -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC -D_GLIBCXX_DEBUG_PEDANTIC_ASSERT
