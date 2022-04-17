@@ -24,7 +24,7 @@ void set_echo_mode(int fd = DEFAULT_FD);
 
 enum class DIRECTION {
     UNKNOWN = 0,
-    LEFT, RIGHT, UP, DOWN,
+    UP, DOWN, RIGHT, LEFT,
 };
 extern map<DIRECTION,string> dir_to_str;
 
@@ -34,4 +34,4 @@ int read_char(int fd = DEFAULT_FD);
 
 void clearScreen();
 
-#endif
+#endif // HELPER_H_INCLUDED

@@ -10,8 +10,7 @@
 
 using namespace std;
 
-int main(){
-
+int main() {
     Dungeon dungeon = Dungeon();
     dungeon.runDungeon();
 
