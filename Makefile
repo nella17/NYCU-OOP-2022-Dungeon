@@ -22,6 +22,7 @@ endif
 EXE			:= $(BDIR)/$(PROGRAM)
 SRCS		:= $(wildcard $(SDIR)/*.cpp)
 OBJS		:= $(SRCS:$(SDIR)/%.cpp=$(ODIR)/%.o)
+DEPS		:= $(SRCS:$(SDIR)/%.cpp=$(ODIR)/%.d)
 
 all: run
 
@@ -30,6 +31,8 @@ run: $(EXE)
 
 $(EXE): dirs $(OBJS)
 	$(CXX) $(OBJS) -o $@
+
+-include $(DEPS)
 
 $(ODIR)/%.o: $(SDIR)/%.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -MP -MMD -c $< -o $@
@@ -49,3 +52,4 @@ show:
 	@echo 'ODIR     :' $(ODIR)
 	@echo 'SRCS     :' $(SRCS)
 	@echo 'OBJS     :' $(OBJS)
+	@echo 'DESP     :' $(DEPS)

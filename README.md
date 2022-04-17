@@ -8,4 +8,5 @@
     - https://github.com/Cheedoong/MakefileTemplate/blob/master/Makefile
     - https://github.com/mattearly/best_makefile_for_cpp/blob/master/Makefile
     - https://makefiletutorial.com
+    - https://stackoverflow.com/questions/52034997/how-to-make-makefile-recompile-when-a-header-file-is-changed
 - https://stackoverflow.com/questions/31963835/how-to-read-terminals-input-buffer-immediately-after-keypress
