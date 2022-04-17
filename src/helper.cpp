@@ -40,6 +40,10 @@ map<DIRECTION,string> dir_to_str = {
 
 set<int> special_char = { 0x1B, 0x1B5B };
 map<int,DIRECTION> key_to_dir = {
+    { 'W', DIRECTION::UP },
+    { 'S', DIRECTION::DOWN },
+    { 'D', DIRECTION::RIGHT },
+    { 'A', DIRECTION::LEFT },
     { 0x1B5B41, DIRECTION::UP },
     { 0x1B5B42, DIRECTION::DOWN },
     { 0x1B5B43, DIRECTION::RIGHT },
