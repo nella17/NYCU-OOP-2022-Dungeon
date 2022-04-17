@@ -3,11 +3,11 @@
 Room::Room(bool _isExit, int _index, Objects_map _objects):
     isExit(_isExit), index(_index), objects(_objects) {}
 
-void Room::pushObject(char key, Object_ptr object) {
+void Room::pushObject(int key, Object_ptr object) {
     objects.emplace(key, object);
 }
 
-bool Room::popObject(char key) {
+bool Room::popObject(int key) {
     auto it = objects.find(key);
     if (it == objects.end())
         return false;

@@ -21,8 +21,8 @@ private:
 
 public:
     Room(bool = false, int = -1, Objects_map= {});
-    void pushObject(char, Object_ptr);
-    bool popObject(char); /*pop out the specific object, used when the interaction is done*/
+    void pushObject(int, Object_ptr);
+    bool popObject(int); /*pop out the specific object, used when the interaction is done*/
 
     /* Set & Get function*/
     void setRoom(DIRECTION, Room*);

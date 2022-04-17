@@ -11,7 +11,6 @@
 using namespace std;
 
 int main(){
-    set_no_buffer_mode();
 
     Dungeon dungeon = Dungeon();
     dungeon.runDungeon();

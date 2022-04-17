@@ -7,6 +7,8 @@
 #include <random>
 #include <chrono>
 #include <iostream>
+#include <set>
+#include <map>
 
 using namespace std;
 
@@ -24,6 +26,10 @@ enum class DIRECTION {
     UNKNOWN = 0,
     LEFT, RIGHT, UP, DOWN,
 };
+
+extern set<int> special_char;
+extern map<int,DIRECTION> key_to_dir;
+int read_char(int fd = DEFAULT_FD);
 
 void clearScreen();
 

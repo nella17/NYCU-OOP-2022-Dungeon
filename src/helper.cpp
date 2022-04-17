@@ -30,6 +30,27 @@ void set_echo_mode(int fd) {
     tcsetattr(fd, TCSANOW, &tty);
 }
 
+set<int> special_char = { 0x1B, 0x1B5B };
+map<int,DIRECTION> key_to_dir = {
+    { 0x1B5B41, DIRECTION::UP },
+    { 0x1B5B42, DIRECTION::DOWN },
+    { 0x1B5B43, DIRECTION::RIGHT },
+    { 0x1B5B44, DIRECTION::LEFT },
+};
+
+char getchar(int fd) {
+    char c;
+    read(fd, &c, 1);
+    return c;
+}
+
+int read_char(int fd) {
+    int r = getchar(fd);
+    while (special_char.find(r) != special_char.end())
+        r = (r << 8) | getchar(fd);
+    return r;
+}
+
 void clearScreen() {
     cout << "\033[2J\033[1;1H";
 }
