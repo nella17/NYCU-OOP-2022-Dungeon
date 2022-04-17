@@ -11,6 +11,7 @@
 #include "NPC.hpp"
 #include "Room.hpp"
 #include "Record.hpp"
+#include "helper.hpp"
 
 using namespace std;
 

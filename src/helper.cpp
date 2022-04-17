@@ -29,3 +29,7 @@ void set_echo_mode(int fd) {
     tty.c_lflag |= ECHO;
     tcsetattr(fd, TCSANOW, &tty);
 }
+
+void clearScreen() {
+    cout << "\033[2J\033[1;1H";
+}

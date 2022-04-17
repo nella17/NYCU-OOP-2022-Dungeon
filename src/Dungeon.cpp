@@ -4,9 +4,9 @@ Dungeon::Dungeon(): player(nullptr), rooms() {}
 
 void Dungeon::createPlayer() {
     string name;
-    cout << "Please enter your name: " << endl;
+    cout << "Please enter your name: ";
     cin >> name;
-    cout << name << endl;
+    cout << "Hello " << name << "!" << endl;
     player = make_shared<Player>(name, 100, 10, 5);
 }
 
@@ -23,6 +23,7 @@ void Dungeon::handleEvent(shared_ptr<Object>) {
 }
 
 void Dungeon::startGame() {
+    clearScreen();
     createPlayer();
     createMap();
 }
