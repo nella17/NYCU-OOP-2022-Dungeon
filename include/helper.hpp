@@ -26,6 +26,7 @@ enum class DIRECTION {
     UNKNOWN = 0,
     LEFT, RIGHT, UP, DOWN,
 };
+extern map<DIRECTION,string> dir_to_str;
 
 extern set<int> special_char;
 extern map<int,DIRECTION> key_to_dir;
