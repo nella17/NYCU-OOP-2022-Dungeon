@@ -7,12 +7,10 @@
 #include <map>
 #include <memory>
 #include "Object.hpp"
+#include "helper.hpp"
 
 using namespace std;
 
-enum class DIRECTION {
-    LEFT, RIGHT, UP, DOWN,
-};
 
 class Room {
 private:

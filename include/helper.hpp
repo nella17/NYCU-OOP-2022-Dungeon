@@ -20,6 +20,11 @@ void set_buffer_mode(int fd = DEFAULT_FD);
 void set_no_echo_mode(int fd = DEFAULT_FD);
 void set_echo_mode(int fd = DEFAULT_FD);
 
+enum class DIRECTION {
+    UNKNOWN = 0,
+    LEFT, RIGHT, UP, DOWN,
+};
+
 void clearScreen();
 
 #endif
