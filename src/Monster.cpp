@@ -4,6 +4,6 @@ Monster::Monster(string _name, int _maxHealth, int _attack, int _defense):
         GameCharacter(_name, "Monster", _maxHealth, _attack, _defense) {}
 
 // TODO
-bool Monster::triggerEvent(const shared_ptr<Object>) {
+bool Monster::triggerEvent(const Object_ptr) {
     return true;
 }

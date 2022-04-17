@@ -4,6 +4,6 @@ Item::Item(string _name, int _health, int _attack, int _defense):
         Object(_name, "Item"), health(_health), attack(_attack), defense(_defense) {}
 
 // TODO
-bool Item::triggerEvent(const shared_ptr<Object>) {
+bool Item::triggerEvent(const Object_ptr) {
     return true;
 }

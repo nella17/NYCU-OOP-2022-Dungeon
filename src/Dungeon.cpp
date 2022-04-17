@@ -19,7 +19,7 @@ void Dungeon::handleMovement() {
 }
 
 // TODO
-void Dungeon::handleEvent(shared_ptr<Object>) {
+void Dungeon::handleEvent(Object_ptr object) {
 }
 
 void Dungeon::startGame() {
@@ -29,7 +29,7 @@ void Dungeon::startGame() {
 }
 
 // TODO
-void Dungeon::chooseAction(const vector<shared_ptr<Object>>&) {
+void Dungeon::chooseAction(const Objects_map& actions) {
 }
 
 // TODO

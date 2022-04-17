@@ -3,10 +3,15 @@
 
 #include <iostream>
 #include <string>
+#include <map>
 #include <vector>
 #include <memory>
 
 using namespace std;
+
+class Object;
+using Object_ptr = shared_ptr<Object>;
+using Objects_map = map<char,Object_ptr>;
 
 class Object {
 private:
@@ -17,7 +22,7 @@ public:
     Object(string, string);
 
     /* pure virtual function */
-    virtual bool triggerEvent(const shared_ptr<Object>) = 0;
+    virtual bool triggerEvent(const Object_ptr) = 0;
 
     /* Set & Get function*/
     void setName(string);

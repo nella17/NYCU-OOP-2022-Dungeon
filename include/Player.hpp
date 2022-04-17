@@ -27,7 +27,7 @@ public:
     /* Virtual function that you need to complete   */
     /* In Player, this function should show the     */
     /* status of player.                            */
-    bool triggerEvent(const shared_ptr<Object>);
+    bool triggerEvent(const Object_ptr);
 
     /* Set & Get function*/
     void setCurrentRoom(int);

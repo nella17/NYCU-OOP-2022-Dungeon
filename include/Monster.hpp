@@ -19,7 +19,7 @@ public:
     /* Virtual function that you need to complete   */
     /* In Monster, this function should deal with   */
     /* the combat system.                           */
-    bool triggerEvent(const shared_ptr<Object>);
+    bool triggerEvent(const Object_ptr);
 };
 
 #endif // ENEMY_H_INCLUDED

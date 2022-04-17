@@ -33,7 +33,7 @@ public:
     void handleMovement();
 
     /* Deal with player's iteraction with objects in that room */
-    void handleEvent(shared_ptr<Object>);
+    void handleEvent(Object_ptr);
 
     /* Deal with all game initial setting       */
     /* Including create player, create map etc  */
@@ -43,7 +43,7 @@ public:
     /* including showing the action list */
     /* that player can do at that room   */
     /* and dealing with player's input   */
-    void chooseAction(const vector<shared_ptr<Object>>&);
+    void chooseAction(const Objects_map&);
 
     /* Check whether the game should end or not */
     /* Including player victory, or he/she dead */
