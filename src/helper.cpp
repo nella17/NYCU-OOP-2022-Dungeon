@@ -38,7 +38,7 @@ map<DIRECTION,string> dir_to_str = {
     { DIRECTION::RIGHT, "right" },
 };
 
-set<int> special_char = { 0x1B, 0x1B5B };
+set<int> special_char = { 0x1B, 0x5B };
 map<int,DIRECTION> key_to_dir = {
     { 'W', DIRECTION::UP },
     { 'S', DIRECTION::DOWN },
@@ -58,7 +58,7 @@ char getchar(int fd) {
 
 int read_char(int fd) {
     int r = getchar(fd);
-    while (special_char.find(r) != special_char.end())
+    while (special_char.find(r & 0xff) != special_char.end())
         r = (r << 8) | getchar(fd);
     return r;
 }
