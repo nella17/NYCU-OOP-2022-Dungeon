@@ -25,12 +25,15 @@ public:
     void setIndex(int);
     void setObjects(Objects_map);
     bool getIsExit();
+    bool getIsBlocked();
     int getIndex();
     Objects_map getObjects();
     Room* getRoom(DIRECTION);
 
 private:
-    bool isExit;
+    void switchState(bool, Object_ptr);
+
+    bool isBlocked, isExit;
     int index;
     map<DIRECTION,Room*> neighborRooms;
     Objects_map objects;/*contain 1 or multiple objects, including monster, npc, etc*/
