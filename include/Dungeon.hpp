@@ -25,6 +25,8 @@ public:
     /* Create a map, which include several different rooms */
     void createMap();
 
+    void drawScreen();
+
     /* Deal with player's moveing action */
     void handleMovement();
 

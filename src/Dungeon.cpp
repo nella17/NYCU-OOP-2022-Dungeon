@@ -42,6 +42,12 @@ void Dungeon::createMap() {
     cout << "Map generated!" << endl;
 }
 
+void Dungeon::drawScreen() {
+    clearScreen();
+    player->drawStatus();
+    player->getCurrentRoom()->drawNeighbors();
+}
+
 // TODO
 void Dungeon::handleMovement() {
 }
@@ -68,6 +74,8 @@ bool Dungeon::checkGameLogic() {
 // TODO
 void Dungeon::runDungeon() {
     startGame();
+
     while (!checkGameLogic()) {
+        drawScreen();
     }
 }

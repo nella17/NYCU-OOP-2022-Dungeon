@@ -43,3 +43,15 @@ Room* Room::getRoom(DIRECTION dir) {
     auto it = neighborRooms.find(dir);
     return it == neighborRooms.end() ? nullptr : it->second;
 }
+
+void Room::drawNeighbors() {
+    auto getname = [&](DIRECTION dir = DIRECTION::UNKNOWN) {
+        auto r = dir == DIRECTION::UNKNOWN ? this : getRoom(dir);
+        auto s = r ? '[' + to_string(r->index) + ']' : string(3,' ');
+        return s;
+    };
+    cout << string(3,' ') << getname(DIRECTION::UP) << endl
+        << getname(DIRECTION::LEFT) << getname()  << getname(DIRECTION::RIGHT) << endl
+        << string(3,' ') << getname(DIRECTION::DOWN) << endl;
+    cout << endl;
+}

@@ -13,6 +13,7 @@ public:
     GameCharacter(string, Object::Type, int = 0, int = 0, int = 0);
     bool checkIsDead();
     int takeDamage(int);
+    void drawStatus();
 
     /* Set & Get function*/
     void setMaxHealth(int);
