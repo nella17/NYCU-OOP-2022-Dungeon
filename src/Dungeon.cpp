@@ -10,8 +10,36 @@ void Dungeon::createPlayer() {
     player = make_shared<Player>(name, 100, 10, 5);
 }
 
-// TODO
 void Dungeon::createMap() {
+    cout << "Generating map..." << endl;
+    rooms.clear();
+
+    /*
+           [2] - [3]
+            |
+     [0] - [1]
+            |
+           [4] - [6] - [7] - [exit]
+            |
+           [5]
+    */
+    int sz = 8;
+    rooms.resize(sz);
+    for(int i = 0; i < sz; i++)
+        rooms[i].setIndex(i);
+    rooms[7].setIsExit(true);
+    LINK_ROOM(&rooms[0], DIRECTION::LEFT, &rooms[1], DIRECTION::RIGHT);
+    LINK_ROOM(&rooms[1], DIRECTION::DOWN, &rooms[2], DIRECTION::UP   );
+    LINK_ROOM(&rooms[1], DIRECTION::UP  , &rooms[4], DIRECTION::DOWN );
+    LINK_ROOM(&rooms[2], DIRECTION::LEFT, &rooms[3], DIRECTION::RIGHT);
+    LINK_ROOM(&rooms[4], DIRECTION::UP  , &rooms[5], DIRECTION::DOWN );
+    LINK_ROOM(&rooms[4], DIRECTION::LEFT, &rooms[6], DIRECTION::RIGHT);
+    LINK_ROOM(&rooms[6], DIRECTION::LEFT, &rooms[7], DIRECTION::RIGHT);
+
+    // TODO: add items
+
+    sleep(1);
+    cout << "Map generated!" << endl;
 }
 
 // TODO

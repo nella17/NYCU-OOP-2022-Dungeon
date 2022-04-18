@@ -12,6 +12,9 @@ using namespace std;
 
 #include "Object.hpp"
 
+#define LINK_ROOM(r1, d1, r2, d2) \
+    (r1)->setRoom(d2, r2); \
+    (r2)->setRoom(d1, r1);
 
 class Room {
 public:
