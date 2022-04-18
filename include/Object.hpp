@@ -29,13 +29,13 @@ public:
 
     /* Set & Get function*/
     void setName(string);
-    void setTag(Object::Type);
+    void setType(Object::Type);
     string getName();
-    Object::Type getTag();
+    Object::Type getType();
 
 private:
     string name;
-    Object::Type tag;
+    Object::Type type;
 };
 
 #endif // OBJECT_H_INCLUDED

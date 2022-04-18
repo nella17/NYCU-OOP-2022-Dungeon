@@ -1,8 +1,8 @@
 #include "Object.hpp"
 
-Object::Object(string _name, Type _tag): name(_name), tag(_tag) {}
+Object::Object(string _name, Type _type): name(_name), type(_type) {}
 
 void Object::setName(string _name) { name = _name; }
-void Object::setTag(Type _tag) { tag = _tag; }
+void Object::setType(Type _type) { type = _type; }
 string Object::getName() { return name; }
-Object::Type Object::getTag() { return tag; }
+Object::Type Object::getType() { return type; }
