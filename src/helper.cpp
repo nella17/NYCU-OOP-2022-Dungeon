@@ -48,6 +48,9 @@ map<int,DIRECTION> key_to_dir = {
     { 0x1B5B43, DIRECTION::RIGHT },
     { 0x1B5B44, DIRECTION::LEFT },
 };
+bool is_dir_key(int key) {
+    return key_to_dir.find(key) != key_to_dir.end();
+}
 
 inline char getchar(int fd) {
     char c;
