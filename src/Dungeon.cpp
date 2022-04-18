@@ -60,6 +60,7 @@ void Dungeon::startGame() {
     clearScreen();
     createPlayer();
     createMap();
+    player->changeRoom(&rooms[0]);
 }
 
 // TODO
