@@ -5,5 +5,5 @@ Monster::Monster(string _name, int _maxHealth, int _attack, int _defense):
 
 // TODO
 bool Monster::triggerEvent(const Object_ptr) {
-    return true;
+    return false;
 }

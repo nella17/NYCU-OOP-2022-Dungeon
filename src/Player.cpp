@@ -5,5 +5,5 @@ Player::Player(string _name, int _maxHealth, int _attack, int _defense):
 
 // TODO
 bool Player::triggerEvent(const Object_ptr) {
-    return true;
+    return false;
 }

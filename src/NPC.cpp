@@ -5,5 +5,5 @@ NPC::NPC(string _name, string _script, Items_set _commodity):
 
 // TODO
 bool NPC::triggerEvent(const Object_ptr) {
-    return true;
+    return false;
 }

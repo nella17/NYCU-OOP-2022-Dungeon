@@ -34,7 +34,7 @@ void Dungeon::chooseAction(const Objects_map& actions) {
 
 // TODO
 bool Dungeon::checkGameLogic() {
-    return true;
+    return false;
 }
 
 // TODO
