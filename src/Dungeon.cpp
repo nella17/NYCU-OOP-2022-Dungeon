@@ -68,6 +68,8 @@ void Dungeon::chooseAction(const Objects_map& actions) {
 
 // TODO
 bool Dungeon::checkGameLogic() {
+    if (player && (player->checkIsDead() || player->getCurrentRoom()->getIsExit()))
+        return true;
     return false;
 }
 
