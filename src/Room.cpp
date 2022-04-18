@@ -38,6 +38,12 @@ void Room::clearObjects() {
 bool Room::getIsExit() { return isExit; }
 bool Room::getIsBlocked() { return isBlocked; }
 int Room::getIndex() { return index; }
+Object_ptr Room::getObject(int key) {
+    auto it = objects.find(key);
+    if (it == objects.end())
+        return nullptr;
+    return it->second;
+}
 Objects_map Room::getObjects() { return objects; }
 Room* Room::getRoom(DIRECTION dir) {
     auto it = neighborRooms.find(dir);

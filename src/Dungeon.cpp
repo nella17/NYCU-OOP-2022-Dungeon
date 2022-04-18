@@ -49,7 +49,12 @@ void Dungeon::drawScreen() {
 }
 
 // TODO
-void Dungeon::handleMovement() {
+void Dungeon::handleMenu() {
+    player->printMenu();
+    set_no_buffer_mode(); set_no_echo_mode();
+    int key = read_char();
+    set_buffer_mode(); set_echo_mode();
+    player->handleMenu(key);
 }
 
 // TODO
@@ -80,5 +85,6 @@ void Dungeon::runDungeon() {
 
     while (!checkGameLogic()) {
         drawScreen();
+        handleMenu();
     }
 }

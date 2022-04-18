@@ -31,6 +31,7 @@ public:
     bool getIsExit();
     bool getIsBlocked();
     int getIndex();
+    Object_ptr getObject(int);
     Objects_map getObjects();
     Room* getRoom(DIRECTION);
 

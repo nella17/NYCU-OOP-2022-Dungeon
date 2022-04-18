@@ -18,6 +18,9 @@ public:
     void increaseStates(int, int, int);
     void changeRoom(Room*);
 
+    void printMenu();
+    bool handleMenu(int);
+
     /* Virtual function that you need to complete   */
     /* In Player, this function should show the     */
     /* status of player.                            */

@@ -28,7 +28,7 @@ public:
     void drawScreen();
 
     /* Deal with player's moveing action */
-    void handleMovement();
+    void handleMenu();
 
     /* Deal with player's iteraction with objects in that room */
     void handleEvent(Object_ptr);
