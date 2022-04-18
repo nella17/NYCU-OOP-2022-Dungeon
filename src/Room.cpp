@@ -31,7 +31,10 @@ bool Room::popObject(int key) {
 void Room::setRoom(DIRECTION dir, Room* room) { neighborRooms[dir] = room; }
 void Room::setIsExit(bool _isExit) { isExit = _isExit; }
 void Room::setIndex(int _index) { index = _index; }
-void Room::setObjects(Objects_map _objects) { objects = _objects; }
+void Room::clearObjects() {
+    isBlocked = false;
+    objects.clear();
+}
 bool Room::getIsExit() { return isExit; }
 bool Room::getIsBlocked() { return isBlocked; }
 int Room::getIndex() { return index; }

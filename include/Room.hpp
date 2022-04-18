@@ -23,7 +23,7 @@ public:
     void setRoom(DIRECTION, Room*);
     void setIsExit(bool);
     void setIndex(int);
-    void setObjects(Objects_map);
+    void clearObjects();
     bool getIsExit();
     bool getIsBlocked();
     int getIndex();
