@@ -30,7 +30,9 @@ enum class DIRECTION {
 };
 
 extern map<int,DIRECTION> key_to_dir;
-inline bool is_dir_key(int key);
+inline bool is_dir_key(int key) {
+    return key_to_dir.find(key) != key_to_dir.end();
+}
 
 extern set<int> special_char;
 int read_char(int fd = DEFAULT_FD);
