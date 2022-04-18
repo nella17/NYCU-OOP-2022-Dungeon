@@ -13,20 +13,28 @@ using Objects_map = map<int,Object_ptr>;
 
 class Object: public enable_shared_from_this<Object> {
 public:
-    Object(string, string);
+    enum class Type {
+        Unknown = 0,
+        Item,
+        Player,
+        Monster,
+        NPC,
+    };
+
+    Object(string, Object::Type);
 
     /* pure virtual function */
     virtual bool triggerEvent(Object_ptr) = 0;
 
     /* Set & Get function*/
     void setName(string);
-    void setTag(string);
+    void setTag(Object::Type);
     string getName();
-    string getTag();
+    Object::Type getTag();
 
 private:
     string name;
-    string tag;
+    Object::Type tag;
 };
 
 #endif // OBJECT_H_INCLUDED

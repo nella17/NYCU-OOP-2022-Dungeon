@@ -9,7 +9,7 @@ using namespace std;
 
 class GameCharacter: public Object {
 public:
-    GameCharacter(string, string, int = 0, int = 0, int = 0);
+    GameCharacter(string, Object::Type, int = 0, int = 0, int = 0);
     bool checkIsDead();
     int takeDamage(int);
 

@@ -1,6 +1,6 @@
 #include "GameCharacter.hpp"
 
-GameCharacter::GameCharacter(string _name, string _tag, int _maxHealth, int _attack, int _defense):
+GameCharacter::GameCharacter(string _name, Object::Type _tag, int _maxHealth, int _attack, int _defense):
         Object(_name, _tag), maxHealth(_maxHealth), currentHealth(_maxHealth), attack(_attack), defense(_defense) {}
 
 bool GameCharacter::checkIsDead() {
