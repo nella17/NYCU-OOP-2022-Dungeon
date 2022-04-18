@@ -27,8 +27,9 @@ enum class DIRECTION {
 };
 extern map<DIRECTION,string> dir_to_str;
 
-extern set<int> special_char;
 extern map<int,DIRECTION> key_to_dir;
+
+extern set<int> special_char;
 int read_char(int fd = DEFAULT_FD);
 
 void clearScreen();
