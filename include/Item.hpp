@@ -5,6 +5,7 @@
 #include <string>
 #include <set>
 #include <memory>
+#include "helper.hpp"
 using namespace std;
 
 class Item;

@@ -5,6 +5,7 @@
 #include <string>
 #include <map>
 #include <memory>
+#include "helper.hpp"
 using namespace std;
 
 class Object;

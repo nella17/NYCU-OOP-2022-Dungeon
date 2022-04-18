@@ -6,6 +6,7 @@
 #include <vector>
 #include <sstream>
 #include <memory>
+#include "helper.hpp"
 using namespace std;
 
 #include "Item.hpp"

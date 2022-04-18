@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include "helper.hpp"
 using namespace std;
 
 #include "GameCharacter.hpp"

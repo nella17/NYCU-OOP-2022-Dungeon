@@ -6,6 +6,7 @@
 #include <vector>
 #include <memory>
 #include <exception>
+#include "helper.hpp"
 using namespace std;
 
 #include "Player.hpp"
@@ -13,7 +14,6 @@ using namespace std;
 #include "NPC.hpp"
 #include "Room.hpp"
 #include "Record.hpp"
-#include "helper.hpp"
 
 class Dungeon {
 public:

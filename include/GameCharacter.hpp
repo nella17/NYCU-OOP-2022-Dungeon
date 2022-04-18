@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "helper.hpp"
 using namespace std;
 
 #include "Object.hpp"
