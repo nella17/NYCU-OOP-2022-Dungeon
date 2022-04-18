@@ -11,7 +11,7 @@ class Object;
 using Object_ptr = shared_ptr<Object>;
 using Objects_map = map<int,Object_ptr>;
 
-class Object {
+class Object: public enable_shared_from_this<Object> {
 private:
     string name;
     string tag;
