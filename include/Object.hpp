@@ -12,10 +12,6 @@ using Object_ptr = shared_ptr<Object>;
 using Objects_map = map<int,Object_ptr>;
 
 class Object: public enable_shared_from_this<Object> {
-private:
-    string name;
-    string tag;
-
 public:
     Object(string, string);
 
@@ -27,6 +23,10 @@ public:
     void setTag(string);
     string getName();
     string getTag();
+
+private:
+    string name;
+    string tag;
 };
 
 #endif // OBJECT_H_INCLUDED

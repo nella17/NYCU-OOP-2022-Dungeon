@@ -15,9 +15,6 @@ using Items_set = set<Item_ptr>;
 #include "Player.hpp"
 
 class Item: public Object {
-private:
-    int health, attack, defense;
-
 public:
     Item(string, int, int, int);
 
@@ -34,6 +31,9 @@ public:
     void setHealth(int);
     void setAttack(int);
     void setDefense(int);
+
+private:
+    int health, attack, defense;
 };
 
 #endif // ITEM_H_INCLUDED

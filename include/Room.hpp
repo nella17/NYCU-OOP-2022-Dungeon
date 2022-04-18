@@ -14,12 +14,6 @@ using namespace std;
 
 
 class Room {
-private:
-    bool isExit;
-    int index;
-    map<DIRECTION,Room*> neighborRooms;
-    Objects_map objects; /*contain 1 or multiple objects, including monster, npc, etc*/
-
 public:
     Room(bool = false, int = -1, Objects_map= {});
     void pushObject(int, Object_ptr);
@@ -34,6 +28,12 @@ public:
     int getIndex();
     Objects_map getObjects();
     Room* getRoom(DIRECTION);
+
+private:
+    bool isExit;
+    int index;
+    map<DIRECTION,Room*> neighborRooms;
+    Objects_map objects;/*contain 1 or multiple objects, including monster, npc, etc*/
 };
 
 #endif // ROOM_H_INCLUDED

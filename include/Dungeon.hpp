@@ -16,10 +16,6 @@ using namespace std;
 #include "helper.hpp"
 
 class Dungeon {
-private:
-    shared_ptr<Player> player;
-    vector<Room> rooms;
-
 public:
     Dungeon();
 
@@ -51,6 +47,10 @@ public:
 
     /* Deal with the whole game process */
     void runDungeon();
+
+private:
+    shared_ptr<Player> player;
+    vector<Room> rooms;
 };
 
 #endif // DUNGEON_H_INCLUDED

@@ -11,8 +11,6 @@ using namespace std;
 #include "Player.hpp"
 
 class Monster: public GameCharacter {
-private:
-
 public:
     Monster(string, int, int, int);
 
@@ -20,6 +18,8 @@ public:
     /* In Monster, this function should deal with   */
     /* the combat system.                           */
     bool triggerEvent(Object_ptr);
+
+private:
 };
 
 #endif // ENEMY_H_INCLUDED

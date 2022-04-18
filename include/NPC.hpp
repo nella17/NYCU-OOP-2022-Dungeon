@@ -12,10 +12,6 @@ using namespace std;
 #include "Item.hpp"
 
 class NPC: public GameCharacter {
-private:
-    string script;
-    Items_set commodity;
-
 public:
     NPC(string, string, Items_set = {});
     void listCommodity(); /*print all the Item in this NPC*/
@@ -30,6 +26,10 @@ public:
     void setCommodity(Items_set);
     string getScript();
     Items_set getCommodity();
+
+private:
+    string script;
+    Items_set commodity;
 };
 
 #endif // NPC_H_INCLUDED

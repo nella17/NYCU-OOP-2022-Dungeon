@@ -8,12 +8,6 @@ using namespace std;
 #include "Object.hpp"
 
 class GameCharacter: public Object {
-private:
-    int maxHealth;
-    int currentHealth;
-    int attack;
-    int defense;
-
 public:
     GameCharacter(string, string, int = 0, int = 0, int = 0);
     bool checkIsDead();
@@ -28,6 +22,12 @@ public:
     int getCurrentHealth();
     int getAttack();
     int getDefense();
+
+private:
+    int maxHealth;
+    int currentHealth;
+    int attack;
+    int defense;
 };
 
 #endif // GAMECHARACTER_H_INCLUDED

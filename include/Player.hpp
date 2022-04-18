@@ -12,10 +12,6 @@ using namespace std;
 #include "Item.hpp"
 
 class Player: public GameCharacter {
-private:
-    Room *currentRoom, *previousRoom;
-    Items_set inventory;
-
 public:
     Player(string, int, int, int);
     void addItem(Item_ptr);
@@ -34,6 +30,10 @@ public:
     Room* getCurrentRoom();
     Room* getPreviousRoom();
     Items_set getInventory();
+
+private:
+    Room *currentRoom, *previousRoom;
+    Items_set inventory;
 };
 
 #endif // PLAYER_H_INCLUDED
