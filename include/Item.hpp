@@ -25,7 +25,7 @@ public:
     /* In Item, this function should deal with the   */
     /* pick up action. You should add status to the  */
     /* player.                                       */
-    bool triggerEvent(const Object_ptr);
+    bool triggerEvent(Object_ptr);
 
     /* Set & Get function*/
     int getHealth();

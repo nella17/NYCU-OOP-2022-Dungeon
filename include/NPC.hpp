@@ -23,7 +23,7 @@ public:
     /* Virtual function that you need to complete   */
     /* In NPC, this function should deal with the   */
     /* transaction in easy implementation           */
-    bool triggerEvent(const Object_ptr);
+    bool triggerEvent(Object_ptr);
 
     /* Set & Get function*/
     void setScript(string);

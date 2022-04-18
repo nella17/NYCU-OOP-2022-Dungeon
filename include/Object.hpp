@@ -20,7 +20,7 @@ public:
     Object(string, string);
 
     /* pure virtual function */
-    virtual bool triggerEvent(const Object_ptr) = 0;
+    virtual bool triggerEvent(Object_ptr) = 0;
 
     /* Set & Get function*/
     void setName(string);
