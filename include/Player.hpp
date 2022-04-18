@@ -3,26 +3,24 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
+#include <map>
 #include <memory>
+using namespace std;
+
 #include "GameCharacter.hpp"
 #include "Room.hpp"
 #include "Item.hpp"
 
-using namespace std;
-
-class Item;
-
 class Player: public GameCharacter {
 private:
-    int currentRoom, previousRoom;
-    vector<Item> inventory;
+    Room *currentRoom, *previousRoom;
+    Items_set inventory;
 
 public:
     Player(string, int, int, int);
-    void addItem(Item);
+    void addItem(Item_ptr);
     void increaseStates(int, int, int);
-    void changeRoom(int);
+    void changeRoom(Room*);
 
     /* Virtual function that you need to complete   */
     /* In Player, this function should show the     */
@@ -30,12 +28,12 @@ public:
     bool triggerEvent(const Object_ptr);
 
     /* Set & Get function*/
-    void setCurrentRoom(int);
-    void setPreviousRoom(int);
-    void setInventory(vector<Item>);
-    int getCurrentRoom();
-    int getPreviousRoom();
-    vector<Item> getInventory();
+    void setCurrentRoom(Room*);
+    void setPreviousRoom(Room*);
+    void setInventory(Items_set);
+    Room* getCurrentRoom();
+    Room* getPreviousRoom();
+    Items_set getInventory();
 };
 
 #endif // PLAYER_H_INCLUDED

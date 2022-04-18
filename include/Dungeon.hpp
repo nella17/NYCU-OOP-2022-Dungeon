@@ -6,14 +6,14 @@
 #include <vector>
 #include <memory>
 #include <exception>
+using namespace std;
+
 #include "Player.hpp"
 #include "Monster.hpp"
 #include "NPC.hpp"
 #include "Room.hpp"
 #include "Record.hpp"
 #include "helper.hpp"
-
-using namespace std;
 
 class Dungeon {
 private:

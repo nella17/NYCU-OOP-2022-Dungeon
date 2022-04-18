@@ -3,8 +3,9 @@
 
 #include <iostream>
 #include <string>
-#include "Object.hpp"
 using namespace std;
+
+#include "Object.hpp"
 
 class GameCharacter: public Object {
 private:

@@ -5,10 +5,10 @@
 #include <string>
 #include <vector>
 #include <memory>
+using namespace std;
+
 #include "GameCharacter.hpp"
 #include "Player.hpp"
-
-using namespace std;
 
 class Monster: public GameCharacter {
 private:

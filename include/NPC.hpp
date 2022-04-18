@@ -5,31 +5,31 @@
 #include <string>
 #include <vector>
 #include <memory>
+using namespace std;
+
 #include "GameCharacter.hpp"
 #include "Player.hpp"
 #include "Item.hpp"
 
-using namespace std;
-
 class NPC: public GameCharacter {
 private:
     string script;
-    vector<Item> commodity;
+    Items_set commodity;
 
 public:
-    NPC(string, string, vector<Item>);
+    NPC(string, string, Items_set = {});
     void listCommodity(); /*print all the Item in this NPC*/
 
     /* Virtual function that you need to complete   */
     /* In NPC, this function should deal with the   */
     /* transaction in easy implementation           */
-    bool triggerEvent(const shared_ptr<Object>);
+    bool triggerEvent(const Object_ptr);
 
     /* Set & Get function*/
     void setScript(string);
-    void setCommodity(vector<Item>);
+    void setCommodity(Items_set);
     string getScript();
-    vector<Item> getCommodity();
+    Items_set getCommodity();
 };
 
 #endif // NPC_H_INCLUDED

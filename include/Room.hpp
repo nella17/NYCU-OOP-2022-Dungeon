@@ -6,10 +6,11 @@
 #include <vector>
 #include <map>
 #include <memory>
+#include <random>
+using namespace std;
+
 #include "Object.hpp"
 #include "helper.hpp"
-
-using namespace std;
 
 
 class Room {

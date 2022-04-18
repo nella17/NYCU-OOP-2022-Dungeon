@@ -6,12 +6,12 @@
 #include <vector>
 #include <sstream>
 #include <memory>
+using namespace std;
+
 #include "Item.hpp"
 #include "Monster.hpp"
 #include "NPC.hpp"
 #include "Player.hpp"
-
-using namespace std;
 
 /* This is the record system. Get the information of the  */
 /* player and rooms then save them to (a) file(s). Notice */

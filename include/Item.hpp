@@ -3,13 +3,16 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
+#include <set>
 #include <memory>
-#include "Object.hpp"
-#include "Player.hpp"
 using namespace std;
 
-class Player;
+class Item;
+using Item_ptr = shared_ptr<Item>;
+using Items_set = set<Item_ptr>;
+
+#include "Object.hpp"
+#include "Player.hpp"
 
 class Item: public Object {
 private:

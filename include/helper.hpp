@@ -9,7 +9,6 @@
 #include <iostream>
 #include <set>
 #include <map>
-
 using namespace std;
 
 extern mt19937 rng;
