@@ -30,14 +30,6 @@ void set_echo_mode(int fd) {
     tcsetattr(fd, TCSANOW, &tty);
 }
 
-map<DIRECTION,string> dir_to_str = {
-    { DIRECTION::UNKNOWN, "UNKNOWN" },
-    { DIRECTION::UP, "up" },
-    { DIRECTION::DOWN, "down" },
-    { DIRECTION::LEFT, "left" },
-    { DIRECTION::RIGHT, "right" },
-};
-
 map<int,DIRECTION> key_to_dir = {
     { 'W', DIRECTION::UP },
     { 'S', DIRECTION::DOWN },

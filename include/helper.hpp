@@ -11,6 +11,9 @@
 #include <map>
 using namespace std;
 
+#include "magic_enum.hpp"
+using namespace magic_enum::ostream_operators;
+
 extern mt19937 rng;
 
 #define DEFAULT_FD STDIN_FILENO
@@ -25,7 +28,6 @@ enum class DIRECTION {
     UNKNOWN = 0,
     UP, DOWN, RIGHT, LEFT,
 };
-extern map<DIRECTION,string> dir_to_str;
 
 extern map<int,DIRECTION> key_to_dir;
 inline bool is_dir_key(int key);

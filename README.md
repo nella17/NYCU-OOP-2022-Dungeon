@@ -10,3 +10,4 @@
     - https://makefiletutorial.com
     - https://stackoverflow.com/questions/52034997/how-to-make-makefile-recompile-when-a-header-file-is-changed
 - https://stackoverflow.com/questions/31963835/how-to-read-terminals-input-buffer-immediately-after-keypress
+- https://github.com/Neargye/magic_enum
