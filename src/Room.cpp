@@ -116,7 +116,12 @@ void Room::switch_states(bool value, ObjectPtr obj) {
 }
 
 ObjectPtr Room::check_object(ObjectPtr obj) const {
-    if (isLocked && obj->get_type() != Object::Type::Lock)
-        return nullptr;
+    if (isLocked) {
+        if (obj->get_type() != Object::Type::Lock)
+            return nullptr;
+    } else if (isBlocked) {
+        if (obj->get_type() != Object::Type::Monster)
+            return nullptr;
+    }
     return obj;
 }
