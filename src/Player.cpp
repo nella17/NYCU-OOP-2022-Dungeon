@@ -13,7 +13,7 @@ void Player::addItem(Item_ptr item) {
 }
 
 // TODO
-void increaseStates(int, int, int) {}
+void Player::increaseStates(int, int, int) {}
 
 void Player::changeRoom(Room* room) {
     previousRoom = currentRoom;
