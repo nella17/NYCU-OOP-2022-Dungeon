@@ -30,8 +30,9 @@ public:
 
 private:
     void switch_states(bool, ObjectPtr);
+    ObjectPtr check_object(ObjectPtr);
 
-    bool isBlocked, isExit;
+    bool isBlocked, isLocked, isExit;
     int index;
     std::map<DIRECTION,Room*> neighbors;
     ObjectsMap objects;/*contain 1 or multiple objects, including monster, npc, etc*/

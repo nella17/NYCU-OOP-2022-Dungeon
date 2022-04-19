@@ -6,7 +6,7 @@
 #include <random>
 
 Room::Room(bool _isExit, int _index, ObjectsMap _objects):
-    isBlocked(false), isExit(_isExit), index(_index), objects(_objects) {}
+    isBlocked(false), isLocked(false), isExit(_isExit), index(_index), objects(_objects) {}
 
 constexpr int name_size = 2;
 
@@ -24,8 +24,13 @@ std::string Room::name() {
 void Room::draw_neighbors(Room* previous) {
     auto get_name = [&](DIRECTION dir = DIRECTION::None) {
         auto ptr = get_neighbor(dir, previous);
-        auto name = ptr ? '[' + ptr->name() + ']' : std::string(name_size+2,' ');
-        if (isBlocked && ptr == nullptr) name = "[🔒 ]";
+        auto name = std::string(name_size+2,' ');
+        if (ptr == nullptr) {
+            if (isBlocked) name = "[❌ ]";
+        } else {
+            name = '[' + ptr->name() + ']';
+            if (ptr->isLocked) name = "[🔒 ]";
+        }
         return name;
     };
     std::cout << std::string(name_size+2,' ') << get_name(DIRECTION::UP) << '\n'
@@ -35,10 +40,10 @@ void Room::draw_neighbors(Room* previous) {
 }
 
 bool Room::trigger_object_event(int key, ObjectPtr obj) {
-    auto it = objects.find(key);
-    if (it == objects.end())
+    auto ptr = get_object(key);
+    if (ptr == nullptr)
         return false;
-    return it->second->trigger_event(obj);
+    return ptr->trigger_event(obj);
 }
 
 void Room::push_object(int key, ObjectPtr obj) {
@@ -47,11 +52,11 @@ void Room::push_object(int key, ObjectPtr obj) {
 }
 
 bool Room::pop_object(int key) {
-    auto it = objects.find(key);
-    if (it == objects.end())
+    auto ptr = get_object(key);
+    if (ptr == nullptr)
         return false;
-    switch_states(false, it->second);
-    objects.erase(it);
+    switch_states(false, ptr);
+    objects.erase(key);
     return true;
 }
 
@@ -63,7 +68,7 @@ void Room::clear_objects() {
     isBlocked = false;
     objects.clear();
 }
-bool Room::get_isExit() { return isExit; }
+bool Room::get_isExit() { return !isLocked && isExit; }
 bool Room::get_isBlocked() { return isBlocked; }
 int Room::get_index() { return index; }
 ObjectPtr Room::get_object(int key) {
@@ -72,7 +77,13 @@ ObjectPtr Room::get_object(int key) {
         return nullptr;
     return it->second;
 }
-ObjectsMap Room::get_objects() { return objects; }
+ObjectsMap Room::get_objects() {
+    ObjectsMap ret;
+    for (auto [key, obj]: objects)
+        if (check_object(obj) != nullptr)
+            ret.emplace(key, obj);
+    return ret;
+}
 Room* Room::get_neighbor(DIRECTION dir, Room* previous) {
     if (dir == DIRECTION::None)
         return this;
@@ -80,17 +91,26 @@ Room* Room::get_neighbor(DIRECTION dir, Room* previous) {
     if (it == neighbors.end())
         return nullptr;
     auto ptr = it->second;
-    if (isBlocked && ptr != previous)
+    if (ptr != previous) if (isBlocked || isLocked)
         ptr = nullptr;
     return ptr;
 }
 
 void Room::switch_states(bool value, ObjectPtr obj) {
     switch (obj->get_type()) {
+        case Object::Type::Lock:
+            isLocked = value;
+            [[fallthrough]];
         case Object::Type::Monster:
             isBlocked = value;
             break;
         default:
             break;
     }
+}
+
+ObjectPtr Room::check_object(ObjectPtr obj) {
+    if (isLocked && obj->get_type() != Object::Type::Lock)
+        return nullptr;
+    return obj;
 }
