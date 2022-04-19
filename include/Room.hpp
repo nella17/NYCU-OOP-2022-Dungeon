@@ -10,7 +10,7 @@ class Room {
 public:
     Room(bool = false, int = -1, Objects_map= {});
     std::string name();
-    void drawNeighbors();
+    void drawNeighbors(Room* = nullptr);
 
     bool triggerObjectEvent(int, Object_ptr);
     void pushObject(int, Object_ptr);
@@ -26,7 +26,7 @@ public:
     int getIndex();
     Object_ptr getObject(int);
     Objects_map getObjects();
-    Room* getRoom(DIRECTION);
+    Room* getRoom(DIRECTION, Room* previous = nullptr);
 
 private:
     void switchState(bool, Object_ptr);

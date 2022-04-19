@@ -33,7 +33,7 @@ void Player::printStatus() {
         std::cout << '\n';
     }
     std:: cout << std::endl;
-    currentRoom->drawNeighbors();
+    currentRoom->drawNeighbors(previousRoom);
 }
 
 void Player::printMenu() {
@@ -48,13 +48,13 @@ void Player::printMenu() {
 bool Player::handleMenu(int key) {
     if (is_dir_key(key)) {
         auto dir = key_to_dir(key);
-        if (currentRoom->getRoom(dir) == nullptr) {
+        auto room = currentRoom->getRoom(dir, previousRoom);
+        if (room == nullptr)
             return false;
-        }
-        changeRoom(currentRoom->getRoom(dir));
+        changeRoom(room);
     } else {
         if (currentRoom->triggerObjectEvent(key, shared_from_this()))
-            assert(currentRoom->popObject(key));
+            assert(currentRoom->popObject(key) && "Object not found");
     }
     return true;
 }

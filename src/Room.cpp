@@ -6,7 +6,7 @@
 #include <random>
 
 Room::Room(bool _isExit, int _index, Objects_map _objects):
-    isExit(_isExit), index(_index), objects(_objects) {}
+    isBlocked(false), isExit(_isExit), index(_index), objects(_objects) {}
 
 constexpr int name_size = 2;
 
@@ -21,11 +21,12 @@ std::string Room::name() {
     return s;
 }
 
-void Room::drawNeighbors() {
+void Room::drawNeighbors(Room* previous) {
     auto getname = [&](DIRECTION dir = DIRECTION::UNKNOWN) {
-        auto r = dir == DIRECTION::UNKNOWN ? this : getRoom(dir);
-        auto s = r ? '[' + r->name() + ']' : std::string(name_size+2,' ');
-        return s;
+        auto ptr = getRoom(dir, previous);
+        auto name = ptr ? '[' + ptr->name() + ']' : std::string(name_size+2,' ');
+        if (isBlocked && ptr == nullptr) name = "[🔒 ]";
+        return name;
     };
     std::cout << std::string(name_size+2,' ') << getname(DIRECTION::UP) << '\n'
             << getname(DIRECTION::LEFT) << getname()  << getname(DIRECTION::RIGHT) << '\n'
@@ -72,9 +73,16 @@ Object_ptr Room::getObject(int key) {
     return it->second;
 }
 Objects_map Room::getObjects() { return objects; }
-Room* Room::getRoom(DIRECTION dir) {
+Room* Room::getRoom(DIRECTION dir, Room* previous) {
+    if (dir == DIRECTION::UNKNOWN)
+        return this;
     auto it = neighborRooms.find(dir);
-    return it == neighborRooms.end() ? nullptr : it->second;
+    if (it == neighborRooms.end())
+        return nullptr;
+    auto ptr = it->second;
+    if (isBlocked && ptr != previous)
+        ptr = nullptr;
+    return ptr;
 }
 
 void Room::switchState(bool value, Object_ptr object) {
