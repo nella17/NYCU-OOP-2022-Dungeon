@@ -11,21 +11,21 @@
 #include "NPC.hpp"
 
 // TODO
-void savePlayer(const std::shared_ptr<Player>, std::ofstream&) {}
+void savePlayer(const std::shared_ptr<Player>, std::ofstream&&) {}
 
 // TODO
-void loadPlayer(std::shared_ptr<Player>&, std::ifstream&) {}
+void loadPlayer(std::shared_ptr<Player>&, std::ifstream&&) {}
 
 // TODO
-void saveRooms(const std::vector<Room>&, std::ofstream&) {}
+void saveRooms(const std::vector<Room>&, std::ofstream&&) {}
 // TODO
-void loadRooms(std::vector<Room>&, std::ifstream&) {}
+void loadRooms(std::vector<Room>&, std::ifstream&&) {}
 
 void Record::saveToFile(const std::shared_ptr<Player> player, const std::vector<Room>& rooms) {
-    savePlayer(player, *std::make_shared<std::ofstream>("data/player.txt"));
-    saveRooms(rooms, *std::make_shared<std::ofstream>("data/rooms.txt"));
+    savePlayer(player, std::ofstream("data/player.txt"));
+    saveRooms(rooms, std::ofstream("data/rooms.txt"));
 }
 void Record::loadFromFile(std::shared_ptr<Player>& player, std::vector<Room>& rooms) {
-    loadPlayer(player, *std::make_shared<std::ifstream>("data/player.txt"));
-    loadRooms(rooms, *std::make_shared<std::ifstream>("data/rooms.txt"));
+    loadPlayer(player, std::ifstream("data/player.txt"));
+    loadRooms(rooms, std::ifstream("data/rooms.txt"));
 }
