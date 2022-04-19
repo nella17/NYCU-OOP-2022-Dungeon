@@ -10,7 +10,7 @@ bool GameCharacter::check_is_dead() {
     return currentHealth <= 0;
 }
 int GameCharacter::take_damage(int damage) {
-    return currentHealth -= damage;
+    return currentHealth -= std::max(0, damage - defense);
 }
 
 void GameCharacter::set_maxHealth(int _maxHealth) { maxHealth = _maxHealth; }
