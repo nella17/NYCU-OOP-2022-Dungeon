@@ -15,7 +15,7 @@
 // Record
 #include "Record.hpp"
 
-Dungeon::Dungeon(): player(nullptr), rooms() {}
+Dungeon::Dungeon(): quit(false), player(nullptr), rooms() {}
 
 void Dungeon::create_player() {
     std::string name;
@@ -71,11 +71,17 @@ void Dungeon::draw_screen() {
 void Dungeon::handle_menu() {
     std::cout << "[W][A][S][D] Movement\n";
     player->get_currentRoom()->print_menu();
+    std::cout << "[Q] Quit\n";
     std::cout << std::endl;
 
     set_no_buffer_mode(); set_no_echo_mode();
     int key = read_char();
     set_buffer_mode(); set_echo_mode();
+
+    if (key == 'Q') {
+        quit = true;
+        return;
+    }
     player->handle_menu(key);
 }
 
@@ -106,8 +112,17 @@ bool Dungeon::check_game_logic() {
 void Dungeon::run() {
     start_game();
 
-    while (!check_game_logic()) {
+    while (!quit && !check_game_logic()) {
         draw_screen();
         handle_menu();
     }
+
+    if (quit)
+        std::cout << "Goodbye!" << std::endl;
+    else if (player->check_is_dead())
+        std::cout << "You died :(" << std::endl;
+    else if (player->get_currentRoom()->get_isExit())
+        std::cout << "You won!" << std::endl;
+    else
+        assert(0 && "unknown error");
 }

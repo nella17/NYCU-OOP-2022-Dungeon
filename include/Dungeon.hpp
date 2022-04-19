@@ -43,6 +43,7 @@ public:
     void run();
 
 private:
+    bool quit;
     std::shared_ptr<Player> player;
     std::vector<Room> rooms;
 };
