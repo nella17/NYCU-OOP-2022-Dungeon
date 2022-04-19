@@ -96,6 +96,11 @@ void Dungeon::handle_menu() {
 
 void Dungeon::start_game() {
     clearScreen();
+    std::cout << "Welcome to the Dungeon!\n"
+            << "Press any key to start..." << std::endl;
+    read_char_no_buffer_echo();
+
+    clearScreen();
     create_player();
     create_map();
     player->changeRoom(&rooms[0]);
