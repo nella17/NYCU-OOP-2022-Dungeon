@@ -5,8 +5,14 @@
 #include <exception>
 #include "helper.hpp"
 
+// GameCharacter
 #include "Monster.hpp"
 #include "NPC.hpp"
+// Item
+#include "Equipment.hpp"
+#include "Potion.hpp"
+#include "Key.hpp"
+// Record
 #include "Record.hpp"
 
 Dungeon::Dungeon(): player(nullptr), rooms() {}

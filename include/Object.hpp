@@ -14,6 +14,10 @@ public:
     enum class Type {
         Unknown = 0,
         Item,
+        Equipment,
+        Potion,
+        Key,
+        Lock,
         Player,
         Monster,
         NPC,

@@ -1,13 +1,8 @@
 #include "Item.hpp"
 
-#include <iostream>
-#include <string>
-#include "helper.hpp"
-
 #include "Player.hpp"
 
-Item::Item(std::string _name, int _health, int _attack, int _defense):
-        Object(_name, Object::Type::Item), health(_health), attack(_attack), defense(_defense) {}
+Item::Item(std::string _name, Object::Type _type): Object(_name, _type) {}
 
 bool Item::triggerEvent(Object_ptr obj) {
     if (obj->getType() == Object::Type::Player) {
@@ -16,10 +11,3 @@ bool Item::triggerEvent(Object_ptr obj) {
     }
     return false;
 }
-
-int Item::getHealth() { return health; }
-int Item::getAttack() { return attack; }
-int Item::getDefense() { return defense; }
-void Item::setHealth(int _health) { health = _health; }
-void Item::setAttack(int _attack) { attack = _attack; }
-void Item::setDefense(int _defense) { defense = _defense; }

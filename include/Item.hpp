@@ -1,6 +1,7 @@
 #ifndef ITEM_H_INCLUDED
 #define ITEM_H_INCLUDED
 
+#include <string>
 #include <set>
 #include <memory>
 #include "Object.hpp"
@@ -11,7 +12,7 @@ using Items_set = std::set<Item_ptr>;
 
 class Item: public Object {
 public:
-    Item(std::string, int, int, int);
+    Item(std::string, Object::Type);
 
     /* Virtual function that you need to complete    */
     /* In Item, this function should deal with the   */
@@ -19,16 +20,7 @@ public:
     /* player.                                       */
     bool triggerEvent(Object_ptr);
 
-    /* Set & Get function*/
-    int getHealth();
-    int getAttack();
-    int getDefense();
-    void setHealth(int);
-    void setAttack(int);
-    void setDefense(int);
-
 private:
-    int health, attack, defense;
 };
 
 #endif // ITEM_H_INCLUDED
