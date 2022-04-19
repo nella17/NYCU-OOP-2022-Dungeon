@@ -31,18 +31,18 @@ void Dungeon::create_map() {
 
     /*
            [2] - [3]
+            |     🔒
+     [0] - [1]   [8] - [exit]
             |
-     [0] - [1]
-            |
-           [4] - [6] - [7] - [exit]
+           [4] - [6] - [7]
             |
            [5]
     */
-    int sz = 8;
+    int sz = 9;
     rooms.resize(sz);
     for(int i = 0; i < sz; i++)
         rooms[i].set_index(i);
-    rooms[7].set_isExit(true);
+    rooms[8].set_isExit(true);
     LINK_ROOM(&rooms[0], DIRECTION::LEFT, &rooms[1], DIRECTION::RIGHT);
     LINK_ROOM(&rooms[1], DIRECTION::DOWN, &rooms[2], DIRECTION::UP   );
     LINK_ROOM(&rooms[1], DIRECTION::UP  , &rooms[4], DIRECTION::DOWN );
@@ -50,8 +50,13 @@ void Dungeon::create_map() {
     LINK_ROOM(&rooms[4], DIRECTION::UP  , &rooms[5], DIRECTION::DOWN );
     LINK_ROOM(&rooms[4], DIRECTION::LEFT, &rooms[6], DIRECTION::RIGHT);
     LINK_ROOM(&rooms[6], DIRECTION::LEFT, &rooms[7], DIRECTION::RIGHT);
+    LINK_ROOM(&rooms[3], DIRECTION::UP  , &rooms[8], DIRECTION::DOWN );
 
     // TODO: add items
+    rooms[6].push_object('M', std::make_shared<Monster>(std::string("Monster"), 10, 5, 2));
+    auto [key, lock] = Key::generate_key_pair();
+    rooms[7].push_object('K', key);
+    rooms[8].push_object('L', lock);
 
     sleep(1);
     std::cout << "Map generated!" << std::endl;
