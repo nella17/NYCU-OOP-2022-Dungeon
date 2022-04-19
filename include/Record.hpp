@@ -11,8 +11,8 @@
 /* whole vector to the function.                          */
 
 namespace Record {
-    void saveToFile(const std::shared_ptr<Player>, const std::vector<Room>&);
-    void loadFromFile(std::shared_ptr<Player>&, std::vector<Room>&);
+    void save_to_file(const std::shared_ptr<Player>, const std::vector<Room>&);
+    void load_from_file(std::shared_ptr<Player>&, std::vector<Room>&);
 };
 
 #endif // RECORD_H_INCLUDED

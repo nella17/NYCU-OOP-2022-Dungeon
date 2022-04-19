@@ -8,23 +8,23 @@
 
 class NPC: public GameCharacter {
 public:
-    NPC(std::string, std::string, Items_set = {});
-    void listCommodity(); /*print all the Item in this NPC*/
+    NPC(std::string, std::string, ItemsSet = {});
+    void list_commodity(); /*print all the Item in this NPC*/
 
     /* Virtual function that you need to complete   */
     /* In NPC, this function should deal with the   */
     /* transaction in easy implementation           */
-    bool triggerEvent(Object_ptr);
+    bool trigger_event(ObjectPtr);
 
     /* Set & Get function*/
-    void setScript(std::string);
-    void setCommodity(Items_set);
-    std::string getScript();
-    Items_set getCommodity();
+    void set_script(std::string);
+    void set_commodity(ItemsSet);
+    std::string get_script();
+    ItemsSet get_commodity();
 
 private:
     std::string script;
-    Items_set commodity;
+    ItemsSet commodity;
 };
 
 #endif // NPC_H_INCLUDED

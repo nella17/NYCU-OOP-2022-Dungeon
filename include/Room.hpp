@@ -8,38 +8,38 @@
 
 class Room {
 public:
-    Room(bool = false, int = -1, Objects_map= {});
+    Room(bool = false, int = -1, ObjectsMap= {});
     std::string name();
-    void drawNeighbors(Room* = nullptr);
+    void draw_neighbors(Room* = nullptr);
 
-    bool triggerObjectEvent(int, Object_ptr);
-    void pushObject(int, Object_ptr);
-    bool popObject(int); /*pop out the specific object, used when the interaction is done*/
+    bool trigger_object_event(int, ObjectPtr);
+    void push_object(int, ObjectPtr);
+    bool pop_object(int); /*pop out the specific object, used when the interaction is done*/
 
     /* Set & Get function*/
-    void setRoom(DIRECTION, Room*);
-    void setIsExit(bool);
-    void setIndex(int);
-    void clearObjects();
-    bool getIsExit();
-    bool getIsBlocked();
-    int getIndex();
-    Object_ptr getObject(int);
-    Objects_map getObjects();
-    Room* getRoom(DIRECTION, Room* previous = nullptr);
+    void set_room(DIRECTION, Room*);
+    void set_isExit(bool);
+    void set_index(int);
+    void clear_objects();
+    bool get_isExit();
+    bool get_isBlocked();
+    int get_index();
+    ObjectPtr get_object(int);
+    ObjectsMap get_objects();
+    Room* get_neighbor(DIRECTION, Room* previous = nullptr);
 
 private:
-    void switchState(bool, Object_ptr);
+    void switch_states(bool, ObjectPtr);
 
     bool isBlocked, isExit;
     int index;
-    std::map<DIRECTION,Room*> neighborRooms;
-    Objects_map objects;/*contain 1 or multiple objects, including monster, npc, etc*/
+    std::map<DIRECTION,Room*> neighbors;
+    ObjectsMap objects;/*contain 1 or multiple objects, including monster, npc, etc*/
 };
 
 inline void LINK_ROOM(Room* r1, DIRECTION d1, Room* r2, DIRECTION d2) {
-    r1->setRoom(d2, r2);
-    r2->setRoom(d1, r1);
+    r1->set_room(d2, r2);
+    r2->set_room(d1, r1);
 }
 
 #endif // ROOM_H_INCLUDED

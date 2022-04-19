@@ -8,70 +8,70 @@ Player::Player(std::string _name, int _maxHealth, int _attack, int _defense):
         GameCharacter(_name, Object::Type::Player, _maxHealth, _attack, _defense) {}
 
 // TODO
-void Player::addItem(Item_ptr item) {
+void Player::add_item(ItemPtr item) {
     inventory.emplace(item);
 }
 
 // TODO
-void Player::increaseStates(int, int, int) {}
+void Player::increase_status(int, int, int) {}
 
 void Player::changeRoom(Room* room) {
     previousRoom = currentRoom;
     currentRoom = room;
 }
 
-void Player::printStatus() {
+void Player::print_status() {
     std::cout << "Player's Status\n"
-              << "Name\t: " << getName() << '\n'
-              << "Health\t: " << getCurrentHealth() << " / " << getMaxHealth() << '\n'
-              << "Attack\t: " << getAttack() << '\n'
-              << "Defense\t: " << getDefense() << '\n';
+              << "Name\t: " << get_name() << '\n'
+              << "Health\t: " << get_currentHealth() << " / " << get_maxHealth() << '\n'
+              << "Attack\t: " << get_attack() << '\n'
+              << "Defense\t: " << get_defense() << '\n';
     if (!inventory.empty()) {
         std::cout << "Items\t:";
         for (auto& item: inventory)
-            std::cout << " " << item->getName();
+            std::cout << " " << item->get_name();
         std::cout << '\n';
     }
     std:: cout << std::endl;
-    currentRoom->drawNeighbors(previousRoom);
+    currentRoom->draw_neighbors(previousRoom);
 }
 
-void Player::printMenu() {
+void Player::print_menu() {
     std::cout << "   [W]   \n"
               << "[A]   [D]\n"
               << "   [S]   \n";
-    for(auto [key, object]: currentRoom->getObjects())
-        std::cout << "[" << key << "] " << object->getName() << '\n';
+    for(auto [key, object]: currentRoom->get_objects())
+        std::cout << "[" << key << "] " << object->get_name() << '\n';
     std::cout << std::endl;
 }
 
-bool Player::handleMenu(int key) {
+bool Player::handle_menu(int key) {
     if (is_dir_key(key)) {
         auto dir = key_to_dir(key);
-        auto room = currentRoom->getRoom(dir, previousRoom);
+        auto room = currentRoom->get_neighbor(dir, previousRoom);
         if (room == nullptr)
             return false;
         changeRoom(room);
     } else {
-        if (currentRoom->triggerObjectEvent(key, shared_from_this()))
-            assert(currentRoom->popObject(key) && "Object not found");
+        if (currentRoom->trigger_object_event(key, shared_from_this()))
+            assert(currentRoom->pop_object(key) && "Object not found");
     }
     return true;
 }
 
 // TODO
-bool Player::triggerEvent(Object_ptr obj) {
-    if (obj->getType() == Object::Type::Item) {
+bool Player::trigger_event(ObjectPtr obj) {
+    if (obj->get_type() == Object::Type::Item) {
         auto item = std::dynamic_pointer_cast<Item>(obj);
-        addItem(item);
+        add_item(item);
         return true;
     }
     return false;
 }
 
-void Player::setCurrentRoom(Room* room) { currentRoom = room; }
-void Player::setPreviousRoom(Room* room) { previousRoom = room; }
-void Player::setInventory(Items_set items) { inventory = items; }
-Room* Player::getCurrentRoom() { return currentRoom; }
-Room* Player::getPreviousRoom() { return previousRoom; }
-Items_set Player::getInventory() { return inventory; }
+void Player::set_currentRoom(Room* room) { currentRoom = room; }
+void Player::set_previousRoom(Room* room) { previousRoom = room; }
+void Player::set_inventory(ItemsSet items) { inventory = items; }
+Room* Player::get_currentRoom() { return currentRoom; }
+Room* Player::get_previousRoom() { return previousRoom; }
+ItemsSet Player::get_inventory() { return inventory; }

@@ -12,35 +12,35 @@ public:
     Dungeon();
 
     /* Create a new player, and give him/her basic status */
-    void createPlayer();
+    void create_player();
 
     /* Create a map, which include several different rooms */
-    void createMap();
+    void create_map();
 
-    void drawScreen();
+    void draw_screen();
 
     /* Deal with player's moveing action */
-    void handleMenu();
+    void handle_menu();
 
     /* Deal with player's iteraction with objects in that room */
-    void handleEvent(Object_ptr);
+    void handle_event(ObjectPtr);
 
     /* Deal with all game initial setting       */
     /* Including create player, create map etc  */
-    void startGame();
+    void start_game();
 
     /* Deal with the player's action     */
     /* including showing the action list */
     /* that player can do at that room   */
     /* and dealing with player's input   */
-    void chooseAction(const Objects_map&);
+    void choose_action(const ObjectsMap&);
 
     /* Check whether the game should end or not */
     /* Including player victory, or he/she dead */
-    bool checkGameLogic();
+    bool check_game_logic();
 
     /* Deal with the whole game process */
-    void runDungeon();
+    void run();
 
 private:
     std::shared_ptr<Player> player;

@@ -10,7 +10,7 @@
 
 int main() {
     Dungeon dungeon = Dungeon();
-    dungeon.runDungeon();
+    dungeon.run();
 
     return 0;
 }

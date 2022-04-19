@@ -7,8 +7,8 @@
 #include "Object.hpp"
 
 class Item;
-using Item_ptr = std::shared_ptr<Item>;
-using Items_set = std::set<Item_ptr>;
+using ItemPtr = std::shared_ptr<Item>;
+using ItemsSet = std::set<ItemPtr>;
 
 class Item: public Object {
 public:
@@ -18,7 +18,7 @@ public:
     /* In Item, this function should deal with the   */
     /* pick up action. You should add status to the  */
     /* player.                                       */
-    bool triggerEvent(Object_ptr);
+    bool trigger_event(ObjectPtr);
 
 private:
 };

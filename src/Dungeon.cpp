@@ -17,7 +17,7 @@
 
 Dungeon::Dungeon(): player(nullptr), rooms() {}
 
-void Dungeon::createPlayer() {
+void Dungeon::create_player() {
     std::string name;
     std::cout << "Please enter your name: ";
     std::cin >> name;
@@ -25,7 +25,7 @@ void Dungeon::createPlayer() {
     player = std::make_shared<Player>(name, 100, 10, 5);
 }
 
-void Dungeon::createMap() {
+void Dungeon::create_map() {
     std::cout << "Generating map..." << std::endl;
     rooms.clear();
 
@@ -41,8 +41,8 @@ void Dungeon::createMap() {
     int sz = 8;
     rooms.resize(sz);
     for(int i = 0; i < sz; i++)
-        rooms[i].setIndex(i);
-    rooms[7].setIsExit(true);
+        rooms[i].set_index(i);
+    rooms[7].set_isExit(true);
     LINK_ROOM(&rooms[0], DIRECTION::LEFT, &rooms[1], DIRECTION::RIGHT);
     LINK_ROOM(&rooms[1], DIRECTION::DOWN, &rooms[2], DIRECTION::UP   );
     LINK_ROOM(&rooms[1], DIRECTION::UP  , &rooms[4], DIRECTION::DOWN );
@@ -57,49 +57,49 @@ void Dungeon::createMap() {
     std::cout << "Map generated!" << std::endl;
 }
 
-void Dungeon::drawScreen() {
+void Dungeon::draw_screen() {
     clearScreen();
-    player->drawStatus();
-    player->getCurrentRoom()->drawNeighbors();
+    player->print_status();
+    player->get_currentRoom()->draw_neighbors();
 }
 
 // TODO
-void Dungeon::handleMenu() {
-    player->printMenu();
+void Dungeon::handle_menu() {
+    player->print_menu();
     set_no_buffer_mode(); set_no_echo_mode();
     int key = read_char();
     set_buffer_mode(); set_echo_mode();
-    player->handleMenu(key);
+    player->handle_menu(key);
 }
 
 // TODO
-void Dungeon::handleEvent(Object_ptr object) {
+void Dungeon::handle_event(ObjectPtr) {
 }
 
-void Dungeon::startGame() {
+void Dungeon::start_game() {
     clearScreen();
-    createPlayer();
-    createMap();
+    create_player();
+    create_map();
     player->changeRoom(&rooms[0]);
 }
 
 // TODO
-void Dungeon::chooseAction(const Objects_map& actions) {
+void Dungeon::choose_action(const ObjectsMap&) {
 }
 
 // TODO
-bool Dungeon::checkGameLogic() {
-    if (player && (player->checkIsDead() || player->getCurrentRoom()->getIsExit()))
+bool Dungeon::check_game_logic() {
+    if (player && (player->check_is_dead() || player->get_currentRoom()->get_isExit()))
         return true;
     return false;
 }
 
 // TODO
-void Dungeon::runDungeon() {
-    startGame();
+void Dungeon::run() {
+    start_game();
 
-    while (!checkGameLogic()) {
-        drawScreen();
-        handleMenu();
+    while (!check_game_logic()) {
+        draw_screen();
+        handle_menu();
     }
 }

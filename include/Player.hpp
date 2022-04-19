@@ -9,30 +9,30 @@
 class Player: public GameCharacter {
 public:
     Player(std::string, int, int, int);
-    void addItem(Item_ptr);
-    void increaseStates(int, int, int);
+    void add_item(ItemPtr);
+    void increase_status(int, int, int);
     void changeRoom(Room*);
 
-    void printStatus();
-    void printMenu();
-    bool handleMenu(int);
+    void print_status();
+    void print_menu();
+    bool handle_menu(int);
 
     /* Virtual function that you need to complete   */
     /* In Player, this function should show the     */
     /* status of player.                            */
-    bool triggerEvent(Object_ptr);
+    bool trigger_event(ObjectPtr);
 
     /* Set & Get function*/
-    void setCurrentRoom(Room*);
-    void setPreviousRoom(Room*);
-    void setInventory(Items_set);
-    Room* getCurrentRoom();
-    Room* getPreviousRoom();
-    Items_set getInventory();
+    void set_currentRoom(Room*);
+    void set_previousRoom(Room*);
+    void set_inventory(ItemsSet);
+    Room* get_currentRoom();
+    Room* get_previousRoom();
+    ItemsSet get_inventory();
 
 private:
     Room *currentRoom, *previousRoom;
-    Items_set inventory;
+    ItemsSet inventory;
 };
 
 #endif // PLAYER_H_INCLUDED

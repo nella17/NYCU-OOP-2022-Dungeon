@@ -7,18 +7,18 @@
 class GameCharacter: public Object {
 public:
     GameCharacter(std::string, Object::Type, int = 0, int = 0, int = 0);
-    bool checkIsDead();
-    int takeDamage(int);
+    bool check_is_dead();
+    int take_damage(int);
 
     /* Set & Get function*/
-    void setMaxHealth(int);
-    void setCurrentHealth(int);
-    void setAttack(int);
-    void setDefense(int);
-    int getMaxHealth();
-    int getCurrentHealth();
-    int getAttack();
-    int getDefense();
+    void set_maxHealth(int);
+    void set_currentHealth(int);
+    void set_attack(int);
+    void set_defense(int);
+    int get_maxHealth();
+    int get_currentHealth();
+    int get_attack();
+    int get_defense();
 
 private:
     int maxHealth;

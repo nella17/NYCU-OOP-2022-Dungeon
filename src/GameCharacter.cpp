@@ -6,18 +6,18 @@
 GameCharacter::GameCharacter(std::string _name, Object::Type _type, int _maxHealth, int _attack, int _defense):
         Object(_name, _type), maxHealth(_maxHealth), currentHealth(_maxHealth), attack(_attack), defense(_defense) {}
 
-bool GameCharacter::checkIsDead() {
+bool GameCharacter::check_is_dead() {
     return currentHealth <= 0;
 }
-int GameCharacter::takeDamage(int damage) {
+int GameCharacter::take_damage(int damage) {
     return currentHealth -= damage;
 }
 
-void GameCharacter::setMaxHealth(int _maxHealth) { maxHealth = _maxHealth; }
-void GameCharacter::setCurrentHealth(int _currentHealth) { currentHealth = _currentHealth; }
-void GameCharacter::setAttack(int _attack) { attack = _attack; }
-void GameCharacter::setDefense(int _defense) { defense = _defense; }
-int GameCharacter::getMaxHealth() { return maxHealth; }
-int GameCharacter::getCurrentHealth() { return currentHealth; }
-int GameCharacter::getAttack() { return attack; }
-int GameCharacter::getDefense() { return defense; }
+void GameCharacter::set_maxHealth(int _maxHealth) { maxHealth = _maxHealth; }
+void GameCharacter::set_currentHealth(int _currentHealth) { currentHealth = _currentHealth; }
+void GameCharacter::set_attack(int _attack) { attack = _attack; }
+void GameCharacter::set_defense(int _defense) { defense = _defense; }
+int GameCharacter::get_maxHealth() { return maxHealth; }
+int GameCharacter::get_currentHealth() { return currentHealth; }
+int GameCharacter::get_attack() { return attack; }
+int GameCharacter::get_defense() { return defense; }

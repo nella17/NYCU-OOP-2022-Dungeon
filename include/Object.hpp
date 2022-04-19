@@ -6,13 +6,13 @@
 #include <memory>
 
 class Object;
-using Object_ptr = std::shared_ptr<Object>;
-using Objects_map = std::map<int,Object_ptr>;
+using ObjectPtr = std::shared_ptr<Object>;
+using ObjectsMap = std::map<int,ObjectPtr>;
 
 class Object: public std::enable_shared_from_this<Object> {
 public:
     enum class Type {
-        Unknown = 0,
+        None = 0,
         Item,
         Equipment,
         Potion,
@@ -26,13 +26,13 @@ public:
     Object(std::string, Object::Type);
 
     /* pure virtual function */
-    virtual bool triggerEvent(Object_ptr) = 0;
+    virtual bool trigger_event(ObjectPtr) = 0;
 
     /* Set & Get function*/
-    void setName(std::string);
-    void setType(Object::Type);
-    std::string getName();
-    Object::Type getType();
+    void set_name(std::string);
+    void set_type(Object::Type);
+    std::string get_name();
+    Object::Type get_type();
 
 private:
     std::string name;

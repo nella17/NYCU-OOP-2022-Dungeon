@@ -7,7 +7,7 @@ Key::Key(uint32_t _id, Object::Type _type):
         Item(std::to_string(_id), _type), isLocked(true), id(_id) {}
 
 bool Key::unlock(KeyPtr key) {
-    if (getType() != Object::Type::Key || key->getType() == Object::Type::Key)
+    if (get_type() != Object::Type::Key || key->get_type() == Object::Type::Key)
         return false;
     if (id != key->id)
         return false;

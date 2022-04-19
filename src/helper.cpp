@@ -52,7 +52,7 @@ const auto key2dir = std::map<int,DIRECTION>{
 DIRECTION key_to_dir(int key) {
     auto it = key2dir.find(key);
     if (it == key2dir.end())
-        return DIRECTION::UNKNOWN;
+        return DIRECTION::None;
     return it->second;
 }
 bool is_dir_key(int key) {

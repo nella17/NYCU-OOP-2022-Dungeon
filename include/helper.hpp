@@ -9,7 +9,7 @@ using namespace magic_enum::ostream_operators;
 
 extern std::mt19937 rng;
 
-#define DEFAULT_FD STDIN_FILENO
+constexpr int DEFAULT_FD = STDIN_FILENO;
 
 void set_no_buffer_mode(int fd = DEFAULT_FD);
 void set_buffer_mode(int fd = DEFAULT_FD);
@@ -18,7 +18,7 @@ void set_no_echo_mode(int fd = DEFAULT_FD);
 void set_echo_mode(int fd = DEFAULT_FD);
 
 enum class DIRECTION {
-    UNKNOWN = 0,
+    None = 0,
     UP, DOWN, RIGHT, LEFT,
 };
 
