@@ -64,16 +64,25 @@ void Dungeon::create_map() {
 
 void Dungeon::draw_screen() {
     clearScreen();
+
+    std::cout << "Player's Status:\n";
     player->print_status();
+    std::cout << '\n';
+
+    std::cout << "Map:\n";
+    player->get_currentRoom()->draw_neighbors(player->get_previousRoom());
+    std::cout << '\n';
+
+    std::cout << "Actions:\n";
+    std::cout << "[W][A][S][D] Movement\n";
+    player->get_currentRoom()->print_menu();
+    std::cout << "[Q] Quit\n";
+
+    std::cout << std::endl;
 }
 
 // TODO
 void Dungeon::handle_menu() {
-    std::cout << "[W][A][S][D] Movement\n";
-    player->get_currentRoom()->print_menu();
-    std::cout << "[Q] Quit\n";
-    std::cout << std::endl;
-
     set_no_buffer_mode(); set_no_echo_mode();
     int key = read_char();
     set_buffer_mode(); set_echo_mode();

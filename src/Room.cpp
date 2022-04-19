@@ -33,10 +33,11 @@ void Room::draw_neighbors(Room* previous) {
         }
         return name;
     };
-    std::cout << std::string(name_size+2,' ') << get_name(DIRECTION::UP) << '\n'
-            << get_name(DIRECTION::LEFT) << get_name()  << get_name(DIRECTION::RIGHT) << '\n'
-            << std::string(name_size+2,' ') << get_name(DIRECTION::DOWN) << '\n'
-            << std::endl;
+    std::cout << '+' << std::string((name_size+2)*3,'-') << "+\n"
+            << '|' << std::string(name_size+2,'.') << get_name(DIRECTION::UP) << std::string(name_size+2,'.') << "|\n"
+            << '|' << get_name(DIRECTION::LEFT) << get_name()  << get_name(DIRECTION::RIGHT) << "|\n"
+            << '|' << std::string(name_size+2,'.') << get_name(DIRECTION::DOWN) << std::string(name_size+2,'.') << "|\n"
+            << '+' << std::string((name_size+2)*3,'-') << "+\n";
 }
 
 void Room::print_menu() {

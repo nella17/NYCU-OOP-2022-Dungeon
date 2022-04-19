@@ -21,8 +21,7 @@ void Player::changeRoom(Room* room) {
 }
 
 void Player::print_status() {
-    std::cout << "Player's Status\n"
-              << "Name\t: " << get_name() << '\n'
+    std::cout << "Name\t: " << get_name() << '\n'
               << "Health\t: " << get_currentHealth() << " / " << get_maxHealth() << '\n'
               << "Attack\t: " << get_attack() << '\n'
               << "Defense\t: " << get_defense() << '\n';
@@ -32,8 +31,6 @@ void Player::print_status() {
             std::cout << " " << item->get_name();
         std::cout << '\n';
     }
-    std::cout << std::endl;
-    currentRoom->draw_neighbors(previousRoom);
 }
 
 bool Player::handle_key(int key) {
