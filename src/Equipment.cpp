@@ -1,7 +1,7 @@
 #include "Equipment.hpp"
 
-Equipment::Equipment(std::string _name, int _health, int _attack, int _defense):
-        Item(_name, Object::Type::Equipment), health(_health), attack(_attack), defense(_defense) {}
+Equipment::Equipment(std::string _name, Type _type, int _health, int _attack, int _defense):
+        Item(_name, Object::Type::Equipment), type(_type), health(_health), attack(_attack), defense(_defense) {}
 
 int Equipment::get_health() const { return health; }
 int Equipment::get_attack() const { return attack; }

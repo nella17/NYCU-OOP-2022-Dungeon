@@ -6,7 +6,15 @@
 
 class Equipment: public Item {
 public:
-    Equipment(std::string, int, int, int);
+    enum class Type {
+        None = 0,
+        Head,
+        Body,
+        LeftHand,
+        RightHand,
+    };
+
+    Equipment(std::string, Type, int, int, int);
 
     /* Set & Get function*/
     int get_health() const;
@@ -14,6 +22,7 @@ public:
     int get_defense() const;
 
 private:
+    Type type;
     int health, attack, defense;
 };
 
