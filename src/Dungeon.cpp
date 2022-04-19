@@ -9,7 +9,7 @@
 #include "Monster.hpp"
 #include "NPC.hpp"
 // Item
-#include "Equipment.hpp"
+#include "Equip.hpp"
 #include "Potion.hpp"
 #include "Key.hpp"
 // Record

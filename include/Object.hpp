@@ -14,7 +14,7 @@ public:
     enum class Type {
         None = 0,
         Item,
-        Equipment,
+        Equip,
         Potion,
         Key,
         Lock,

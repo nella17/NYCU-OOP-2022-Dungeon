@@ -1,11 +1,11 @@
-#ifndef EQUIPMENT_H_INCLUDED
-#define EQUIPMENT_H_INCLUDED
+#ifndef EQUIP_H_INCLUDED
+#define EQUIP_H_INCLUDED
 
 #include <iostream>
 #include <string>
 #include "Item.hpp"
 
-class Equipment: public Item {
+class Equip: public Item {
 public:
     enum class Type {
         None = 0,
@@ -16,7 +16,7 @@ public:
         Feet,
     };
 
-    Equipment(std::string, Type, int, int, int);
+    Equip(std::string, Type, int, int, int);
 
     std::ostream& show_info(std::ostream&) const;
 
@@ -30,4 +30,4 @@ private:
     int health, attack, defense;
 };
 
-#endif // EQUIPMENT_H_INCLUDED
+#endif // EQUIP_H_INCLUDED

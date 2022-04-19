@@ -26,7 +26,7 @@ void Player::print_status() {
               << "Attack\t: " << get_attack() << '\n'
               << "Defense\t: " << get_defense() << '\n';
     if (!equips.empty()) {
-        std::cout << "Equipment\t:\n";
+        std::cout << "Equip\t:\n";
         for (auto [t, equip] : equips)
             std::cout << "    " << *equip << '\n';
     }

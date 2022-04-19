@@ -7,7 +7,7 @@
 #include "GameCharacter.hpp"
 #include "Room.hpp"
 #include "Item.hpp"
-#include "Equipment.hpp"
+#include "Equip.hpp"
 
 class Player: public GameCharacter {
 public:
@@ -36,7 +36,7 @@ public:
 private:
     Room *currentRoom, *previousRoom;
     ItemsSet inventory;
-    std::map<Equipment::Type, std::shared_ptr<Equipment>> equips;
+    std::map<Equip::Type, std::shared_ptr<Equip>> equips;
 };
 
 #endif // PLAYER_H_INCLUDED
