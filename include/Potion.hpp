@@ -7,17 +7,22 @@
 
 class Potion: public Item {
 public:
-    Potion(std::string, int, int, int);
+    enum class Type {
+        Heal,
+        Damage,
+        Weaken,
+    };
+
+    Potion(std::string, Type, int);
 
     std::ostream& show_info(std::ostream&) const;
 
     /* Set & Get function*/
-    int get_health() const;
-    int get_attack() const;
-    int get_defense() const;
+    int get_value() const;
 
 private:
-    int health, attack, defense;
+    Type type;
+    int value;
 };
 
 #endif // POTION_H_INCLUDED

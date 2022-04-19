@@ -1,18 +1,15 @@
 #include "Potion.hpp"
 
 #include <iostream>
+#include "helper.hpp"
 
-Potion::Potion(std::string _name, int _health, int _attack, int _defense):
-        Item(_name, Object::Type::Potion), health(_health), attack(_attack), defense(_defense) {}
+Potion::Potion(std::string _name, Type _type, int _value):
+        Item(_name, Object::Type::Potion), type(_type), value(_value) {}
 
 std::ostream& Potion::show_info(std::ostream& os) const {
     return os
-        << "Protion-" << get_name() << ": "
-        << "health(" << health << ") / "
-        << "attack(" << attack << ") / "
-        << "defense(" << defense << ")";
+        << get_name() << '(' << type << ")\t: "
+        << "value(" << value << ")";
 }
 
-int Potion::get_health() const { return health; }
-int Potion::get_attack() const { return attack; }
-int Potion::get_defense() const { return defense; }
+int Potion::get_value() const { return value; }
