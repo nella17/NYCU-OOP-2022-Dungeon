@@ -10,6 +10,7 @@
 #include "Monster.hpp"
 #include "NPC.hpp"
 
+namespace {
 // TODO
 void savePlayer(const std::shared_ptr<Player>, std::ofstream&&) {}
 
@@ -20,6 +21,7 @@ void loadPlayer(std::shared_ptr<Player>&, std::ifstream&&) {}
 void saveRooms(const std::vector<Room>&, std::ofstream&&) {}
 // TODO
 void loadRooms(std::vector<Room>&, std::ifstream&&) {}
+};
 
 void Record::saveToFile(const std::shared_ptr<Player> player, const std::vector<Room>& rooms) {
     savePlayer(player, std::ofstream("data/player.txt"));

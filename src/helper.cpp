@@ -37,7 +37,8 @@ void set_echo_mode(int fd) {
     tcsetattr(fd, TCSANOW, &tty);
 }
 
-const auto _key_to_dir = std::map<int,DIRECTION>{
+namespace {
+const auto key2dir = std::map<int,DIRECTION>{
     { 'W', DIRECTION::UP },
     { 'S', DIRECTION::DOWN },
     { 'D', DIRECTION::RIGHT },
@@ -47,23 +48,26 @@ const auto _key_to_dir = std::map<int,DIRECTION>{
     { 0x1B5B43, DIRECTION::RIGHT },
     { 0x1B5B44, DIRECTION::LEFT },
 };
+}
 DIRECTION key_to_dir(int key) {
-    auto it = _key_to_dir.find(key);
-    if (it == _key_to_dir.end())
+    auto it = key2dir.find(key);
+    if (it == key2dir.end())
         return DIRECTION::UNKNOWN;
     return it->second;
 }
 bool is_dir_key(int key) {
-    return _key_to_dir.find(key) != _key_to_dir.end();
+    return key2dir.find(key) != key2dir.end();
 }
 
+namespace {
 inline char getchar(int fd) {
     char c;
     read(fd, &c, 1);
     return c;
 }
-
 const auto special_char = std::set<int>{ 0x1B, 0x5B };
+}
+
 int read_char(int fd) {
     int r = getchar(fd);
     while (special_char.find(r & 0xff) != special_char.end())
