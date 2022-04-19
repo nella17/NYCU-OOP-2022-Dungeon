@@ -76,5 +76,5 @@ int read_char(int fd) {
 }
 
 void clearScreen() {
-    std::cout << "\033[2J\033[1;1H";
+    std::cout << "\033[2J\033[1;1H\n";
 }
