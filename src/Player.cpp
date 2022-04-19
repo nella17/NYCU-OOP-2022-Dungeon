@@ -3,6 +3,8 @@
 #include <iostream>
 #include <map>
 #include <memory>
+#include "helper.hpp"
+#include "Room.hpp"
 
 Player::Player(std::string _name, int _maxHealth, int _attack, int _defense):
         GameCharacter(_name, Object::Type::Player, _maxHealth, _attack, _defense) {}

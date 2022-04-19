@@ -5,10 +5,13 @@
 #include <exception>
 #include "helper.hpp"
 
+#include "Room.hpp"
 // GameCharacter
+#include "Player.hpp"
 #include "Monster.hpp"
 #include "NPC.hpp"
 // Item
+#include "Item.hpp"
 #include "Equip.hpp"
 #include "Potion.hpp"
 #include "Key.hpp"
