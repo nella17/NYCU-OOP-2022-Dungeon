@@ -11,3 +11,7 @@ bool Item::trigger_event(ObjectPtr obj) {
     }
     return false;
 }
+
+std::ostream& operator<<(std::ostream& os, const Item& item) {
+    return item.show_info(os);
+}

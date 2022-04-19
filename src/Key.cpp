@@ -1,10 +1,17 @@
 #include "Key.hpp"
 
+#include <iostream>
 #include <string>
 #include "helper.hpp"
 
 Key::Key(uint32_t _id, Object::Type _type):
         Item(std::to_string(_id), _type), isLocked(true), id(_id) {}
+
+std::ostream& Key::show_info(std::ostream& os) const {
+    return os
+        << get_type() << '-' << id << ": "
+        << (isLocked ? "locked" : "unlocked");
+}
 
 bool Key::unlock(KeyPtr key) {
     if (get_type() != Object::Type::Key || key->get_type() == Object::Type::Key)

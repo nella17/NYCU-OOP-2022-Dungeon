@@ -1,6 +1,7 @@
 #ifndef ITEM_H_INCLUDED
 #define ITEM_H_INCLUDED
 
+#include <iostream>
 #include <string>
 #include <set>
 #include <memory>
@@ -20,7 +21,11 @@ public:
     /* player.                                       */
     bool trigger_event(ObjectPtr);
 
+    virtual std::ostream& show_info(std::ostream&) const = 0;
+
 private:
 };
+
+std::ostream& operator<<(std::ostream&, const Item&);
 
 #endif // ITEM_H_INCLUDED

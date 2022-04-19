@@ -1,6 +1,7 @@
 #ifndef KEY_H_INCLUDED
 #define KEY_H_INCLUDED
 
+#include <iostream>
 #include <string>
 #include <memory>
 #include <utility>
@@ -14,6 +15,8 @@ class Key: public Item {
 public:
     static KeyPair generate_key_pair();
     bool unlock(KeyPtr key);
+
+    std::ostream& show_info(std::ostream&) const;
 
 private:
     bool isLocked;
