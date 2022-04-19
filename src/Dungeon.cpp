@@ -69,7 +69,10 @@ void Dungeon::draw_screen() {
 
 // TODO
 void Dungeon::handle_menu() {
-    player->print_menu();
+    std::cout << "[W][A][S][D] Movement\n";
+    player->get_currentRoom()->print_menu();
+    std::cout << std::endl;
+
     set_no_buffer_mode(); set_no_echo_mode();
     int key = read_char();
     set_buffer_mode(); set_echo_mode();

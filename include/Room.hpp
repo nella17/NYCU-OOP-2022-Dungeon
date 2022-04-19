@@ -11,6 +11,7 @@ public:
     Room(bool = false, int = -1, ObjectsMap= {});
     std::string name();
     void draw_neighbors(Room* = nullptr);
+    void print_menu();
 
     bool trigger_object_event(int, ObjectPtr);
     void push_object(int, ObjectPtr);

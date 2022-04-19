@@ -36,15 +36,6 @@ void Player::print_status() {
     currentRoom->draw_neighbors(previousRoom);
 }
 
-void Player::print_menu() {
-    std::cout << "   [W]   \n"
-              << "[A]   [D]\n"
-              << "   [S]   \n";
-    for(auto [key, object]: currentRoom->get_objects())
-        std::cout << "[" << key << "] " << object->get_name() << '\n';
-    std::cout << std::endl;
-}
-
 bool Player::handle_menu(int key) {
     if (is_dir_key(key)) {
         auto dir = key_to_dir(key);
