@@ -13,6 +13,7 @@ public:
         Body,
         LeftHand,
         RightHand,
+        Feet,
     };
 
     Equipment(std::string, Type, int, int, int);

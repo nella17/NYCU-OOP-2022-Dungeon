@@ -25,6 +25,11 @@ void Player::print_status() {
               << "Health\t: " << get_currentHealth() << " / " << get_maxHealth() << '\n'
               << "Attack\t: " << get_attack() << '\n'
               << "Defense\t: " << get_defense() << '\n';
+    if (!equips.empty()) {
+        std::cout << "Equipment\t:\n";
+        for (auto [t, equip] : equips)
+            std::cout << "    " << *equip << '\n';
+    }
     if (!inventory.empty()) {
         std::cout << "Items\t:";
         for (auto& item: inventory)

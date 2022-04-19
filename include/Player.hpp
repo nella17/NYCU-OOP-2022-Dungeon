@@ -2,9 +2,12 @@
 #define PLAYER_H_INCLUDED
 
 #include <string>
+#include <map>
+#include <memory>
 #include "GameCharacter.hpp"
 #include "Room.hpp"
 #include "Item.hpp"
+#include "Equipment.hpp"
 
 class Player: public GameCharacter {
 public:
@@ -33,6 +36,7 @@ public:
 private:
     Room *currentRoom, *previousRoom;
     ItemsSet inventory;
+    std::map<Equipment::Type, std::shared_ptr<Equipment>> equips;
 };
 
 #endif // PLAYER_H_INCLUDED
