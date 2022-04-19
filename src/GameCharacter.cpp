@@ -21,12 +21,3 @@ int GameCharacter::getMaxHealth() { return maxHealth; }
 int GameCharacter::getCurrentHealth() { return currentHealth; }
 int GameCharacter::getAttack() { return attack; }
 int GameCharacter::getDefense() { return defense; }
-
-void GameCharacter::drawStatus() {
-    std::cout << getType() << "'s Status\n"
-              << "Name\t: " << getName() << '\n'
-              << "Health\t: " << currentHealth << " / " << maxHealth << '\n'
-              << "Attack\t: " << attack << '\n'
-              << "Defense\t: " << defense << '\n'
-            << std::endl;
-}

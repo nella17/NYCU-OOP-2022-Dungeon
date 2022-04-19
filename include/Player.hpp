@@ -13,6 +13,7 @@ public:
     void increaseStates(int, int, int);
     void changeRoom(Room*);
 
+    void printStatus();
     void printMenu();
     bool handleMenu(int);
 

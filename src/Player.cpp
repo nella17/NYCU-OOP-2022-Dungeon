@@ -20,6 +20,22 @@ void Player::changeRoom(Room* room) {
     currentRoom = room;
 }
 
+void Player::printStatus() {
+    std::cout << "Player's Status\n"
+              << "Name\t: " << getName() << '\n'
+              << "Health\t: " << getCurrentHealth() << " / " << getMaxHealth() << '\n'
+              << "Attack\t: " << getAttack() << '\n'
+              << "Defense\t: " << getDefense() << '\n';
+    if (!inventory.empty()) {
+        std::cout << "Items\t:";
+        for (auto& item: inventory)
+            std::cout << " " << item->getName();
+        std::cout << '\n';
+    }
+    std:: cout << std::endl;
+    currentRoom->drawNeighbors();
+}
+
 void Player::printMenu() {
     std::cout << "   [W]   \n"
               << "[A]   [D]\n"
