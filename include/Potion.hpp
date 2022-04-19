@@ -15,6 +15,7 @@ public:
 
     Potion(std::string, Type, int);
 
+    std::string name_of_type() const;
     std::ostream& show_info(std::ostream&) const;
 
     /* Set & Get function*/

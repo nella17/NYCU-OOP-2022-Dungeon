@@ -21,6 +21,7 @@ public:
     /* player.                                       */
     bool trigger_event(ObjectPtr);
 
+    virtual std::string name_of_type() const;
     virtual std::ostream& show_info(std::ostream&) const = 0;
 
 private:

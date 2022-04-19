@@ -18,6 +18,7 @@ public:
 
     Equip(std::string, Type, int, int, int);
 
+    std::string name_of_type() const;
     std::ostream& show_info(std::ostream&) const;
 
     /* Set & Get function*/
