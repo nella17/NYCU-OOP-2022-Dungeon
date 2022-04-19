@@ -19,21 +19,12 @@ public:
 
     void draw_screen();
 
-    /* Deal with player's moveing action */
+    /* Deal with player's action */
     void handle_menu();
-
-    /* Deal with player's iteraction with objects in that room */
-    void handle_event(ObjectPtr);
 
     /* Deal with all game initial setting       */
     /* Including create player, create map etc  */
     void start_game();
-
-    /* Deal with the player's action     */
-    /* including showing the action list */
-    /* that player can do at that room   */
-    /* and dealing with player's input   */
-    void choose_action(const ObjectsMap&);
 
     /* Check whether the game should end or not */
     /* Including player victory, or he/she dead */

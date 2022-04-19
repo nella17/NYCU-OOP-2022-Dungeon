@@ -84,18 +84,14 @@ void Dungeon::draw_screen() {
     std::cout << std::endl;
 }
 
-// TODO
 void Dungeon::handle_menu() {
+    draw_screen();
     int key = read_char_no_buffer_echo();
     if (key == 'Q') {
         quit = true;
         return;
     }
     player->handle_key(key);
-}
-
-// TODO
-void Dungeon::handle_event(ObjectPtr) {
 }
 
 void Dungeon::start_game() {
@@ -105,11 +101,6 @@ void Dungeon::start_game() {
     player->changeRoom(&rooms[0]);
 }
 
-// TODO
-void Dungeon::choose_action(const ObjectsMap&) {
-}
-
-// TODO
 bool Dungeon::check_game_logic() {
     if (player != nullptr)
         if (player->check_is_dead() || player->get_currentRoom()->get_isExit())
@@ -117,14 +108,11 @@ bool Dungeon::check_game_logic() {
     return false;
 }
 
-// TODO
 void Dungeon::run() {
     start_game();
 
-    while (!quit && !check_game_logic()) {
-        draw_screen();
+    while (!quit && !check_game_logic())
         handle_menu();
-    }
 
     if (quit)
         std::cout << "Goodbye!" << std::endl;
