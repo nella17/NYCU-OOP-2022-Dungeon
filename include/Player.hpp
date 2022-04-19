@@ -26,9 +26,9 @@ public:
     void set_currentRoom(Room*);
     void set_previousRoom(Room*);
     void set_inventory(ItemsSet);
-    Room* get_currentRoom();
-    Room* get_previousRoom();
-    ItemsSet get_inventory();
+    Room* get_currentRoom() const;
+    Room* get_previousRoom() const;
+    ItemsSet get_inventory() const;
 
 private:
     Room *currentRoom, *previousRoom;

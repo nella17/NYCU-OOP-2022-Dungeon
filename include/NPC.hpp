@@ -19,8 +19,8 @@ public:
     /* Set & Get function*/
     void set_script(std::string);
     void set_commodity(ItemsSet);
-    std::string get_script();
-    ItemsSet get_commodity();
+    std::string get_script() const;
+    ItemsSet get_commodity() const;
 
 private:
     std::string script;

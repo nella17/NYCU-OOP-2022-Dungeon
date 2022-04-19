@@ -15,10 +15,10 @@ public:
     void set_currentHealth(int);
     void set_attack(int);
     void set_defense(int);
-    int get_maxHealth();
-    int get_currentHealth();
-    int get_attack();
-    int get_defense();
+    int get_maxHealth() const;
+    int get_currentHealth() const;
+    int get_attack() const;
+    int get_defense() const;
 
 private:
     int maxHealth;

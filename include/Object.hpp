@@ -31,8 +31,8 @@ public:
     /* Set & Get function*/
     void set_name(std::string);
     void set_type(Object::Type);
-    std::string get_name();
-    Object::Type get_type();
+    std::string get_name() const;
+    Object::Type get_type() const;
 
 private:
     std::string name;

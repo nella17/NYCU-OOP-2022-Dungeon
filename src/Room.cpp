@@ -73,25 +73,25 @@ void Room::clear_objects() {
     isBlocked = false;
     objects.clear();
 }
-bool Room::get_isExit() { return !isLocked && isExit; }
-bool Room::get_isBlocked() { return isBlocked; }
-int Room::get_index() { return index; }
-ObjectPtr Room::get_object(int key) {
+bool Room::get_isExit() const { return !isLocked && isExit; }
+bool Room::get_isBlocked() const { return isBlocked; }
+int Room::get_index() const { return index; }
+ObjectPtr Room::get_object(int key) const {
     auto it = objects.find(key);
     if (it == objects.end())
         return nullptr;
     return it->second;
 }
-ObjectsMap Room::get_objects() {
+ObjectsMap Room::get_objects() const {
     ObjectsMap ret;
     for (auto [key, obj]: objects)
         if (check_object(obj) != nullptr)
             ret.emplace(key, obj);
     return ret;
 }
-Room* Room::get_neighbor(DIRECTION dir, Room* previous) {
+Room* Room::get_neighbor(DIRECTION dir, Room* previous) const {
     if (dir == DIRECTION::None)
-        return this;
+        return (Room*)this;
     auto it = neighbors.find(dir);
     if (it == neighbors.end())
         return nullptr;
@@ -114,7 +114,7 @@ void Room::switch_states(bool value, ObjectPtr obj) {
     }
 }
 
-ObjectPtr Room::check_object(ObjectPtr obj) {
+ObjectPtr Room::check_object(ObjectPtr obj) const {
     if (isLocked && obj->get_type() != Object::Type::Lock)
         return nullptr;
     return obj;

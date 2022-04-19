@@ -9,12 +9,12 @@ public:
     Potion(std::string, int, int, int);
 
     /* Set & Get function*/
-    int get_health();
-    int get_attack();
-    int get_defense();
     void set_health(int);
     void set_attack(int);
     void set_defense(int);
+    int get_health() const;
+    int get_attack() const;
+    int get_defense() const;
 
 private:
     int health, attack, defense;

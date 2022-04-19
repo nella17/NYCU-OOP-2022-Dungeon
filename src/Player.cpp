@@ -63,6 +63,6 @@ bool Player::trigger_event(ObjectPtr obj) {
 void Player::set_currentRoom(Room* room) { currentRoom = room; }
 void Player::set_previousRoom(Room* room) { previousRoom = room; }
 void Player::set_inventory(ItemsSet items) { inventory = items; }
-Room* Player::get_currentRoom() { return currentRoom; }
-Room* Player::get_previousRoom() { return previousRoom; }
-ItemsSet Player::get_inventory() { return inventory; }
+Room* Player::get_currentRoom() const { return currentRoom; }
+Room* Player::get_previousRoom() const { return previousRoom; }
+ItemsSet Player::get_inventory() const { return inventory; }

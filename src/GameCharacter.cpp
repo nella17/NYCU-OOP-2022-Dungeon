@@ -17,7 +17,7 @@ void GameCharacter::set_maxHealth(int _maxHealth) { maxHealth = _maxHealth; }
 void GameCharacter::set_currentHealth(int _currentHealth) { currentHealth = _currentHealth; }
 void GameCharacter::set_attack(int _attack) { attack = _attack; }
 void GameCharacter::set_defense(int _defense) { defense = _defense; }
-int GameCharacter::get_maxHealth() { return maxHealth; }
-int GameCharacter::get_currentHealth() { return currentHealth; }
-int GameCharacter::get_attack() { return attack; }
-int GameCharacter::get_defense() { return defense; }
+int GameCharacter::get_maxHealth() const { return maxHealth; }
+int GameCharacter::get_currentHealth() const { return currentHealth; }
+int GameCharacter::get_attack() const { return attack; }
+int GameCharacter::get_defense() const { return defense; }

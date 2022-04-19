@@ -22,16 +22,16 @@ public:
     void set_isExit(bool);
     void set_index(int);
     void clear_objects();
-    bool get_isExit();
-    bool get_isBlocked();
-    int get_index();
-    ObjectPtr get_object(int);
-    ObjectsMap get_objects();
-    Room* get_neighbor(DIRECTION, Room* previous = nullptr);
+    bool get_isExit() const;
+    bool get_isBlocked() const;
+    int get_index() const;
+    ObjectPtr get_object(int) const;
+    ObjectsMap get_objects() const;
+    Room* get_neighbor(DIRECTION, Room* previous = nullptr) const;
 
 private:
     void switch_states(bool, ObjectPtr);
-    ObjectPtr check_object(ObjectPtr);
+    ObjectPtr check_object(ObjectPtr) const;
 
     bool isBlocked, isLocked, isExit;
     int index;
