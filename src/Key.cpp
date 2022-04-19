@@ -9,7 +9,7 @@ Key::Key(uint32_t _id, Object::Type _type):
 
 std::ostream& Key::show_info(std::ostream& os) const {
     return os
-        << get_type() << '-' << id << ": "
+        << enum_name(get_type()) << '-' << id << ": "
         << (isLocked ? "locked" : "unlocked");
 }
 

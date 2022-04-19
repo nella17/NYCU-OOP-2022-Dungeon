@@ -8,7 +8,7 @@ Equip::Equip(std::string _name, Type _type, int _health, int _attack, int _defen
 
 std::ostream& Equip::show_info(std::ostream& os) const {
     return os
-        << get_name() << "(" << type << "): "
+        << get_name() << "(" << enum_name(type) << "): "
         << "health(" << health << ") / "
         << "attack(" << attack << ") / "
         << "defense(" << defense << ")";

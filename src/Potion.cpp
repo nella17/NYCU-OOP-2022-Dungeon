@@ -8,7 +8,7 @@ Potion::Potion(std::string _name, Type _type, int _value):
 
 std::ostream& Potion::show_info(std::ostream& os) const {
     return os
-        << get_name() << '(' << type << ")\t: "
+        << get_name() << '(' << enum_name(type) << ")\t: "
         << "value(" << value << ")";
 }
 

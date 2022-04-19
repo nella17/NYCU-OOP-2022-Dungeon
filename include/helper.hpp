@@ -5,7 +5,7 @@
 #include <random>
 
 #include "magic_enum.hpp"
-using namespace magic_enum::ostream_operators;
+using magic_enum::enum_name;
 
 extern std::mt19937 rng;
 

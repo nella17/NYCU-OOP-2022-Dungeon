@@ -42,7 +42,7 @@ void Room::draw_neighbors(Room* previous) {
 
 void Room::print_menu() {
     for(auto [key, obj]: get_objects())
-        std::cout << "[" << char(key) << "] " << obj->get_type() << '-' << obj->get_name() << '\n';
+        std::cout << "[" << char(key) << "] " << enum_name(obj->get_type()) << '-' << obj->get_name() << '\n';
 }
 
 bool Room::trigger_object_event(int key, ObjectPtr obj) {
