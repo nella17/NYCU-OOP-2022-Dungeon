@@ -36,7 +36,7 @@ void Player::print_status() {
     currentRoom->draw_neighbors(previousRoom);
 }
 
-bool Player::handle_menu(int key) {
+bool Player::handle_key(int key) {
     if (is_dir_key(key)) {
         auto dir = key_to_dir(key);
         auto room = currentRoom->get_neighbor(dir, previousRoom);

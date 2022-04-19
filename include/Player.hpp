@@ -15,7 +15,7 @@ public:
 
     void print_status();
     void print_menu();
-    bool handle_menu(int);
+    bool handle_key(int);
 
     /* Virtual function that you need to complete   */
     /* In Player, this function should show the     */

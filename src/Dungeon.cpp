@@ -82,7 +82,7 @@ void Dungeon::handle_menu() {
         quit = true;
         return;
     }
-    player->handle_menu(key);
+    player->handle_key(key);
 }
 
 // TODO
