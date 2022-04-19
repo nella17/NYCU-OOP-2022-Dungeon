@@ -12,6 +12,7 @@ public:
     std::string name();
     void drawNeighbors();
 
+    bool triggerObjectEvent(int, Object_ptr);
     void pushObject(int, Object_ptr);
     bool popObject(int); /*pop out the specific object, used when the interaction is done*/
 

@@ -37,11 +37,7 @@ bool Player::handleMenu(int key) {
         }
         changeRoom(currentRoom->getRoom(dir));
     } else {
-        auto object = currentRoom->getObject(key);
-        if (object == nullptr) {
-            return false;
-        }
-        if (object->triggerEvent(shared_from_this()))
+        if (currentRoom->triggerObjectEvent(key, shared_from_this()))
             assert(currentRoom->popObject(key));
     }
     return true;

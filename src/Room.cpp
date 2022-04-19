@@ -33,6 +33,13 @@ void Room::drawNeighbors() {
             << std::endl;
 }
 
+bool Room::triggerObjectEvent(int key, Object_ptr object) {
+    auto it = objects.find(key);
+    if (it == objects.end())
+        return false;
+    return it->second->triggerEvent(object);
+}
+
 void Room::pushObject(int key, Object_ptr object) {
     objects.emplace(key, object);
     switchState(true, object);
