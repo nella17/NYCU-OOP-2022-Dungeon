@@ -26,7 +26,7 @@ void Room::draw_neighbors(Room* previous) {
         auto ptr = get_neighbor(dir, previous);
         auto name = std::string(name_size+2,' ');
         if (ptr == nullptr) {
-            if (isBlocked) name = "[❌ ]";
+            if (isBlocked) name = "[❓ ]";
         } else {
             name = '[' + ptr->name() + ']';
             if (ptr->isLocked) name = "[🔒 ]";
