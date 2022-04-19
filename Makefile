@@ -26,6 +26,8 @@ DEPS		:= $(SRCS:$(SDIR)/%.cpp=$(ODIR)/%.d)
 
 all: run
 
+build: $(EXE)
+
 run: $(EXE)
 	$<
 
