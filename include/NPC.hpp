@@ -2,11 +2,13 @@
 #define NPC_H_INCLUDED
 
 #include <string>
+#include "Record.hpp"
 #include "GameCharacter.hpp"
 #include "Item.hpp"
 #include "Object.hpp"
 
 class NPC: public GameCharacter {
+    friend class Record;
 public:
     NPC(std::string, std::string, ItemsSet = {});
     void list_commodity(); /*print all the Item in this NPC*/

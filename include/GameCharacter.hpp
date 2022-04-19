@@ -2,9 +2,11 @@
 #define GAMECHARACTER_H_INCLUDED
 
 #include <string>
+#include "Record.hpp"
 #include "Object.hpp"
 
 class GameCharacter: public Object {
+    friend class Record;
 public:
     GameCharacter(std::string, Object::Type, int = 0, int = 0, int = 0);
     bool check_is_dead();

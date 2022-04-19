@@ -4,12 +4,14 @@
 #include <string>
 #include <map>
 #include <memory>
+#include "Record.hpp"
 #include "GameCharacter.hpp"
 #include "Room.hpp"
 #include "Item.hpp"
 #include "Equip.hpp"
 
 class Player: public GameCharacter {
+    friend class Record;
 public:
     Player(std::string, int, int, int);
     void add_item(ItemPtr);

@@ -5,6 +5,7 @@
 #include <string>
 #include <set>
 #include <memory>
+#include "Record.hpp"
 #include "Object.hpp"
 
 class Item;
@@ -12,6 +13,7 @@ using ItemPtr = std::shared_ptr<Item>;
 using ItemsSet = std::set<ItemPtr>;
 
 class Item: public Object {
+    friend class Record;
 public:
     Item(std::string, Object::Type);
 

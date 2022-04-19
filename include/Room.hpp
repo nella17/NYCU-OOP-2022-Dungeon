@@ -3,10 +3,12 @@
 
 #include <string>
 #include <map>
+#include "Record.hpp"
 #include "helper.hpp"
 #include "Object.hpp"
 
 class Room {
+    friend class Record;
 public:
     Room(bool = false, int = -1, ObjectsMap= {});
     std::string name();

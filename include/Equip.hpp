@@ -3,9 +3,11 @@
 
 #include <iostream>
 #include <string>
+#include "Record.hpp"
 #include "Item.hpp"
 
 class Equip: public Item {
+    friend class Record;
 public:
     enum class Type {
         None = 0,

@@ -4,12 +4,14 @@
 #include <string>
 #include <map>
 #include <memory>
+#include "Record.hpp"
 
 class Object;
 using ObjectPtr = std::shared_ptr<Object>;
 using ObjectsMap = std::map<int,ObjectPtr>;
 
 class Object: public std::enable_shared_from_this<Object> {
+    friend class Record;
 public:
     enum class Type {
         None = 0,

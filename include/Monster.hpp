@@ -2,10 +2,12 @@
 #define ENEMY_H_INCLUDED
 
 #include <string>
+#include "Record.hpp"
 #include "Object.hpp"
 #include "GameCharacter.hpp"
 
 class Monster: public GameCharacter {
+    friend class Record;
 public:
     Monster(std::string, int, int, int);
 

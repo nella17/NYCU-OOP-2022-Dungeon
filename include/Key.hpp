@@ -5,6 +5,7 @@
 #include <string>
 #include <memory>
 #include <utility>
+#include "Record.hpp"
 #include "Item.hpp"
 
 class Key;
@@ -12,6 +13,7 @@ using KeyPtr = std::shared_ptr<Key>;
 using KeyPair = std::pair<KeyPtr, KeyPtr>;
 
 class Key: public Item {
+    friend class Record;
 public:
     static KeyPair generate_key_pair();
     bool unlock(KeyPtr key);
