@@ -13,7 +13,8 @@ constexpr int name_size = 2;
 std::string Room::name() {
     std::mt19937 gen(index);
     std::string s = "";
-    for (int i = 0; i < name_size; i++) {
+    if (isExit) s = std::string("Exit").substr(0, name_size);
+    for (int i = s.size(); i < name_size; i++) {
         int x = gen() % 16;
         s += (char)(x + (x < 10 ? '0' : 'A' - 10));
     }
