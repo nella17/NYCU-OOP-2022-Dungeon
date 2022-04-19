@@ -27,7 +27,7 @@ void Player::printMenu() {
 
 bool Player::handleMenu(int key) {
     if (is_dir_key(key)) {
-        auto dir = key_to_dir[key];
+        auto dir = key_to_dir(key);
         if (currentRoom->getRoom(dir) == nullptr) {
             return false;
         }
