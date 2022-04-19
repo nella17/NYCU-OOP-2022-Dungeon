@@ -21,8 +21,8 @@ public:
     int get_value() const;
 
 private:
-    Type type;
-    int value;
+    const Type type;
+    const int value;
 };
 
 #endif // POTION_H_INCLUDED

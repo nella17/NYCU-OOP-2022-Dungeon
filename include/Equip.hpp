@@ -26,8 +26,8 @@ public:
     int get_defense() const;
 
 private:
-    Type type;
-    int health, attack, defense;
+    const Type type;
+    const int health, attack, defense;
 };
 
 #endif // EQUIP_H_INCLUDED
