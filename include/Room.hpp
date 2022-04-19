@@ -21,6 +21,7 @@ public:
     Room(bool = false, int = -1, Objects_map= {});
     void pushObject(int, Object_ptr);
     bool popObject(int); /*pop out the specific object, used when the interaction is done*/
+    std::string name();
     void drawNeighbors();
 
     /* Set & Get function*/

@@ -3,6 +3,18 @@
 Room::Room(bool _isExit, int _index, Objects_map _objects):
     isExit(_isExit), index(_index), objects(_objects) {}
 
+constexpr int name_size = 2;
+
+std::string Room::name() {
+    std::mt19937 gen(index);
+    std::string s = "";
+    for (int i = 0; i < name_size; i++) {
+        int x = gen() % 16;
+        s += (char)(x + (x < 10 ? '0' : 'A' - 10));
+    }
+    return s;
+}
+
 void Room::switchState(bool value, Object_ptr object) {
     switch (object->getType()) {
         case Object::Type::Monster:
@@ -53,11 +65,11 @@ Room* Room::getRoom(DIRECTION dir) {
 void Room::drawNeighbors() {
     auto getname = [&](DIRECTION dir = DIRECTION::UNKNOWN) {
         auto r = dir == DIRECTION::UNKNOWN ? this : getRoom(dir);
-        auto s = r ? '[' + to_string(r->index) + ']' : string(3,' ');
+        auto s = r ? '[' + r->name() + ']' : std::string(name_size+2,' ');
         return s;
     };
-    cout << string(3,' ') << getname(DIRECTION::UP) << endl
-        << getname(DIRECTION::LEFT) << getname()  << getname(DIRECTION::RIGHT) << endl
-        << string(3,' ') << getname(DIRECTION::DOWN) << endl;
-    cout << endl;
+    std::cout << std::string(name_size+2,' ') << getname(DIRECTION::UP) << '\n'
+            << getname(DIRECTION::LEFT) << getname()  << getname(DIRECTION::RIGHT) << '\n'
+            << std::string(name_size+2,' ') << getname(DIRECTION::DOWN) << '\n'
+            << std::endl;
 }
