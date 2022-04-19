@@ -20,14 +20,16 @@ std::string Room::name() {
     return s;
 }
 
-void Room::switchState(bool value, Object_ptr object) {
-    switch (object->getType()) {
-        case Object::Type::Monster:
-            isBlocked = value;
-            break;
-        default:
-            break;
-    }
+void Room::drawNeighbors() {
+    auto getname = [&](DIRECTION dir = DIRECTION::UNKNOWN) {
+        auto r = dir == DIRECTION::UNKNOWN ? this : getRoom(dir);
+        auto s = r ? '[' + r->name() + ']' : std::string(name_size+2,' ');
+        return s;
+    };
+    std::cout << std::string(name_size+2,' ') << getname(DIRECTION::UP) << '\n'
+            << getname(DIRECTION::LEFT) << getname()  << getname(DIRECTION::RIGHT) << '\n'
+            << std::string(name_size+2,' ') << getname(DIRECTION::DOWN) << '\n'
+            << std::endl;
 }
 
 void Room::pushObject(int key, Object_ptr object) {
@@ -67,14 +69,12 @@ Room* Room::getRoom(DIRECTION dir) {
     return it == neighborRooms.end() ? nullptr : it->second;
 }
 
-void Room::drawNeighbors() {
-    auto getname = [&](DIRECTION dir = DIRECTION::UNKNOWN) {
-        auto r = dir == DIRECTION::UNKNOWN ? this : getRoom(dir);
-        auto s = r ? '[' + r->name() + ']' : std::string(name_size+2,' ');
-        return s;
-    };
-    std::cout << std::string(name_size+2,' ') << getname(DIRECTION::UP) << '\n'
-            << getname(DIRECTION::LEFT) << getname()  << getname(DIRECTION::RIGHT) << '\n'
-            << std::string(name_size+2,' ') << getname(DIRECTION::DOWN) << '\n'
-            << std::endl;
+void Room::switchState(bool value, Object_ptr object) {
+    switch (object->getType()) {
+        case Object::Type::Monster:
+            isBlocked = value;
+            break;
+        default:
+            break;
+    }
 }
