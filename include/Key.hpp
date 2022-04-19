@@ -5,8 +5,8 @@
 #include <string>
 #include <memory>
 #include <utility>
-#include "Record.hpp"
 #include "Item.hpp"
+class Record;
 
 class Key;
 using KeyPtr = std::shared_ptr<Key>;

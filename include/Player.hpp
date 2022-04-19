@@ -4,11 +4,11 @@
 #include <string>
 #include <map>
 #include <memory>
-#include "Record.hpp"
 #include "GameCharacter.hpp"
 #include "Room.hpp"
 #include "Item.hpp"
 #include "Equip.hpp"
+class Record;
 
 class Player: public GameCharacter {
     friend class Record;

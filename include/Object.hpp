@@ -4,7 +4,7 @@
 #include <string>
 #include <map>
 #include <memory>
-#include "Record.hpp"
+class Record;
 
 class Object;
 using ObjectPtr = std::shared_ptr<Object>;

@@ -3,9 +3,9 @@
 
 #include <string>
 #include <map>
-#include "Record.hpp"
 #include "helper.hpp"
 #include "Object.hpp"
+class Record;
 
 class Room {
     friend class Record;

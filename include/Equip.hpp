@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include <string>
-#include "Record.hpp"
 #include "Item.hpp"
+class Record;
 
 class Equip: public Item {
     friend class Record;

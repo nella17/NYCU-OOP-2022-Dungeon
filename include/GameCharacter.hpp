@@ -2,8 +2,8 @@
 #define GAMECHARACTER_H_INCLUDED
 
 #include <string>
-#include "Record.hpp"
 #include "Object.hpp"
+class Record;
 
 class GameCharacter: public Object {
     friend class Record;

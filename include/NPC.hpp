@@ -2,10 +2,10 @@
 #define NPC_H_INCLUDED
 
 #include <string>
-#include "Record.hpp"
 #include "GameCharacter.hpp"
 #include "Item.hpp"
 #include "Object.hpp"
+class Record;
 
 class NPC: public GameCharacter {
     friend class Record;
