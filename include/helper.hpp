@@ -3,9 +3,12 @@
 
 #include <unistd.h>
 #include <random>
+#include <string>
 
 #include "magic_enum.hpp"
 using magic_enum::enum_name;
+template<typename T>
+inline std::string enum_name_str(T e) { return std::string{enum_name(e)}; }
 
 extern std::mt19937 rng;
 
