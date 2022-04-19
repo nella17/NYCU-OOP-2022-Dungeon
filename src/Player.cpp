@@ -32,7 +32,7 @@ void Player::print_status() {
             std::cout << " " << item->get_name();
         std::cout << '\n';
     }
-    std:: cout << std::endl;
+    std::cout << std::endl;
     currentRoom->draw_neighbors(previousRoom);
 }
 

@@ -65,7 +65,6 @@ void Dungeon::create_map() {
 void Dungeon::draw_screen() {
     clearScreen();
     player->print_status();
-    player->get_currentRoom()->draw_neighbors();
 }
 
 // TODO
@@ -94,8 +93,9 @@ void Dungeon::choose_action(const ObjectsMap&) {
 
 // TODO
 bool Dungeon::check_game_logic() {
-    if (player && (player->check_is_dead() || player->get_currentRoom()->get_isExit()))
-        return true;
+    if (player != nullptr)
+        if (player->check_is_dead() || player->get_currentRoom()->get_isExit())
+            return true;
     return false;
 }
 
