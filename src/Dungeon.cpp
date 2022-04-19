@@ -4,6 +4,7 @@
 #include <string>
 #include <exception>
 #include "helper.hpp"
+#include "ASCII_Art.hpp"
 
 #include "Room.hpp"
 // GameCharacter
@@ -96,7 +97,7 @@ void Dungeon::handle_menu() {
 
 void Dungeon::start_game() {
     clearScreen();
-    std::cout << "Welcome to the Dungeon!\n"
+    std::cout << welcome << '\n'
             << "Press any key to start..." << std::endl;
     read_char_no_buffer_echo();
 
@@ -120,11 +121,11 @@ void Dungeon::run() {
         handle_menu();
 
     if (quit)
-        std::cout << "Goodbye!" << std::endl;
+        std::cout << goodbye << std::endl;
     else if (player->check_is_dead())
-        std::cout << "You died :(" << std::endl;
+        std::cout << you_died << std::endl;
     else if (player->get_currentRoom()->get_isExit())
-        std::cout << "You won!" << std::endl;
+        std::cout << you_won << std::endl;
     else
         assert(0 && "unknown error");
 }
