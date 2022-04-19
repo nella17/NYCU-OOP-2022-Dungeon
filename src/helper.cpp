@@ -74,6 +74,14 @@ int read_char(int fd) {
         r = (r << 8) | getchar(fd);
     return toupper(r);
 }
+int read_char_no_buffer_echo(int fd) {
+    set_no_buffer_mode(fd);
+    set_no_echo_mode(fd);
+    int r = read_char(fd);
+    set_buffer_mode(fd);
+    set_echo_mode(fd);
+    return r;
+}
 
 void clearScreen() {
     std::cout << "\033[2J\033[1;1H\n";

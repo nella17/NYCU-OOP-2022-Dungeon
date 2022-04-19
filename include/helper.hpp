@@ -29,6 +29,7 @@ DIRECTION key_to_dir(int);
 bool is_dir_key(int);
 
 int read_char(int fd = DEFAULT_FD);
+int read_char_no_buffer_echo(int fd = DEFAULT_FD);
 
 void clearScreen();
 
