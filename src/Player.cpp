@@ -1,6 +1,10 @@
 #include "Player.hpp"
 
-Player::Player(string _name, int _maxHealth, int _attack, int _defense):
+#include <iostream>
+#include <map>
+#include <memory>
+
+Player::Player(std::string _name, int _maxHealth, int _attack, int _defense):
         GameCharacter(_name, Object::Type::Player, _maxHealth, _attack, _defense) {}
 
 // TODO
@@ -17,12 +21,12 @@ void Player::changeRoom(Room* room) {
 }
 
 void Player::printMenu() {
-    cout << "   [W]   " << endl
-         << "[A]   [D]" << endl
-         << "   [S]   " << endl;
+    std::cout << "   [W]   \n"
+              << "[A]   [D]\n"
+              << "   [S]   \n";
     for(auto [key, object]: currentRoom->getObjects())
-        cout << "[" << key << "] " << object->getName() << endl;
-    cout << endl;
+        std::cout << "[" << key << "] " << object->getName() << '\n';
+    std::cout << std::endl;
 }
 
 bool Player::handleMenu(int key) {
@@ -46,7 +50,7 @@ bool Player::handleMenu(int key) {
 // TODO
 bool Player::triggerEvent(Object_ptr obj) {
     if (obj->getType() == Object::Type::Item) {
-        shared_ptr<Item> item = dynamic_pointer_cast<Item>(obj);
+        auto item = std::dynamic_pointer_cast<Item>(obj);
         addItem(item);
         return true;
     }

@@ -1,23 +1,17 @@
 #ifndef ITEM_H_INCLUDED
 #define ITEM_H_INCLUDED
 
-#include <iostream>
-#include <string>
 #include <set>
 #include <memory>
-#include "helper.hpp"
-using namespace std;
+#include "Object.hpp"
 
 class Item;
-using Item_ptr = shared_ptr<Item>;
-using Items_set = set<Item_ptr>;
-
-#include "Object.hpp"
-#include "Player.hpp"
+using Item_ptr = std::shared_ptr<Item>;
+using Items_set = std::set<Item_ptr>;
 
 class Item: public Object {
 public:
-    Item(string, int, int, int);
+    Item(std::string, int, int, int);
 
     /* Virtual function that you need to complete    */
     /* In Item, this function should deal with the   */

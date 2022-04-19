@@ -1,18 +1,9 @@
 #ifndef RECORD_H_INCLUDED
 #define RECORD_H_INCLUDED
 
-#include <iostream>
-#include <fstream>
 #include <vector>
-#include <sstream>
-#include <memory>
-#include "helper.hpp"
-using namespace std;
-
-#include "Item.hpp"
-#include "Monster.hpp"
-#include "NPC.hpp"
 #include "Player.hpp"
+#include "Room.hpp"
 
 /* This is the record system. Get the information of the  */
 /* player and rooms then save them to (a) file(s). Notice */
@@ -20,8 +11,8 @@ using namespace std;
 /* whole vector to the function.                          */
 
 namespace Record {
-    void saveToFile(const shared_ptr<Player>, const vector<Room>&);
-    void loadFromFile(shared_ptr<Player>&, vector<Room>&);
+    void saveToFile(const std::shared_ptr<Player>, const std::vector<Room>&);
+    void loadFromFile(std::shared_ptr<Player>&, std::vector<Room>&);
 };
 
 #endif // RECORD_H_INCLUDED

@@ -1,17 +1,26 @@
 #include "Dungeon.hpp"
 
+#include <iostream>
+#include <string>
+#include <exception>
+#include "helper.hpp"
+
+#include "Monster.hpp"
+#include "NPC.hpp"
+#include "Record.hpp"
+
 Dungeon::Dungeon(): player(nullptr), rooms() {}
 
 void Dungeon::createPlayer() {
-    string name;
-    cout << "Please enter your name: ";
-    cin >> name;
-    cout << "Hello " << name << "!" << endl;
-    player = make_shared<Player>(name, 100, 10, 5);
+    std::string name;
+    std::cout << "Please enter your name: ";
+    std::cin >> name;
+    std::cout << "Hello " << name << "!" << std::endl;
+    player = std::make_shared<Player>(name, 100, 10, 5);
 }
 
 void Dungeon::createMap() {
-    cout << "Generating map..." << endl;
+    std::cout << "Generating map..." << std::endl;
     rooms.clear();
 
     /*
@@ -39,7 +48,7 @@ void Dungeon::createMap() {
     // TODO: add items
 
     sleep(1);
-    cout << "Map generated!" << endl;
+    std::cout << "Map generated!" << std::endl;
 }
 
 void Dungeon::drawScreen() {

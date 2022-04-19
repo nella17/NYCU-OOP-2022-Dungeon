@@ -1,18 +1,15 @@
 #ifndef OBJECT_H_INCLUDED
 #define OBJECT_H_INCLUDED
 
-#include <iostream>
 #include <string>
 #include <map>
 #include <memory>
-#include "helper.hpp"
-using namespace std;
 
 class Object;
-using Object_ptr = shared_ptr<Object>;
-using Objects_map = map<int,Object_ptr>;
+using Object_ptr = std::shared_ptr<Object>;
+using Objects_map = std::map<int,Object_ptr>;
 
-class Object: public enable_shared_from_this<Object> {
+class Object: public std::enable_shared_from_this<Object> {
 public:
     enum class Type {
         Unknown = 0,
@@ -22,19 +19,19 @@ public:
         NPC,
     };
 
-    Object(string, Object::Type);
+    Object(std::string, Object::Type);
 
     /* pure virtual function */
     virtual bool triggerEvent(Object_ptr) = 0;
 
     /* Set & Get function*/
-    void setName(string);
+    void setName(std::string);
     void setType(Object::Type);
-    string getName();
+    std::string getName();
     Object::Type getType();
 
 private:
-    string name;
+    std::string name;
     Object::Type type;
 };
 

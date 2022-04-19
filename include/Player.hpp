@@ -1,19 +1,14 @@
 #ifndef PLAYER_H_INCLUDED
 #define PLAYER_H_INCLUDED
 
-#include <iostream>
 #include <string>
-#include <map>
-#include <memory>
-using namespace std;
-
 #include "GameCharacter.hpp"
 #include "Room.hpp"
 #include "Item.hpp"
 
 class Player: public GameCharacter {
 public:
-    Player(string, int, int, int);
+    Player(std::string, int, int, int);
     void addItem(Item_ptr);
     void increaseStates(int, int, int);
     void changeRoom(Room*);

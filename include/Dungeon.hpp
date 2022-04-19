@@ -1,19 +1,11 @@
 #ifndef DUNGEON_H_INCLUDED
 #define DUNGEON_H_INCLUDED
 
-#include <iostream>
-#include <string>
 #include <vector>
 #include <memory>
-#include <exception>
-#include "helper.hpp"
-using namespace std;
-
+#include "Object.hpp"
 #include "Player.hpp"
-#include "Monster.hpp"
-#include "NPC.hpp"
 #include "Room.hpp"
-#include "Record.hpp"
 
 class Dungeon {
 public:
@@ -51,8 +43,8 @@ public:
     void runDungeon();
 
 private:
-    shared_ptr<Player> player;
-    vector<Room> rooms;
+    std::shared_ptr<Player> player;
+    std::vector<Room> rooms;
 };
 
 #endif // DUNGEON_H_INCLUDED

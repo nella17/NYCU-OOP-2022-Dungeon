@@ -1,11 +1,17 @@
 #include "Item.hpp"
 
-Item::Item(string _name, int _health, int _attack, int _defense):
+#include <iostream>
+#include <string>
+#include "helper.hpp"
+
+#include "Player.hpp"
+
+Item::Item(std::string _name, int _health, int _attack, int _defense):
         Object(_name, Object::Type::Item), health(_health), attack(_attack), defense(_defense) {}
 
 bool Item::triggerEvent(Object_ptr obj) {
     if (obj->getType() == Object::Type::Player) {
-        shared_ptr<Player> player = dynamic_pointer_cast<Player>(obj);
+        auto player = std::dynamic_pointer_cast<Player>(obj);
         return player->triggerEvent(shared_from_this());
     }
     return false;

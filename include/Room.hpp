@@ -1,15 +1,9 @@
 #ifndef ROOM_H_INCLUDED
 #define ROOM_H_INCLUDED
 
-#include <iostream>
 #include <string>
-#include <vector>
 #include <map>
-#include <memory>
-#include <random>
 #include "helper.hpp"
-using namespace std;
-
 #include "Object.hpp"
 
 #define LINK_ROOM(r1, d1, r2, d2) \
@@ -41,7 +35,7 @@ private:
 
     bool isBlocked, isExit;
     int index;
-    map<DIRECTION,Room*> neighborRooms;
+    std::map<DIRECTION,Room*> neighborRooms;
     Objects_map objects;/*contain 1 or multiple objects, including monster, npc, etc*/
 };
 

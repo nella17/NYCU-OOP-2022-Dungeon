@@ -1,5 +1,10 @@
 #include "Room.hpp"
 
+#include <iostream>
+#include <vector>
+#include <memory>
+#include <random>
+
 Room::Room(bool _isExit, int _index, Objects_map _objects):
     isExit(_isExit), index(_index), objects(_objects) {}
 

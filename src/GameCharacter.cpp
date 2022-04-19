@@ -1,6 +1,9 @@
 #include "GameCharacter.hpp"
 
-GameCharacter::GameCharacter(string _name, Object::Type _type, int _maxHealth, int _attack, int _defense):
+#include <iostream>
+#include "helper.hpp"
+
+GameCharacter::GameCharacter(std::string _name, Object::Type _type, int _maxHealth, int _attack, int _defense):
         Object(_name, _type), maxHealth(_maxHealth), currentHealth(_maxHealth), attack(_attack), defense(_defense) {}
 
 bool GameCharacter::checkIsDead() {
@@ -20,10 +23,10 @@ int GameCharacter::getAttack() { return attack; }
 int GameCharacter::getDefense() { return defense; }
 
 void GameCharacter::drawStatus() {
-    cout << getType() << "'s Status" << endl;
-    cout << "Name\t: " << getName() << endl;
-    cout << "Health\t: " << currentHealth << " / " << maxHealth << endl;
-    cout << "Attack\t: " << attack << endl;
-    cout << "Defense\t: " << defense << endl;
-    cout << endl;
+    std::cout << getType() << "'s Status\n"
+              << "Name\t: " << getName() << '\n'
+              << "Health\t: " << currentHealth << " / " << maxHealth << '\n'
+              << "Attack\t: " << attack << '\n'
+              << "Defense\t: " << defense << '\n'
+            << std::endl;
 }

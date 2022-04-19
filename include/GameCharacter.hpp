@@ -1,16 +1,12 @@
 #ifndef GAMECHARACTER_H_INCLUDED
 #define GAMECHARACTER_H_INCLUDED
 
-#include <iostream>
 #include <string>
-#include "helper.hpp"
-using namespace std;
-
 #include "Object.hpp"
 
 class GameCharacter: public Object {
 public:
-    GameCharacter(string, Object::Type, int = 0, int = 0, int = 0);
+    GameCharacter(std::string, Object::Type, int = 0, int = 0, int = 0);
     bool checkIsDead();
     int takeDamage(int);
     void drawStatus();
