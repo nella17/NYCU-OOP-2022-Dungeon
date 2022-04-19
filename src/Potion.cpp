@@ -3,9 +3,6 @@
 Potion::Potion(std::string _name, int _health, int _attack, int _defense):
         Item(_name, Object::Type::Potion), health(_health), attack(_attack), defense(_defense) {}
 
-void Potion::set_health(int _health) { health = _health; }
-void Potion::set_attack(int _attack) { attack = _attack; }
-void Potion::set_defense(int _defense) { defense = _defense; }
 int Potion::get_health() const { return health; }
 int Potion::get_attack() const { return attack; }
 int Potion::get_defense() const { return defense; }
