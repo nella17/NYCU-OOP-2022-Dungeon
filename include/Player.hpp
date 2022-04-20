@@ -32,11 +32,13 @@ public:
     void set_currentRoom(RoomPtr);
     void set_previousRoom(RoomPtr);
     void set_inventory(ItemsSet);
+    InteractablePtr get_interact() const;
     RoomPtr get_currentRoom() const;
     RoomPtr get_previousRoom() const;
     ItemsSet get_inventory() const;
 
 private:
+    InteractablePtr interact;
     RoomPtr currentRoom, previousRoom;
     ItemsSet inventory;
     std::map<Equip::Type, std::shared_ptr<Equip>> equips;

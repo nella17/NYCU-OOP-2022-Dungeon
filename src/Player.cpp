@@ -104,6 +104,7 @@ bool Player::trigger_event(int, ObjectPtr obj) {
 void Player::set_currentRoom(RoomPtr room) { currentRoom = room; }
 void Player::set_previousRoom(RoomPtr room) { previousRoom = room; }
 void Player::set_inventory(ItemsSet items) { inventory = items; }
+InteractablePtr Player::get_interact() const { return interact; }
 RoomPtr Player::get_currentRoom() const { return currentRoom; }
 RoomPtr Player::get_previousRoom() const { return previousRoom; }
 ItemsSet Player::get_inventory() const { return inventory; }
