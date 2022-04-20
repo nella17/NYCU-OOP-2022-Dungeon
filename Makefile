@@ -32,7 +32,7 @@ run: $(EXE)
 	$<
 
 $(EXE): dirs $(OBJS)
-	$(CXX) $(OBJS) -o $@
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $@
 
 -include $(DEPS)
 
