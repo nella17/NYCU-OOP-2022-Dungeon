@@ -43,7 +43,7 @@ void Room::print_status(InteractablePtr interact) {
 }
 
 void Room::print_menu() {
-    std::cout << "---- room menu ----\n";
+    std::cout << "--------- room menu ---------\n";
     std::cout << "  [W][A][S][D] \tMovement\n";
     for(auto&& [key, obj]: get_objects())
         std::cout << "  [" << char(key) << "] " << enum_name(obj->get_type()) << "\t" << obj->get_name() << '\n';

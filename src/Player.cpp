@@ -71,7 +71,7 @@ void Player::print_status(InteractablePtr) {
 }
 
 void Player::print_menu() {
-    std::cout << "---- user menu ----\n";
+    std::cout << "--------- user menu ---------\n";
     for(const auto& [key, menu] : menus)
         if ((this->*menu.func)(false))
             std::cout << "  [" << char(key) << "] " << menu.name << '\n';
@@ -110,6 +110,7 @@ void Player::add_interact(InteractablePtr interact) { interacts.emplace_back(int
 InteractablePtr Player::get_interact() const { return interacts.empty() ? currentRoom : interacts.back(); }
 RoomPtr Player::get_currentRoom() const { return currentRoom; }
 RoomPtr Player::get_previousRoom() const { return previousRoom; }
+InventoryPtr Player::get_inventory() const { return inventory; }
 
 bool Player::handle_inventory(bool run) {
     bool available = get_interact() != inventory && !inventory->empty();

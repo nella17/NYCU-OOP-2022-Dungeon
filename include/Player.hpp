@@ -33,6 +33,7 @@ public:
     InteractablePtr get_interact() const;
     RoomPtr get_currentRoom() const;
     RoomPtr get_previousRoom() const;
+    InventoryPtr get_inventory() const;
 
 private:
     std::vector<InteractablePtr> interacts;
