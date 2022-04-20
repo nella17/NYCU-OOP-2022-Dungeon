@@ -22,15 +22,16 @@ bool Player::equip_item(ItemPtr item) {
     if (item->get_item_type() != Item::Type::Equip)
         return false;
     auto equip = std::dynamic_pointer_cast<Equip>(item);
-    auto it = equips.find(equip->get_equip_type());
+    auto eq_type = equip->get_equip_type();
+    auto it = equips.find(eq_type);
     if (it != equips.end()) {
         auto ptr = it->second;
         decrease_status(ptr->get_health(), ptr->get_attack(), ptr->get_defense());
         inventory->emplace(ptr);
     }
-    inventory->erase(item);
-    equips.emplace(equip->get_equip_type(), equip);
+    equips[eq_type] = equip;
     increase_status(equip->get_health(), equip->get_attack(), equip->get_defense());
+    inventory->erase(item);
     return true;
 }
 
