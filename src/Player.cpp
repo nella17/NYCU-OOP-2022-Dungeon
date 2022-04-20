@@ -38,10 +38,7 @@ void Player::changeRoom(Room* room) {
 }
 
 void Player::print_status() {
-    std::cout << "  Name\t\t: " << get_name() << '\n'
-              << "  Health\t: " << get_currentHealth() << " / " << get_maxHealth() << '\n'
-              << "  Attack\t: " << get_attack() << '\n'
-              << "  Defense\t: " << get_defense() << '\n';
+    GameCharacter::print_status();
     if (!equips.empty()) {
         std::cout << "  Equipments\t:\n";
         std::cout.setf(std::ios::left, std::ios::adjustfield);

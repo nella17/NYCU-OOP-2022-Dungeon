@@ -13,6 +13,13 @@ int GameCharacter::take_damage(int damage) {
     return currentHealth -= std::max(0, damage - defense);
 }
 
+void GameCharacter::print_status() {
+    std::cout << "  Name\t\t: " << get_name() << '\n'
+              << "  Health\t: " << get_currentHealth() << " / " << get_maxHealth() << '\n'
+              << "  Attack\t: " << get_attack() << '\n'
+              << "  Defense\t: " << get_defense() << '\n';
+}
+
 void GameCharacter::set_maxHealth(int _maxHealth) { maxHealth = _maxHealth; }
 void GameCharacter::set_currentHealth(int _currentHealth) { currentHealth = _currentHealth; }
 void GameCharacter::set_attack(int _attack) { attack = _attack; }

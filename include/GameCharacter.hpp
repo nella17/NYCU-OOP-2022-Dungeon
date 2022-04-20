@@ -12,6 +12,8 @@ public:
     bool check_is_dead();
     int take_damage(int);
 
+    virtual void print_status();
+
     /* Set & Get function*/
     void set_maxHealth(int);
     void set_currentHealth(int);
