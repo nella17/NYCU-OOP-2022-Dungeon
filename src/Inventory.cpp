@@ -1,7 +1,7 @@
 #include "Inventory.hpp"
 
 Inventory::Inventory(ItemsSet items):
-    Interactable("Inventory", Object::Type::Inventory), ItemsSet(items) {}
+    Interactable("", Object::Type::Inventory), ItemsSet(items) {}
 
 void Inventory::print_status(InteractablePtr) {}
 
