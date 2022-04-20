@@ -8,7 +8,9 @@ Item::Item(std::string _name, Object::Type _type): Object(_name, _type) {}
 bool Item::trigger_event(ObjectPtr obj) {
     if (obj->get_type() == Object::Type::Player) {
         auto player = std::dynamic_pointer_cast<Player>(obj);
-        return player->trigger_event(shared_from_this());
+        auto item = std::dynamic_pointer_cast<Item>(shared_from_this());
+        player->add_item(item);
+        return true;
     }
     return false;
 }

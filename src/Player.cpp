@@ -96,12 +96,7 @@ bool Player::handle_key(int key, ObjectPtr) {
 }
 
 // TODO
-bool Player::trigger_event(ObjectPtr obj) {
-    if (obj->get_type() == Object::Type::Item) {
-        auto item = std::dynamic_pointer_cast<Item>(obj);
-        add_item(item);
-        return true;
-    }
+bool Player::trigger_event(ObjectPtr) {
     return false;
 }
 
