@@ -33,16 +33,16 @@ void Room::draw_neighbors(Room* previous) {
         }
         return name;
     };
-    std::cout << '+' << std::string((name_size+2)*3,'-') << "+\n"
-            << '|' << std::string(name_size+2,'.') << get_name(DIRECTION::UP) << std::string(name_size+2,'.') << "|\n"
-            << '|' << get_name(DIRECTION::LEFT) << get_name()  << get_name(DIRECTION::RIGHT) << "|\n"
-            << '|' << std::string(name_size+2,'.') << get_name(DIRECTION::DOWN) << std::string(name_size+2,'.') << "|\n"
-            << '+' << std::string((name_size+2)*3,'-') << "+\n";
+    std::cout << "  +" << std::string((name_size+2)*3,'-') << "+\n"
+              << "  |" << std::string(name_size+2,'.') << get_name(DIRECTION::UP) << std::string(name_size+2,'.') << "|\n"
+              << "  |" << get_name(DIRECTION::LEFT) << get_name()  << get_name(DIRECTION::RIGHT) << "|\n"
+              << "  |" << std::string(name_size+2,'.') << get_name(DIRECTION::DOWN) << std::string(name_size+2,'.') << "|\n"
+              << "  +" << std::string((name_size+2)*3,'-') << "+\n";
 }
 
 void Room::print_menu() {
     for(auto [key, obj]: get_objects())
-        std::cout << "[" << char(key) << "] " << enum_name(obj->get_type()) << '-' << obj->get_name() << '\n';
+        std::cout << "  [" << char(key) << "] " << enum_name(obj->get_type()) << "\t" << obj->get_name() << '\n';
 }
 
 bool Room::trigger_object_event(int key, ObjectPtr obj) {

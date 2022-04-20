@@ -3,6 +3,7 @@
 #include <iostream>
 #include <map>
 #include <memory>
+#include <exception>
 #include "helper.hpp"
 #include "Room.hpp"
 
@@ -37,27 +38,39 @@ void Player::changeRoom(Room* room) {
 }
 
 void Player::print_status() {
-    std::cout << "Name\t: " << get_name() << '\n'
-              << "Health\t: " << get_currentHealth() << " / " << get_maxHealth() << '\n'
-              << "Attack\t: " << get_attack() << '\n'
-              << "Defense\t: " << get_defense() << '\n';
+    std::cout << "  Name\t\t: " << get_name() << '\n'
+              << "  Health\t: " << get_currentHealth() << " / " << get_maxHealth() << '\n'
+              << "  Attack\t: " << get_attack() << '\n'
+              << "  Defense\t: " << get_defense() << '\n';
     if (!equips.empty()) {
-        std::cout << "Equip\t:\n";
-        for (auto [t, equip] : equips)
-            std::cout << "    " << *equip << '\n';
+        std::cout << "  Equipments\t:\n";
+        std::cout.setf(std::ios::left, std::ios::adjustfield);
+        for (auto [_type, equip] : equips) {
+            std::cout << "    ";
+            std::cout.width(20);
+            std::cout << enum_name(equip->get_equip_type());
+            std::cout.width(16);
+            std::cout << equip->get_name() << ": " << *equip << '\n';
+        }
     }
     if (!inventory.empty()) {
-        std::cout << "Items\t:";
-        for (auto& item: inventory)
-            std::cout << " " << item->get_name();
-        std::cout << '\n';
+        std::cout << "  Inventory\t:\n";
+        std::cout.setf(std::ios::left, std::ios::adjustfield);
+        for (auto& item: inventory) {
+            std::cout << "    ";
+            std::cout.width(20);
+            std::cout << item->name_of_type();
+            std::cout.width(16);
+            std::cout << item->get_name()
+                    << ": " << *item << '\n';
+        }
     }
 }
 
 void Player::print_menu() {
     std::cout << "  [W][A][S][D] \tMovement\n";
     for(const auto& [key, menu] : menus)
-        std::cout << "  [" << char(key) << "] \t" << menu.name << '\n';
+        std::cout << "  [" << char(key) << "] " << menu.name << '\n';
     currentRoom->print_menu();
 }
 
