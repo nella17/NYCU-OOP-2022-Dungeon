@@ -7,7 +7,7 @@ Equip::Equip(std::string _name, Type _type, int _health, int _attack, int _defen
         Item(_name, Object::Type::Equip), type(_type), health(_health), attack(_attack), defense(_defense) {}
 
 std::string Equip::name_of_type() const {
-    return enum_name_str(get_type()) + "(" + enum_name_str(type) + ")";
+    return enum_name(get_type()) + "(" + enum_name(type) + ")";
 }
 
 std::ostream& Equip::show_info(std::ostream& os) const {

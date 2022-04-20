@@ -14,7 +14,7 @@ bool Item::trigger_event(ObjectPtr obj) {
 }
 
 std::string Item::name_of_type() const {
-    return enum_name_str(get_type());
+    return enum_name(get_type());
 }
 
 std::ostream& operator<<(std::ostream& os, const Item& item) {

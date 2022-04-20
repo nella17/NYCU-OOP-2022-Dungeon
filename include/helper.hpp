@@ -6,9 +6,8 @@
 #include <string>
 
 #include "magic_enum.hpp"
-using magic_enum::enum_name;
 template<typename T>
-inline std::string enum_name_str(T e) { return std::string{enum_name(e)}; }
+inline std::string enum_name(T e) { return std::string{magic_enum::enum_name(e)}; }
 
 extern std::mt19937 rng;
 
