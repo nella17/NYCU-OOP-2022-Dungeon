@@ -19,4 +19,6 @@ public:
 private:
 };
 
+std::ostream& operator<<(std::ostream& os, const Interactable& interact);
+
 #endif // INTERACTABLE_H_INCLUDED
