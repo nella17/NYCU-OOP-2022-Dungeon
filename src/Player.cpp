@@ -68,7 +68,8 @@ void Player::print_status(InteractablePtr) {
 void Player::print_menu() {
     std::cout << "---- user menu ----\n";
     for(const auto& [key, menu] : menus)
-        std::cout << "  [" << char(key) << "] " << menu.name << '\n';
+        if ((this->*menu.func)(false))
+            std::cout << "  [" << char(key) << "] " << menu.name << '\n';
     interact->print_menu();
 }
 
@@ -77,7 +78,7 @@ bool Player::handle_key(int key, ObjectPtr) {
         auto menu = menus.at(key);
         if (menu.func == nullptr)
             return false;
-        return (this->*menu.func)();
+        return (this->*menu.func)(true);
     } else {
         try {
             if (interact->handle_key(key, shared_from_this())) {
@@ -105,17 +106,13 @@ RoomPtr Player::get_currentRoom() const { return currentRoom; }
 RoomPtr Player::get_previousRoom() const { return previousRoom; }
 ItemsSet Player::get_inventory() const { return inventory; }
 
-// TODO
-bool Player::handle_func() {
-    std::cerr << "Player::handle_func() not implemented" << std::endl;
-    return false;
+bool Player::handle_leave(bool run) {
+    bool available = interact->get_type() != Object::Type::Room;
+    if (!run || !available) return available;
+    interact = currentRoom;
+    return true;
 }
 
-    // Player::menus.emplace('E', Menu{std::string("Equip"), &Player::handle_func});
-    // menus.emplace('P', Menu(std::string("Potion"), &Player::handle_func));
-    // menus.emplace('I', Menu(std::string("Inventory"), &Player::handle_func));
-
 const Player::MenuMap Player::menus{
-    { 'E', Menu{std::string("Equip"), &Player::handle_func} },
-    { 'I', Menu{std::string("Inventory"), &Player::handle_func} },
+    { 'L', Menu{std::string("Leave"), &Player::handle_leave} },
 };

@@ -36,9 +36,9 @@ private:
     ItemsSet inventory;
     std::map<Equip::Type, std::shared_ptr<Equip>> equips;
 
-    bool handle_func();
+    bool handle_leave(bool);
 
-    using menu_func = bool (Player::*)(void);
+    using menu_func = bool (Player::*)(bool);
     struct Menu {
         std::string name;
         menu_func func;
