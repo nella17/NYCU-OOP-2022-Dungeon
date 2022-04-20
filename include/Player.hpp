@@ -19,14 +19,10 @@ public:
     void increase_status(int, int, int);
     void changeRoom(RoomPtr);
 
-    void print_status();
+    void print_status(InteractablePtr = nullptr);
     void print_menu();
-    bool handle_key(int);
-
-    /* Virtual function that you need to complete   */
-    /* In Player, this function should show the     */
-    /* status of player.                            */
-    bool trigger_event(int, ObjectPtr);
+    bool handle_key(int, ObjectPtr = nullptr);
+    bool trigger_event(ObjectPtr);
 
     /* Set & Get function*/
     InteractablePtr get_interact() const;

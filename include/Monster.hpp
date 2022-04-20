@@ -11,10 +11,14 @@ class Monster: public GameCharacter {
 public:
     Monster(std::string, int, int, int);
 
+    void print_status(InteractablePtr = nullptr);
+    void print_menu();
+    bool handle_key(int, ObjectPtr);
+
     /* Virtual function that you need to complete   */
     /* In Monster, this function should deal with   */
     /* the combat system.                           */
-    bool trigger_event(int, ObjectPtr);
+    bool trigger_event(ObjectPtr);
 
 private:
 };

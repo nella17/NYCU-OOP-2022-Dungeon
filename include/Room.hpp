@@ -6,23 +6,27 @@
 #include <memory>
 #include "helper.hpp"
 #include "Object.hpp"
+#include "Interactable.hpp"
 class Record;
 
 class Room;
 using RoomPtr = std::shared_ptr<Room>;
 
-class Room: public Object {
+class Room: public Interactable {
     friend class Record;
 public:
     static std::string name(int, bool);
 
     Room(int = -1, bool = false, ObjectsMap= {});
-    void draw_neighbors(RoomPtr = nullptr);
+    void print_status(InteractablePtr = nullptr);
     void print_menu();
+    bool handle_key(int, ObjectPtr);
+    bool trigger_event(ObjectPtr);
 
-    bool trigger_event(int, ObjectPtr);
     void push_object(int, ObjectPtr);
-    bool pop_object(int); /*pop out the specific object, used when the interaction is done*/
+    /*pop out the specific object, used when the interaction is done*/
+    bool pop_object(int);
+    bool pop_object(ObjectPtr);
 
     /* Set & Get function*/
     void set_room(DIRECTION, RoomPtr);

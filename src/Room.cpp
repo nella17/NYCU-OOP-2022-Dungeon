@@ -5,6 +5,7 @@
 #include <memory>
 #include <random>
 #include "GameCharacter.hpp"
+#include "Player.hpp"
 
 constexpr int name_size = 2;
 std::string Room::name(int index, bool isExit) {
@@ -19,9 +20,10 @@ std::string Room::name(int index, bool isExit) {
 }
 
 Room::Room(int _index, bool _isExit, ObjectsMap _objects):
-    Object(name(_index, _isExit), Object::Type::Room), isBlocked(false), isLocked(false), isExit(_isExit), index(_index), objects(_objects) {}
+    Interactable(name(_index, _isExit), Object::Type::Room), isBlocked(false), isLocked(false), isExit(_isExit), index(_index), objects(_objects) {}
 
-void Room::draw_neighbors(RoomPtr previous) {
+void Room::print_status(InteractablePtr interact) {
+    auto previous = interact->get_type() != Object::Type::Player ? nullptr : std::dynamic_pointer_cast<Player>(interact)->get_previousRoom();
     auto get_name = [&](DIRECTION dir = DIRECTION::None) {
         auto ptr = get_neighbor(dir, previous);
         auto name = std::string(name_size+2,' ');
@@ -49,11 +51,18 @@ void Room::print_menu() {
     }
 }
 
-bool Room::trigger_event(int key, ObjectPtr obj) {
+bool Room::handle_key(int key, ObjectPtr obj) {
     auto ptr = get_object(key);
     if (ptr == nullptr)
         return false;
-    return ptr->trigger_event(key, obj);
+    auto interact = std::dynamic_pointer_cast<Interactable>(ptr);
+    if (interact != nullptr)
+        throw interact;
+    return ptr->trigger_event(obj);
+}
+
+bool Room::trigger_event(ObjectPtr) {
+    return false;
 }
 
 void Room::push_object(int key, ObjectPtr obj) {
@@ -68,6 +77,16 @@ bool Room::pop_object(int key) {
     switch_states(false, ptr);
     objects.erase(key);
     return true;
+}
+bool Room::pop_object(ObjectPtr ptr) {
+    for(auto [key, obj]: get_objects()) {
+        if (obj == ptr) {
+            objects.erase(key);
+            switch_states(false, obj);
+            return true;
+        }
+    }
+    return false;
 }
 
 /* Set & Get function*/
@@ -87,7 +106,7 @@ ObjectPtr Room::get_object(int key) const {
     auto it = objects.find(key);
     if (it == objects.end())
         return nullptr;
-    return it->second;
+    return check_object(it->second);
 }
 ObjectsMap Room::get_objects() const {
     ObjectsMap ret;

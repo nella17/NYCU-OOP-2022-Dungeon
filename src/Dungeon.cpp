@@ -75,8 +75,12 @@ void Dungeon::draw_screen() {
     player->print_status();
     std::cout << '\n';
 
-    std::cout << "Map:\n";
-    player->get_currentRoom()->draw_neighbors(player->get_previousRoom());
+    auto interact = player->get_interact();
+    if (interact->get_type() == Object::Type::Room)
+        std::cout << "Map:\n";
+    else
+        std::cout << enum_name(interact->get_type()) << "'s Status:\n";
+    interact->print_status(player);
     std::cout << '\n';
 
     std::cout << "Actions:\n";

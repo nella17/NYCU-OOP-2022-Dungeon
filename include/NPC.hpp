@@ -13,10 +13,14 @@ public:
     NPC(std::string, std::string, ItemsSet = {});
     void list_commodity(); /*print all the Item in this NPC*/
 
+    void print_status(InteractablePtr = nullptr);
+    void print_menu();
+    bool handle_key(int, ObjectPtr);
+
     /* Virtual function that you need to complete   */
     /* In NPC, this function should deal with the   */
     /* transaction in easy implementation           */
-    bool trigger_event(int, ObjectPtr);
+    bool trigger_event(ObjectPtr);
 
     /* Set & Get function*/
     std::string get_script() const;

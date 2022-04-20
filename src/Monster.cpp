@@ -10,7 +10,11 @@
 Monster::Monster(std::string _name, int _maxHealth, int _attack, int _defense):
         GameCharacter(_name, Object::Type::Monster, _maxHealth, _attack, _defense) {}
 
+void Monster::print_status(InteractablePtr) {}
+void Monster::print_menu() {}
+bool Monster::handle_key(int, ObjectPtr) { return false; }
+
 // TODO
-bool Monster::trigger_event(int, ObjectPtr) {
+bool Monster::trigger_event(ObjectPtr) {
     return false;
 }

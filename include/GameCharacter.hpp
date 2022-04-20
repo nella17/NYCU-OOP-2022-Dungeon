@@ -2,17 +2,17 @@
 #define GAMECHARACTER_H_INCLUDED
 
 #include <string>
-#include "Object.hpp"
+#include "Interactable.hpp"
 class Record;
 
-class GameCharacter: public Object {
+class GameCharacter: public Interactable {
     friend class Record;
 public:
     GameCharacter(std::string, Object::Type, int = 0, int = 0, int = 0);
     bool check_is_dead();
     int take_damage(int);
 
-    virtual void print_status();
+    void print_status(InteractablePtr = nullptr);
 
     /* Set & Get function*/
     int get_maxHealth() const;

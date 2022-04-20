@@ -35,9 +35,10 @@ void Player::increase_status(int, int, int) {}
 void Player::changeRoom(RoomPtr room) {
     previousRoom = currentRoom;
     currentRoom = room;
+    interact = room;
 }
 
-void Player::print_status() {
+void Player::print_status(InteractablePtr) {
     GameCharacter::print_status();
     if (!equips.empty()) {
         std::cout << "  Equipments\t:\n";
@@ -69,10 +70,10 @@ void Player::print_menu() {
               << "  [W][A][S][D] \tMovement\n";
     for(const auto& [key, menu] : menus)
         std::cout << "  [" << char(key) << "] " << menu.name << '\n';
-    currentRoom->print_menu();
+    interact->print_menu();
 }
 
-bool Player::handle_key(int key) {
+bool Player::handle_key(int key, ObjectPtr) {
     if (is_dir_key(key)) {
         auto dir = key_to_dir(key);
         auto room = currentRoom->get_neighbor(dir, previousRoom);
@@ -85,14 +86,22 @@ bool Player::handle_key(int key) {
             return false;
         return (this->*menu.func)();
     } else {
-        if (currentRoom->trigger_event(key, shared_from_this()))
-            assert(currentRoom->pop_object(key) && "Object not found");
+        try {
+            if (interact->handle_key(key, shared_from_this())) {
+                if (interact->get_type() == Object::Type::Room)
+                    assert(currentRoom->pop_object(key) && "Object not found");
+                else
+                    assert(currentRoom->pop_object(interact) && "Object not found");
+            }
+        } catch (InteractablePtr obj) {
+            interact = obj;
+        }
     }
     return true;
 }
 
 // TODO
-bool Player::trigger_event(int, ObjectPtr obj) {
+bool Player::trigger_event(ObjectPtr obj) {
     if (obj->get_type() == Object::Type::Item) {
         auto item = std::dynamic_pointer_cast<Item>(obj);
         add_item(item);
