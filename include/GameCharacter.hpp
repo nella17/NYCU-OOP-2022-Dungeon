@@ -15,6 +15,8 @@ public:
     void print_status(InteractablePtr = nullptr);
 
     /* Set & Get function*/
+    void increase_status(int, int, int);
+    void decrease_status(int, int, int);
     int get_maxHealth() const;
     int get_currentHealth() const;
     int get_attack() const;

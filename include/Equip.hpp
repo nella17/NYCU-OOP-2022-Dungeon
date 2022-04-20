@@ -20,6 +20,7 @@ public:
 
     Equip(std::string, Type, int, int, int);
 
+    bool trigger_event(ObjectPtr);
     std::string name_of_type() const;
     std::ostream& show_info(std::ostream&) const;
 

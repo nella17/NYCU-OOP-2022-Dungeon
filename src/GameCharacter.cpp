@@ -20,6 +20,19 @@ void GameCharacter::print_status(InteractablePtr) {
               << "  Defense\t: " << get_defense() << '\n';
 }
 
+void GameCharacter::increase_status(int _health, int _attack, int _defense) {
+    maxHealth += _health;
+    currentHealth += _health;
+    attack += _attack;
+    defense += _defense;
+}
+void GameCharacter::decrease_status(int _health, int _attack, int _defense) {
+    maxHealth -= _health;
+    currentHealth -= _health;
+    attack -= _attack;
+    defense -= _defense;
+}
+
 int GameCharacter::get_maxHealth() const { return maxHealth; }
 int GameCharacter::get_currentHealth() const { return currentHealth; }
 int GameCharacter::get_attack() const { return attack; }

@@ -20,7 +20,6 @@ public:
     Player(std::string, int, int, int);
     void add_item(ItemPtr);
     bool equip_item(ItemPtr);
-    void increase_status(int, int, int);
     void changeRoom(RoomPtr);
 
     void print_status(InteractablePtr = nullptr);

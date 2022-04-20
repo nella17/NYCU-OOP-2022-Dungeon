@@ -23,15 +23,16 @@ bool Player::equip_item(ItemPtr item) {
         return false;
     auto equip = std::dynamic_pointer_cast<Equip>(item);
     auto it = equips.find(equip->get_equip_type());
-    if (it != equips.end())
-        inventory->emplace(it->second);
+    if (it != equips.end()) {
+        auto ptr = it->second;
+        decrease_status(ptr->get_health(), ptr->get_attack(), ptr->get_defense());
+        inventory->emplace(ptr);
+    }
     inventory->erase(item);
     equips.emplace(equip->get_equip_type(), equip);
+    increase_status(equip->get_health(), equip->get_attack(), equip->get_defense());
     return true;
 }
-
-// TODO
-void Player::increase_status(int, int, int) {}
 
 void Player::changeRoom(RoomPtr room) {
     previousRoom = currentRoom;
