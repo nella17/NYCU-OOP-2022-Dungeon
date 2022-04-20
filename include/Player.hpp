@@ -7,8 +7,8 @@
 #include <memory>
 #include "GameCharacter.hpp"
 #include "Room.hpp"
-#include "Item.hpp"
 #include "Equip.hpp"
+#include "Inventory.hpp"
 class Record;
 
 class Player;
@@ -32,12 +32,11 @@ public:
     InteractablePtr get_interact() const;
     RoomPtr get_currentRoom() const;
     RoomPtr get_previousRoom() const;
-    ItemsSet get_inventory() const;
 
 private:
     std::vector<InteractablePtr> interacts;
     RoomPtr currentRoom, previousRoom;
-    ItemsSet inventory;
+    Inventory inventory;
     std::map<Equip::Type, std::shared_ptr<Equip>> equips;
 
     bool handle_leave(bool);

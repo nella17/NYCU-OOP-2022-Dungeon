@@ -16,6 +16,7 @@ public:
     enum class Type {
         None = 0,
         Item,
+        Inventory,
         Player,
         Monster,
         NPC,

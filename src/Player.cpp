@@ -115,7 +115,6 @@ bool Player::trigger_event(ObjectPtr) {
 InteractablePtr Player::get_interact() const { return interacts.back(); }
 RoomPtr Player::get_currentRoom() const { return currentRoom; }
 RoomPtr Player::get_previousRoom() const { return previousRoom; }
-ItemsSet Player::get_inventory() const { return inventory; }
 
 bool Player::handle_leave(bool run) {
     bool available = interacts.size() > 1;
