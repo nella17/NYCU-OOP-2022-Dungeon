@@ -15,7 +15,14 @@ using ItemsSet = std::set<ItemPtr>;
 class Item: public Object {
     friend class Record;
 public:
-    Item(std::string, Object::Type);
+    enum Type {
+        Equip,
+        Potion,
+        Key,
+        Lock,
+    };
+
+    Item(std::string, Item::Type);
 
     /* Virtual function that you need to complete    */
     /* In Item, this function should deal with the   */
@@ -26,7 +33,10 @@ public:
     virtual std::string name_of_type() const;
     virtual std::ostream& show_info(std::ostream&) const = 0;
 
+    Item::Type get_item_type() const;
+
 private:
+    const Item::Type type;
 };
 
 std::ostream& operator<<(std::ostream&, const Item&);

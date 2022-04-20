@@ -135,8 +135,11 @@ RoomPtr Room::get_neighbor(DIRECTION dir, RoomPtr previous) {
 }
 
 void Room::switch_states(bool value, ObjectPtr obj) {
+    auto item = std::dynamic_pointer_cast<Item>(obj);
     switch (obj->get_type()) {
-        case Object::Type::Lock:
+        case Object::Type::Item:
+            if (item == nullptr or item->get_item_type() != Item::Type::Lock)
+                break;
             isLocked = value;
             [[fallthrough]];
         case Object::Type::Monster:
@@ -148,8 +151,9 @@ void Room::switch_states(bool value, ObjectPtr obj) {
 }
 
 ObjectPtr Room::check_object(ObjectPtr obj) const {
+    auto item = std::dynamic_pointer_cast<Item>(obj);
     if (isLocked) {
-        if (obj->get_type() != Object::Type::Lock)
+        if (item != nullptr && item->get_item_type() != Item::Type::Lock)
             return nullptr;
     } else if (isBlocked) {
         if (obj->get_type() != Object::Type::Monster)

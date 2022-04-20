@@ -23,7 +23,7 @@ public:
 private:
     bool isLocked;
     const uint32_t id;
-    Key(uint32_t, Object::Type);
+    Key(uint32_t, Item::Type);
 };
 
 #endif // KEY_H_INCLUDED

@@ -4,10 +4,10 @@
 #include "helper.hpp"
 
 Equip::Equip(std::string _name, Type _type, int _health, int _attack, int _defense):
-        Item(_name, Object::Type::Equip), type(_type), health(_health), attack(_attack), defense(_defense) {}
+        Item(_name, Item::Type::Equip), type(_type), health(_health), attack(_attack), defense(_defense) {}
 
 std::string Equip::name_of_type() const {
-    return enum_name(get_type()) + "(" + enum_name(type) + ")";
+    return enum_name(get_item_type()) + "(" + enum_name(type) + ")";
 }
 
 std::ostream& Equip::show_info(std::ostream& os) const {

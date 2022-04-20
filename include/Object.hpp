@@ -16,10 +16,6 @@ public:
     enum class Type {
         None = 0,
         Item,
-        Equip,
-        Potion,
-        Key,
-        Lock,
         Player,
         Monster,
         NPC,

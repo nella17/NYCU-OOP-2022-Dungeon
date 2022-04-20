@@ -18,7 +18,7 @@ void Player::add_item(ItemPtr item) {
 bool Player::equip_item(ItemPtr item) {
     if (inventory.find(item) == inventory.end())
         return false;
-    if (item->get_type() != Object::Type::Equip)
+    if (item->get_item_type() != Item::Type::Equip)
         return false;
     auto equip = std::dynamic_pointer_cast<Equip>(item);
     auto it = equips.find(equip->get_equip_type());
