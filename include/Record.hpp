@@ -4,8 +4,8 @@
 #include <vector>
 #include <memory>
 
-class Player;
-class Room;
+#include "Room.hpp"
+#include "Player.hpp"
 
 /* This is the record system. Get the information of the  */
 /* player and rooms then save them to (a) file(s). Notice */
@@ -14,11 +14,11 @@ class Room;
 
 class Record {
 public:
-    static void save_to_file(const std::shared_ptr<Player>, const std::vector<Room>&);
-    static void load_from_file(std::shared_ptr<Player>&, std::vector<Room>&);
+    static void save_to_file(const PlayerPtr, const std::vector<Room>&);
+    static void load_from_file(PlayerPtr&, std::vector<Room>&);
 private:
-    static void save_player(const std::shared_ptr<Player>, std::ofstream&&);
-    static void load_player(std::shared_ptr<Player>&, std::ifstream&&);
+    static void save_player(const PlayerPtr, std::ofstream&&);
+    static void load_player(PlayerPtr&, std::ifstream&&);
     static void save_rooms(const std::vector<Room>&, std::ofstream&&);
     static void load_rooms(std::vector<Room>&, std::ifstream&&);
 };

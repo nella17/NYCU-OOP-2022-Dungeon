@@ -18,19 +18,19 @@
 #include "Potion.hpp"
 #include "Key.hpp"
 
-void Record::save_to_file(const std::shared_ptr<Player> player, const std::vector<Room>& rooms) {
+void Record::save_to_file(const PlayerPtr player, const std::vector<Room>& rooms) {
     save_player(player, std::ofstream("data/player.txt"));
     save_rooms(rooms, std::ofstream("data/rooms.txt"));
 }
-void Record::load_from_file(std::shared_ptr<Player>& player, std::vector<Room>& rooms) {
+void Record::load_from_file(PlayerPtr& player, std::vector<Room>& rooms) {
     load_player(player, std::ifstream("data/player.txt"));
     load_rooms(rooms, std::ifstream("data/rooms.txt"));
 }
 
 // TODO
-void Record::save_player(const std::shared_ptr<Player>, std::ofstream&&) {}
+void Record::save_player(const PlayerPtr, std::ofstream&&) {}
 // TODO
-void Record::load_player(std::shared_ptr<Player>&, std::ifstream&&) {}
+void Record::load_player(PlayerPtr&, std::ifstream&&) {}
 
 // TODO
 void Record::save_rooms(const std::vector<Room>&, std::ofstream&&) {}

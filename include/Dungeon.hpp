@@ -35,7 +35,7 @@ public:
 
 private:
     bool quit;
-    std::shared_ptr<Player> player;
+    PlayerPtr player;
     std::vector<RoomPtr> rooms;
 };
 

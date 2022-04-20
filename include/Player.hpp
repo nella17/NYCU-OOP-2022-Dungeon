@@ -11,6 +11,9 @@
 #include "Equip.hpp"
 class Record;
 
+class Player;
+using PlayerPtr = std::shared_ptr<Player>;
+
 class Player: public GameCharacter {
     friend class Record;
 public:
