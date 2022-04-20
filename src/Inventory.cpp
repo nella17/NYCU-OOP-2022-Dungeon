@@ -11,7 +11,9 @@ void Inventory::print_status(InteractablePtr) {}
 
 void Inventory::print_menu() {
     if (empty()) return;
-    std::cout << "---- inventory menu ---------\n";
+    std::cout.setf(std::ios::right, std::ios::adjustfield);
+    std::cout << std::setfill('-') << std::setw(14-get_name().size()) << ' '
+        << std::setfill(' ') << get_name() << " Menu ---------\n";
     char c = '0';
     std::cout.setf(std::ios::left, std::ios::adjustfield);
     for(const auto& item : *this) {

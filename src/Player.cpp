@@ -10,7 +10,7 @@
 
 Player::Player(std::string _name, int _maxHealth, int _attack, int _defense):
         GameCharacter(_name, Object::Type::Player, _maxHealth, _attack, _defense),
-        inventory(std::make_shared<Inventory>("Player")) {}
+        inventory(std::make_shared<Inventory>("Inventory")) {}
 
 void Player::add_item(ItemPtr item) {
     inventory->emplace(item);
@@ -71,7 +71,7 @@ void Player::print_status(InteractablePtr) {
 }
 
 void Player::print_menu() {
-    std::cout << "--------- user menu ---------\n";
+    std::cout << "--------- User Menu ---------\n";
     for(const auto& [key, menu] : menus)
         if ((this->*menu.func)(false))
             std::cout << "  [" << char(key) << "] " << menu.name << '\n';

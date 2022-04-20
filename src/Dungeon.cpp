@@ -85,7 +85,7 @@ void Dungeon::draw_screen() {
 
     std::cout << "Actions:\n";
     player->print_menu();
-    std::cout << "--------- game menu ---------\n"
+    std::cout << "--------- Game Menu ---------\n"
               << "  [Q] Quit\n";
 
     if (!msg.empty()) {
