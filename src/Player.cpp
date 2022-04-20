@@ -9,7 +9,8 @@
 #include "Room.hpp"
 
 Player::Player(std::string _name, int _maxHealth, int _attack, int _defense):
-        GameCharacter(_name, Object::Type::Player, _maxHealth, _attack, _defense), inventory(std::make_shared<Inventory>()) {}
+        GameCharacter(_name, Object::Type::Player, _maxHealth, _attack, _defense),
+        inventory(std::make_shared<Inventory>("Player")) {}
 
 void Player::add_item(ItemPtr item) {
     inventory->emplace(item);

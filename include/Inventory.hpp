@@ -11,7 +11,7 @@ using InventoryPtr = std::shared_ptr<Inventory>;
 
 class Inventory: public Interactable, public ItemsSet {
 public:
-    Inventory(ItemsSet = {});
+    Inventory(std::string, ItemsSet = {});
     void print_status(InteractablePtr = nullptr);
     void print_menu();
     bool handle_key(int, ObjectPtr = nullptr);
