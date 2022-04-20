@@ -1,3 +1,5 @@
+#ifndef ASCII_ART_H_INCLUDED
+#define ASCII_ART_H_INCLUDED
 // ASCII Art by figlet
 
 // "Welcome to the Dungeon!"
@@ -45,3 +47,4 @@ const char you_won[] = R"(
                   /_/\____/\__,_/    |__/|__/\____/_/ /_(_)
 
 )";
+#endif // ASCII_ART_H_INCLUDED
