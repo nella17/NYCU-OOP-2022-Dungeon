@@ -40,6 +40,16 @@ private:
     Room *currentRoom, *previousRoom;
     ItemsSet inventory;
     std::map<Equip::Type, std::shared_ptr<Equip>> equips;
+
+    bool handle_func();
+
+    using menu_func = bool (Player::*)(void);
+    struct Menu {
+        std::string name;
+        menu_func func;
+    };
+    using MenuMap = std::map<int, Menu>;
+    const static MenuMap menus;
 };
 
 #endif // PLAYER_H_INCLUDED

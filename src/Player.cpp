@@ -54,6 +54,13 @@ void Player::print_status() {
     }
 }
 
+void Player::print_menu() {
+    std::cout << "  [W][A][S][D] \tMovement\n";
+    for(const auto& [key, menu] : menus)
+        std::cout << "  [" << char(key) << "] \t" << menu.name << '\n';
+    currentRoom->print_menu();
+}
+
 bool Player::handle_key(int key) {
     if (is_dir_key(key)) {
         auto dir = key_to_dir(key);
@@ -61,6 +68,11 @@ bool Player::handle_key(int key) {
         if (room == nullptr)
             return false;
         changeRoom(room);
+    } else if (menus.find(key) != menus.end()) {
+        auto menu = menus.at(key);
+        if (menu.func == nullptr)
+            return false;
+        return (this->*menu.func)();
     } else {
         if (currentRoom->trigger_object_event(key, shared_from_this()))
             assert(currentRoom->pop_object(key) && "Object not found");
@@ -84,3 +96,18 @@ void Player::set_inventory(ItemsSet items) { inventory = items; }
 Room* Player::get_currentRoom() const { return currentRoom; }
 Room* Player::get_previousRoom() const { return previousRoom; }
 ItemsSet Player::get_inventory() const { return inventory; }
+
+// TODO
+bool Player::handle_func() {
+    std::cerr << "Player::handle_func() not implemented" << std::endl;
+    return false;
+}
+
+    // Player::menus.emplace('E', Menu{std::string("Equip"), &Player::handle_func});
+    // menus.emplace('P', Menu(std::string("Potion"), &Player::handle_func));
+    // menus.emplace('I', Menu(std::string("Inventory"), &Player::handle_func));
+
+const Player::MenuMap Player::menus{
+    { 'E', Menu{std::string("Equip"), &Player::handle_func} },
+    { 'I', Menu{std::string("Inventory"), &Player::handle_func} },
+};

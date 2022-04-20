@@ -78,9 +78,8 @@ void Dungeon::draw_screen() {
     std::cout << '\n';
 
     std::cout << "Actions:\n";
-    std::cout << "[W][A][S][D] Movement\n";
-    player->get_currentRoom()->print_menu();
-    std::cout << "[Q] Quit\n";
+    player->print_menu();
+    std::cout << "  [Q] Quit\n";
 
     std::cout << std::endl;
 }
