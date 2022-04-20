@@ -20,7 +20,7 @@
 // Record
 #include "Record.hpp"
 
-Dungeon::Dungeon(): quit(false), player(nullptr), rooms() {}
+Dungeon::Dungeon(): quit(false), msg(""), player(nullptr), rooms() {}
 
 void Dungeon::create_player() {
     std::string name;
@@ -88,11 +88,15 @@ void Dungeon::draw_screen() {
     std::cout << "---- game menu ----\n"
               << "  [Q] Quit\n";
 
+    if (!msg.empty()) {
+        std::cout << '\n' << msg << '\n';
+        msg = "";
+    }
+
     std::cout << std::endl;
 }
 
 void Dungeon::handle_menu() {
-    draw_screen();
     int key = read_char_no_buffer_echo();
     if (key == 'Q') {
         quit = true;
@@ -123,8 +127,14 @@ bool Dungeon::check_game_logic() {
 void Dungeon::run() {
     start_game();
 
-    while (!quit && !check_game_logic())
-        handle_menu();
+    while (!quit && !check_game_logic()) {
+        draw_screen();
+        try {
+            handle_menu();
+        } catch (std::runtime_error& e) {
+            msg = e.what();
+        }
+    }
 
     if (quit)
         std::cout << goodbye << std::endl;
