@@ -35,11 +35,13 @@ void Player::increase_status(int, int, int) {}
 void Player::changeRoom(RoomPtr room) {
     previousRoom = currentRoom;
     currentRoom = room;
-    interact = room;
+    interacts.clear();
+    interacts.emplace_back(room);
 }
 
 void Player::print_status(InteractablePtr) {
     GameCharacter::print_status();
+
     if (!equips.empty()) {
         std::cout << "  Equipments\t:\n";
         std::cout.setf(std::ios::left, std::ios::adjustfield);
@@ -51,6 +53,7 @@ void Player::print_status(InteractablePtr) {
             std::cout << equip->get_name() << ": " << *equip << '\n';
         }
     }
+
     if (!inventory.empty()) {
         std::cout << "  Inventory\t:\n";
         std::cout.setf(std::ios::left, std::ios::adjustfield);
@@ -63,6 +66,14 @@ void Player::print_status(InteractablePtr) {
                     << ": " << *item << '\n';
         }
     }
+
+    std::cout << " Current Status\t: ";
+    for(auto it = interacts.begin(); it != interacts.end(); it++) {
+        if (it != interacts.begin())
+            std::cout << " > ";
+        std::cout << enum_name((*it)->get_type()) << '(' << (*it)->get_name() << ')';
+    }
+    std::cout << '\n';
 }
 
 void Player::print_menu() {
@@ -70,7 +81,7 @@ void Player::print_menu() {
     for(const auto& [key, menu] : menus)
         if ((this->*menu.func)(false))
             std::cout << "  [" << char(key) << "] " << menu.name << '\n';
-    interact->print_menu();
+    get_interact()->print_menu();
 }
 
 bool Player::handle_key(int key, ObjectPtr) {
@@ -81,14 +92,16 @@ bool Player::handle_key(int key, ObjectPtr) {
         return (this->*menu.func)(true);
     } else {
         try {
-            if (interact->handle_key(key, shared_from_this())) {
-                if (interact->get_type() == Object::Type::Room)
+            if (get_interact()->handle_key(key, shared_from_this())) {
+                if (get_interact()->get_type() == Object::Type::Room) {
                     assert(currentRoom->pop_object(key) && "Object not found");
-                else
-                    assert(currentRoom->pop_object(interact) && "Object not found");
+                } else {
+                    assert(currentRoom->pop_object(get_interact()) && "Object not found");
+                    handle_leave(true);
+                }
             }
         } catch (InteractablePtr obj) {
-            interact = obj;
+            interacts.emplace_back(obj);
         } catch (RoomPtr room) {
             changeRoom(room);
         }
@@ -101,15 +114,15 @@ bool Player::trigger_event(ObjectPtr) {
     return false;
 }
 
-InteractablePtr Player::get_interact() const { return interact; }
+InteractablePtr Player::get_interact() const { return interacts.back(); }
 RoomPtr Player::get_currentRoom() const { return currentRoom; }
 RoomPtr Player::get_previousRoom() const { return previousRoom; }
 ItemsSet Player::get_inventory() const { return inventory; }
 
 bool Player::handle_leave(bool run) {
-    bool available = interact->get_type() != Object::Type::Room;
+    bool available = interacts.size() > 1;
     if (!run || !available) return available;
-    interact = currentRoom;
+    interacts.pop_back();
     return true;
 }
 

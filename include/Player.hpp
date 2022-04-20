@@ -2,6 +2,7 @@
 #define PLAYER_H_INCLUDED
 
 #include <string>
+#include <vector>
 #include <map>
 #include <memory>
 #include "GameCharacter.hpp"
@@ -31,7 +32,7 @@ public:
     ItemsSet get_inventory() const;
 
 private:
-    InteractablePtr interact;
+    std::vector<InteractablePtr> interacts;
     RoomPtr currentRoom, previousRoom;
     ItemsSet inventory;
     std::map<Equip::Type, std::shared_ptr<Equip>> equips;
