@@ -65,7 +65,8 @@ void Player::print_status() {
 }
 
 void Player::print_menu() {
-    std::cout << "  [W][A][S][D] \tMovement\n";
+    std::cout << "---- user menu ----\n"
+              << "  [W][A][S][D] \tMovement\n";
     for(const auto& [key, menu] : menus)
         std::cout << "  [" << char(key) << "] " << menu.name << '\n';
     currentRoom->print_menu();
