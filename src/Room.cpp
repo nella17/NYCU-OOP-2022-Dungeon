@@ -76,10 +76,6 @@ void Room::set_isExit(bool _isExit) {
     isExit = _isExit;
     set_name(name(index, isExit));
 }
-void Room::set_index(int _index) {
-    index = _index;
-    set_name(name(index, isExit));
-}
 void Room::clear_objects() {
     isBlocked = false;
     objects.clear();

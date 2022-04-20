@@ -29,9 +29,6 @@ public:
     bool trigger_event(int, ObjectPtr);
 
     /* Set & Get function*/
-    void set_currentRoom(RoomPtr);
-    void set_previousRoom(RoomPtr);
-    void set_inventory(ItemsSet);
     InteractablePtr get_interact() const;
     RoomPtr get_currentRoom() const;
     RoomPtr get_previousRoom() const;

@@ -19,8 +19,6 @@ public:
     bool trigger_event(int, ObjectPtr);
 
     /* Set & Get function*/
-    void set_script(std::string);
-    void set_commodity(ItemsSet);
     std::string get_script() const;
     ItemsSet get_commodity() const;
 

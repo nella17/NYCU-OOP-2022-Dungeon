@@ -27,7 +27,6 @@ public:
     /* Set & Get function*/
     void set_room(DIRECTION, RoomPtr);
     void set_isExit(bool);
-    void set_index(int);
     void clear_objects();
     bool get_isExit() const;
     bool get_isBlocked() const;

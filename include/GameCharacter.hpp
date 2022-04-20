@@ -15,10 +15,6 @@ public:
     virtual void print_status();
 
     /* Set & Get function*/
-    void set_maxHealth(int);
-    void set_currentHealth(int);
-    void set_attack(int);
-    void set_defense(int);
     int get_maxHealth() const;
     int get_currentHealth() const;
     int get_attack() const;
