@@ -65,6 +65,14 @@ bool Room::handle_key(int key, ObjectPtr obj) {
     auto interact = std::dynamic_pointer_cast<Interactable>(ptr);
     if (interact != nullptr)
         throw interact;
+
+    auto player = std::dynamic_pointer_cast<Player>(obj);
+    if (player != nullptr && ptr->get_type() == Object::Type::Item) {
+        auto item = std::dynamic_pointer_cast<Item>(ptr);
+        player->add_item(item);
+        return true;
+    }
+
     return ptr->trigger_event(obj);
 }
 
