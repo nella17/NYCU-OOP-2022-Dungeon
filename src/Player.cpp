@@ -113,6 +113,13 @@ InteractablePtr Player::get_interact() const { return interacts.empty() ? curren
 RoomPtr Player::get_currentRoom() const { return currentRoom; }
 RoomPtr Player::get_previousRoom() const { return previousRoom; }
 
+bool Player::handle_inventory(bool run) {
+    bool available = get_interact() != inventory && !inventory->empty();
+    if (!run || !available) return available;
+    add_interact(std::dynamic_pointer_cast<Interactable>(inventory));
+    return true;
+}
+
 bool Player::handle_leave(bool run) {
     bool available = !interacts.empty();
     if (!run || !available) return available;
@@ -121,5 +128,6 @@ bool Player::handle_leave(bool run) {
 }
 
 const Player::MenuMap Player::menus{
+    { 'I', Menu{std::string("Inventory"), &Player::handle_inventory} },
     { 'L', Menu{std::string("Leave"), &Player::handle_leave} },
 };

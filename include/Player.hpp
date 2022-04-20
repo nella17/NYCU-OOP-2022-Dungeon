@@ -40,6 +40,7 @@ private:
     InventoryPtr inventory;
     std::map<Equip::Type, std::shared_ptr<Equip>> equips;
 
+    bool handle_inventory(bool);
     bool handle_leave(bool);
 
     using menu_func = bool (Player::*)(bool);
