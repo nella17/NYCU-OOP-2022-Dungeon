@@ -1,6 +1,7 @@
 #include "Player.hpp"
 
 #include <iostream>
+#include <iomanip>
 #include <map>
 #include <memory>
 #include <exception>
@@ -46,11 +47,10 @@ void Player::print_status(InteractablePtr) {
         std::cout << "  Equipments\t:\n";
         std::cout.setf(std::ios::left, std::ios::adjustfield);
         for (auto [_type, equip] : equips) {
-            std::cout << "    ";
-            std::cout.width(20);
-            std::cout << enum_name(equip->get_equip_type());
-            std::cout.width(16);
-            std::cout << equip->get_name() << ": " << *equip << '\n';
+            std::cout << "    "
+                << std::setw(20) << enum_name(equip->get_equip_type())
+                << std::setw(16) << equip->get_name()
+                << ": " << *equip << '\n';
         }
     }
 
@@ -58,11 +58,9 @@ void Player::print_status(InteractablePtr) {
         std::cout << "  Inventory\t:\n";
         std::cout.setf(std::ios::left, std::ios::adjustfield);
         for (auto& item: inventory) {
-            std::cout << "    ";
-            std::cout.width(20);
-            std::cout << item->name_of_type();
-            std::cout.width(16);
-            std::cout << item->get_name()
+            std::cout << "    "
+                << std::setw(20) << item->name_of_type()
+                << std::setw(16) << item->get_name()
                     << ": " << *item << '\n';
         }
     }
