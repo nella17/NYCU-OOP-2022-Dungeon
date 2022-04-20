@@ -32,7 +32,7 @@ bool Player::equip_item(ItemPtr item) {
 // TODO
 void Player::increase_status(int, int, int) {}
 
-void Player::changeRoom(Room* room) {
+void Player::changeRoom(RoomPtr room) {
     previousRoom = currentRoom;
     currentRoom = room;
 }
@@ -85,14 +85,14 @@ bool Player::handle_key(int key) {
             return false;
         return (this->*menu.func)();
     } else {
-        if (currentRoom->trigger_object_event(key, shared_from_this()))
+        if (currentRoom->trigger_event(key, shared_from_this()))
             assert(currentRoom->pop_object(key) && "Object not found");
     }
     return true;
 }
 
 // TODO
-bool Player::trigger_event(ObjectPtr obj) {
+bool Player::trigger_event(int, ObjectPtr obj) {
     if (obj->get_type() == Object::Type::Item) {
         auto item = std::dynamic_pointer_cast<Item>(obj);
         add_item(item);
@@ -101,11 +101,11 @@ bool Player::trigger_event(ObjectPtr obj) {
     return false;
 }
 
-void Player::set_currentRoom(Room* room) { currentRoom = room; }
-void Player::set_previousRoom(Room* room) { previousRoom = room; }
+void Player::set_currentRoom(RoomPtr room) { currentRoom = room; }
+void Player::set_previousRoom(RoomPtr room) { previousRoom = room; }
 void Player::set_inventory(ItemsSet items) { inventory = items; }
-Room* Player::get_currentRoom() const { return currentRoom; }
-Room* Player::get_previousRoom() const { return previousRoom; }
+RoomPtr Player::get_currentRoom() const { return currentRoom; }
+RoomPtr Player::get_previousRoom() const { return previousRoom; }
 ItemsSet Player::get_inventory() const { return inventory; }
 
 // TODO

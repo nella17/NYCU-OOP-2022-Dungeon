@@ -16,7 +16,7 @@ public:
     /* Virtual function that you need to complete   */
     /* In NPC, this function should deal with the   */
     /* transaction in easy implementation           */
-    bool trigger_event(ObjectPtr);
+    bool trigger_event(int, ObjectPtr);
 
     /* Set & Get function*/
     void set_script(std::string);

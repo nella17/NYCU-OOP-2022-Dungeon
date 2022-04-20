@@ -14,7 +14,7 @@ public:
     /* Virtual function that you need to complete   */
     /* In Monster, this function should deal with   */
     /* the combat system.                           */
-    bool trigger_event(ObjectPtr);
+    bool trigger_event(int, ObjectPtr);
 
 private:
 };

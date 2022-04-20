@@ -17,7 +17,7 @@ public:
     void add_item(ItemPtr);
     bool equip_item(ItemPtr);
     void increase_status(int, int, int);
-    void changeRoom(Room*);
+    void changeRoom(RoomPtr);
 
     void print_status();
     void print_menu();
@@ -26,18 +26,18 @@ public:
     /* Virtual function that you need to complete   */
     /* In Player, this function should show the     */
     /* status of player.                            */
-    bool trigger_event(ObjectPtr);
+    bool trigger_event(int, ObjectPtr);
 
     /* Set & Get function*/
-    void set_currentRoom(Room*);
-    void set_previousRoom(Room*);
+    void set_currentRoom(RoomPtr);
+    void set_previousRoom(RoomPtr);
     void set_inventory(ItemsSet);
-    Room* get_currentRoom() const;
-    Room* get_previousRoom() const;
+    RoomPtr get_currentRoom() const;
+    RoomPtr get_previousRoom() const;
     ItemsSet get_inventory() const;
 
 private:
-    Room *currentRoom, *previousRoom;
+    RoomPtr currentRoom, previousRoom;
     ItemsSet inventory;
     std::map<Equip::Type, std::shared_ptr<Equip>> equips;
 

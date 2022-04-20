@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <exception>
+#include <memory>
 #include "helper.hpp"
 #include "ASCII_Art.hpp"
 
@@ -45,24 +46,23 @@ void Dungeon::create_map() {
     int sz = 10;
     rooms.resize(sz);
     for(int i = 0; i < sz; i++)
-        rooms[i].set_index(i);
-    rooms[9].set_isExit(true);
-    LINK_ROOM(&rooms[0], DIRECTION::LEFT, &rooms[1], DIRECTION::RIGHT);
-    LINK_ROOM(&rooms[1], DIRECTION::DOWN, &rooms[2], DIRECTION::UP   );
-    LINK_ROOM(&rooms[1], DIRECTION::UP  , &rooms[4], DIRECTION::DOWN );
-    LINK_ROOM(&rooms[2], DIRECTION::LEFT, &rooms[3], DIRECTION::RIGHT);
-    LINK_ROOM(&rooms[4], DIRECTION::UP  , &rooms[5], DIRECTION::DOWN );
-    LINK_ROOM(&rooms[4], DIRECTION::LEFT, &rooms[6], DIRECTION::RIGHT);
-    LINK_ROOM(&rooms[6], DIRECTION::LEFT, &rooms[7], DIRECTION::RIGHT);
-    LINK_ROOM(&rooms[3], DIRECTION::UP  , &rooms[8], DIRECTION::DOWN );
-    LINK_ROOM(&rooms[8], DIRECTION::LEFT, &rooms[9], DIRECTION::RIGHT);
+        rooms[i] = std::make_shared<Room>(i, i+1==sz);
+    LINK_ROOM(rooms[0], DIRECTION::LEFT, rooms[1], DIRECTION::RIGHT);
+    LINK_ROOM(rooms[1], DIRECTION::DOWN, rooms[2], DIRECTION::UP   );
+    LINK_ROOM(rooms[1], DIRECTION::UP  , rooms[4], DIRECTION::DOWN );
+    LINK_ROOM(rooms[2], DIRECTION::LEFT, rooms[3], DIRECTION::RIGHT);
+    LINK_ROOM(rooms[4], DIRECTION::UP  , rooms[5], DIRECTION::DOWN );
+    LINK_ROOM(rooms[4], DIRECTION::LEFT, rooms[6], DIRECTION::RIGHT);
+    LINK_ROOM(rooms[6], DIRECTION::LEFT, rooms[7], DIRECTION::RIGHT);
+    LINK_ROOM(rooms[3], DIRECTION::UP  , rooms[8], DIRECTION::DOWN );
+    LINK_ROOM(rooms[8], DIRECTION::LEFT, rooms[9], DIRECTION::RIGHT);
 
     // TODO: add items
-    rooms[6].push_object('M', std::make_shared<Monster>(std::string("GPA"), 43, 20, 10));
-    rooms[8].push_object('M', std::make_shared<Monster>(std::string("Diploma"), 128, 30, 30));
+    rooms[6]->push_object('M', std::make_shared<Monster>(std::string("GPA"), 43, 20, 10));
+    rooms[8]->push_object('M', std::make_shared<Monster>(std::string("Diploma"), 128, 30, 30));
     auto [key, lock] = Key::generate_key_pair();
-    rooms[7].push_object('K', key);
-    rooms[3].push_object('L', lock);
+    rooms[7]->push_object('K', key);
+    rooms[3]->push_object('L', lock);
 
     sleep(1);
     std::cout << "Map generated!" << std::endl;
@@ -106,7 +106,7 @@ void Dungeon::start_game() {
     clearScreen();
     create_player();
     create_map();
-    player->changeRoom(&rooms[0]);
+    player->changeRoom(rooms[0]);
 }
 
 bool Dungeon::check_game_logic() {

@@ -36,7 +36,7 @@ public:
 private:
     bool quit;
     std::shared_ptr<Player> player;
-    std::vector<Room> rooms;
+    std::vector<RoomPtr> rooms;
 };
 
 #endif // DUNGEON_H_INCLUDED

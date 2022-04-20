@@ -4,13 +4,10 @@
 #include <vector>
 #include <memory>
 #include <random>
-
-Room::Room(bool _isExit, int _index, ObjectsMap _objects):
-    isBlocked(false), isLocked(false), isExit(_isExit), index(_index), objects(_objects) {}
+#include "GameCharacter.hpp"
 
 constexpr int name_size = 2;
-
-std::string Room::name() {
+std::string Room::name(int index, bool isExit) {
     std::mt19937 gen(index);
     std::string name = "";
     if (isExit) name = std::string("Exit").substr(0, name_size);
@@ -21,14 +18,17 @@ std::string Room::name() {
     return name;
 }
 
-void Room::draw_neighbors(Room* previous) {
+Room::Room(int _index, bool _isExit, ObjectsMap _objects):
+    Object(name(_index, _isExit), Object::Type::Room), isBlocked(false), isLocked(false), isExit(_isExit), index(_index), objects(_objects) {}
+
+void Room::draw_neighbors(RoomPtr previous) {
     auto get_name = [&](DIRECTION dir = DIRECTION::None) {
         auto ptr = get_neighbor(dir, previous);
         auto name = std::string(name_size+2,' ');
         if (ptr == nullptr) {
             if (isBlocked) name = "[❓ ]";
         } else {
-            name = '[' + ptr->name() + ']';
+            name = '[' + ptr->get_name() + ']';
             if (ptr->isLocked) name = "[🔒 ]";
         }
         return name;
@@ -49,11 +49,11 @@ void Room::print_menu() {
     }
 }
 
-bool Room::trigger_object_event(int key, ObjectPtr obj) {
+bool Room::trigger_event(int key, ObjectPtr obj) {
     auto ptr = get_object(key);
     if (ptr == nullptr)
         return false;
-    return ptr->trigger_event(obj);
+    return ptr->trigger_event(key, obj);
 }
 
 void Room::push_object(int key, ObjectPtr obj) {
@@ -71,9 +71,15 @@ bool Room::pop_object(int key) {
 }
 
 /* Set & Get function*/
-void Room::set_room(DIRECTION dir, Room* room) { neighbors[dir] = room; }
-void Room::set_isExit(bool _isExit) { isExit = _isExit; }
-void Room::set_index(int _index) { index = _index; }
+void Room::set_room(DIRECTION dir, RoomPtr room) { neighbors[dir] = room; }
+void Room::set_isExit(bool _isExit) {
+    isExit = _isExit;
+    set_name(name(index, isExit));
+}
+void Room::set_index(int _index) {
+    index = _index;
+    set_name(name(index, isExit));
+}
 void Room::clear_objects() {
     isBlocked = false;
     objects.clear();
@@ -94,9 +100,9 @@ ObjectsMap Room::get_objects() const {
             ret.emplace(key, obj);
     return ret;
 }
-Room* Room::get_neighbor(DIRECTION dir, Room* previous) const {
+RoomPtr Room::get_neighbor(DIRECTION dir, RoomPtr previous) {
     if (dir == DIRECTION::None)
-        return (Room*)this;
+        return std::dynamic_pointer_cast<Room>(shared_from_this());
     auto it = neighbors.find(dir);
     if (it == neighbors.end())
         return nullptr;

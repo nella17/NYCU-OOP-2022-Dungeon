@@ -23,12 +23,13 @@ public:
         Player,
         Monster,
         NPC,
+        Room,
     };
 
     Object(std::string, Object::Type);
 
     /* pure virtual function */
-    virtual bool trigger_event(ObjectPtr) = 0;
+    virtual bool trigger_event(int, ObjectPtr) = 0;
 
     /* Set & Get function*/
     void set_name(std::string);
