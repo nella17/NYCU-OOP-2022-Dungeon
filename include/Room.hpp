@@ -24,9 +24,7 @@ public:
     bool trigger_event(ObjectPtr);
 
     void push_object(int, ObjectPtr);
-    /*pop out the specific object, used when the interaction is done*/
     bool pop_object(int);
-    bool pop_object(ObjectPtr);
 
     /* Set & Get function*/
     void set_room(DIRECTION, RoomPtr);

@@ -84,14 +84,8 @@ bool Player::handle_key(int key, ObjectPtr) {
         (this->*menu.func)(true);
     } else {
         try {
-            if (get_interact()->handle_key(key, shared_from_this())) {
-                if (get_interact()->get_type() == Object::Type::Room) {
-                    assert(currentRoom->pop_object(key) && "Object not found");
-                } else {
-                    assert(currentRoom->pop_object(get_interact()) && "Object not found");
-                    handle_leave(true);
-                }
-            }
+            if (get_interact()->handle_key(key, shared_from_this()))
+                handle_leave(true);
         } catch (InteractablePtr obj) {
             add_interact(obj);
         } catch (RoomPtr room) {

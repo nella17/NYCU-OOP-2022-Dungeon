@@ -70,10 +70,13 @@ bool Room::handle_key(int key, ObjectPtr obj) {
     if (player != nullptr && ptr->get_type() == Object::Type::Item) {
         auto item = std::dynamic_pointer_cast<Item>(ptr);
         player->add_item(item);
-        return true;
+        return assert(pop_object(key)), true;
     }
 
-    return ptr->trigger_event(obj);
+    if (ptr->trigger_event(obj))
+        return assert(pop_object(key)), true;
+
+    return false;
 }
 
 bool Room::trigger_event(ObjectPtr) {
@@ -92,16 +95,6 @@ bool Room::pop_object(int key) {
     switch_states(false, ptr);
     objects.erase(key);
     return true;
-}
-bool Room::pop_object(ObjectPtr ptr) {
-    for(auto [key, obj]: get_objects()) {
-        if (obj == ptr) {
-            objects.erase(key);
-            switch_states(false, obj);
-            return true;
-        }
-    }
-    return false;
 }
 
 /* Set & Get function*/
