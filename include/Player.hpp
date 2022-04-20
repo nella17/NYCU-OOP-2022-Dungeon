@@ -29,6 +29,7 @@ public:
     bool trigger_event(ObjectPtr);
 
     /* Set & Get function*/
+    void add_interact(InteractablePtr);
     InteractablePtr get_interact() const;
     RoomPtr get_currentRoom() const;
     RoomPtr get_previousRoom() const;

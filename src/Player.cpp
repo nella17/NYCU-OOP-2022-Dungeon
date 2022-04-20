@@ -36,7 +36,6 @@ void Player::changeRoom(RoomPtr room) {
     previousRoom = currentRoom;
     currentRoom = room;
     interacts.clear();
-    interacts.emplace_back(room);
 }
 
 void Player::print_status(InteractablePtr) {
@@ -64,12 +63,9 @@ void Player::print_status(InteractablePtr) {
         }
     }
 
-    std::cout << " Current Status\t: ";
-    for(auto it = interacts.begin(); it != interacts.end(); it++) {
-        if (it != interacts.begin())
-            std::cout << " > ";
-        std::cout << enum_name((*it)->get_type()) << '(' << (*it)->get_name() << ')';
-    }
+    std::cout << " Current Status\t: " << *currentRoom;
+    for(auto it: interacts)
+        std::cout << " > " << *it;
     std::cout << '\n';
 }
 
@@ -98,7 +94,7 @@ bool Player::handle_key(int key, ObjectPtr) {
                 }
             }
         } catch (InteractablePtr obj) {
-            interacts.emplace_back(obj);
+            add_interact(obj);
         } catch (RoomPtr room) {
             changeRoom(room);
         }
@@ -111,12 +107,13 @@ bool Player::trigger_event(ObjectPtr) {
     return false;
 }
 
-InteractablePtr Player::get_interact() const { return interacts.back(); }
+void Player::add_interact(InteractablePtr interact) { interacts.emplace_back(interact); }
+InteractablePtr Player::get_interact() const { return interacts.empty() ? currentRoom : interacts.back(); }
 RoomPtr Player::get_currentRoom() const { return currentRoom; }
 RoomPtr Player::get_previousRoom() const { return previousRoom; }
 
 bool Player::handle_leave(bool run) {
-    bool available = interacts.size() > 1;
+    bool available = !interacts.empty();
     if (!run || !available) return available;
     interacts.pop_back();
     return true;
