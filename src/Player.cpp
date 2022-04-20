@@ -81,9 +81,7 @@ void Player::print_menu() {
 bool Player::handle_key(int key, ObjectPtr) {
     if (menus.find(key) != menus.end()) {
         auto menu = menus.at(key);
-        if (menu.func == nullptr)
-            return false;
-        return (this->*menu.func)(true);
+        (this->*menu.func)(true);
     } else {
         try {
             if (get_interact()->handle_key(key, shared_from_this())) {
@@ -100,7 +98,7 @@ bool Player::handle_key(int key, ObjectPtr) {
             changeRoom(room);
         }
     }
-    return true;
+    return false;
 }
 
 // TODO
