@@ -24,6 +24,7 @@ public:
     std::ostream& show_info(std::ostream&) const;
 
     /* Set & Get function*/
+    Type get_equip_type() const;
     int get_health() const;
     int get_attack() const;
     int get_defense() const;

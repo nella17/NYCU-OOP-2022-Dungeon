@@ -14,6 +14,20 @@ void Player::add_item(ItemPtr item) {
     inventory.emplace(item);
 }
 
+bool Player::equip_item(ItemPtr item) {
+    if (inventory.find(item) == inventory.end())
+        return false;
+    if (item->get_type() != Object::Type::Equip)
+        return false;
+    auto equip = std::dynamic_pointer_cast<Equip>(item);
+    auto it = equips.find(equip->get_equip_type());
+    if (it != equips.end())
+        inventory.emplace(it->second);
+    inventory.erase(item);
+    equips.emplace(equip->get_equip_type(), equip);
+    return true;
+}
+
 // TODO
 void Player::increase_status(int, int, int) {}
 

@@ -17,6 +17,7 @@ std::ostream& Equip::show_info(std::ostream& os) const {
         << "defense(" << defense << ")";
 }
 
+Equip::Type Equip::get_equip_type() const { return type; }
 int Equip::get_health() const { return health; }
 int Equip::get_attack() const { return attack; }
 int Equip::get_defense() const { return defense; }
