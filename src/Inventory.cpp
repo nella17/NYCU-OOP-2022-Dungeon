@@ -30,19 +30,24 @@ bool Inventory::handle_key(int key, ObjectPtr obj) {
     bool is_in_player = shared_from_this() == player->get_inventory();
 
     char c = '0';
-    for(auto& item : *this)
-        if (key == c++)
-            {
-                if (!is_in_player) {
-                    player->add_item(item);
-                    erase(item);
-                    return empty();
-                } else {
-                    return item->trigger_event(player);
-                }
-            }
+    ItemPtr item = nullptr;
+    for(auto it: *this)
+        if (key == c++) {
+            item = it;
+            break;
+        }
 
-    return false;
+    if (item == nullptr)
+        return false;
+
+
+    if (!is_in_player) {
+        player->add_item(item);
+        erase(item);
+    } else {
+        item->trigger_event(player);
+    }
+    return empty();
 }
 
 bool Inventory::trigger_event(ObjectPtr) {
