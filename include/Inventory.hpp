@@ -6,6 +6,9 @@
 #include "Interactable.hpp"
 #include "Item.hpp"
 
+class Inventory;
+using InventoryPtr = std::shared_ptr<Inventory>;
+
 class Inventory: public Interactable, public ItemsSet {
 public:
     Inventory(ItemsSet = {});

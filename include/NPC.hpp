@@ -20,7 +20,7 @@ public:
 
 private:
     std::string script;
-    Inventory inventory;
+    InventoryPtr inventory;
 };
 
 #endif // NPC_H_INCLUDED

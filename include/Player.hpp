@@ -36,7 +36,7 @@ public:
 private:
     std::vector<InteractablePtr> interacts;
     RoomPtr currentRoom, previousRoom;
-    Inventory inventory;
+    InventoryPtr inventory;
     std::map<Equip::Type, std::shared_ptr<Equip>> equips;
 
     bool handle_leave(bool);

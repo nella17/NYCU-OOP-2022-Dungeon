@@ -9,22 +9,22 @@
 #include "Room.hpp"
 
 Player::Player(std::string _name, int _maxHealth, int _attack, int _defense):
-        GameCharacter(_name, Object::Type::Player, _maxHealth, _attack, _defense) {}
+        GameCharacter(_name, Object::Type::Player, _maxHealth, _attack, _defense), inventory(std::make_shared<Inventory>()) {}
 
 void Player::add_item(ItemPtr item) {
-    inventory.emplace(item);
+    inventory->emplace(item);
 }
 
 bool Player::equip_item(ItemPtr item) {
-    if (inventory.find(item) == inventory.end())
+    if (inventory->find(item) == inventory->end())
         return false;
     if (item->get_item_type() != Item::Type::Equip)
         return false;
     auto equip = std::dynamic_pointer_cast<Equip>(item);
     auto it = equips.find(equip->get_equip_type());
     if (it != equips.end())
-        inventory.emplace(it->second);
-    inventory.erase(item);
+        inventory->emplace(it->second);
+    inventory->erase(item);
     equips.emplace(equip->get_equip_type(), equip);
     return true;
 }
@@ -53,10 +53,10 @@ void Player::print_status(InteractablePtr) {
         }
     }
 
-    if (!inventory.empty()) {
+    if (!inventory->empty()) {
         std::cout << "  Inventory\t:\n";
         std::cout.setf(std::ios::left, std::ios::adjustfield);
-        for (auto& item: inventory) {
+        for (auto& item: *inventory) {
             std::cout << "    "
                 << std::setw(20) << item->name_of_type()
                 << std::setw(16) << item->get_name()

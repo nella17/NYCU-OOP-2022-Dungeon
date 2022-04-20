@@ -3,7 +3,6 @@
 Inventory::Inventory(ItemsSet items):
     Interactable("Inventory", Object::Type::Inventory), ItemsSet(items) {}
 
-
 void Inventory::print_status(InteractablePtr) {}
 
 void Inventory::print_menu() {}
