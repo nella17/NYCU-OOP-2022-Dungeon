@@ -66,21 +66,14 @@ void Player::print_status(InteractablePtr) {
 }
 
 void Player::print_menu() {
-    std::cout << "---- user menu ----\n"
-              << "  [W][A][S][D] \tMovement\n";
+    std::cout << "---- user menu ----\n";
     for(const auto& [key, menu] : menus)
         std::cout << "  [" << char(key) << "] " << menu.name << '\n';
     interact->print_menu();
 }
 
 bool Player::handle_key(int key, ObjectPtr) {
-    if (is_dir_key(key)) {
-        auto dir = key_to_dir(key);
-        auto room = currentRoom->get_neighbor(dir, previousRoom);
-        if (room == nullptr)
-            return false;
-        changeRoom(room);
-    } else if (menus.find(key) != menus.end()) {
+    if (menus.find(key) != menus.end()) {
         auto menu = menus.at(key);
         if (menu.func == nullptr)
             return false;
@@ -95,6 +88,8 @@ bool Player::handle_key(int key, ObjectPtr) {
             }
         } catch (InteractablePtr obj) {
             interact = obj;
+        } catch (RoomPtr room) {
+            changeRoom(room);
         }
     }
     return true;

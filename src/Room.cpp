@@ -43,15 +43,22 @@ void Room::print_status(InteractablePtr interact) {
 }
 
 void Room::print_menu() {
-    auto objs = get_objects();
-    if (!objs.empty()) {
-        std::cout << "---- room menu ----\n";
-        for(auto [key, obj]: get_objects())
-            std::cout << "  [" << char(key) << "] " << enum_name(obj->get_type()) << "\t" << obj->get_name() << '\n';
-    }
+    std::cout << "---- room menu ----\n";
+    std::cout << "  [W][A][S][D] \tMovement\n";
+    for(auto&& [key, obj]: get_objects())
+        std::cout << "  [" << char(key) << "] " << enum_name(obj->get_type()) << "\t" << obj->get_name() << '\n';
 }
 
 bool Room::handle_key(int key, ObjectPtr obj) {
+    if (is_dir_key(key)) {
+        auto dir = key_to_dir(key);
+        auto previous = std::dynamic_pointer_cast<Player>(obj)->get_previousRoom();;
+        auto room = get_neighbor(dir, previous);
+        if (room == nullptr)
+            return false;
+        throw room;
+    }
+
     auto ptr = get_object(key);
     if (ptr == nullptr)
         return false;
