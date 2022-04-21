@@ -15,6 +15,7 @@ class Item: public Object {
     friend class Record;
 public:
     enum Type {
+        None = 0,
         Equip,
         Potion,
         Key,

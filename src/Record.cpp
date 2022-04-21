@@ -270,11 +270,42 @@ InventoryPtr Record::load_Inventory() {
     return ptr;
 }
 
-void Record::save_Item(const ItemPtr&) {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
+void Record::save_Item(const ItemPtr& item) {
+    io _ item->type;
+    switch (item->type) {
+        case Item::Type::Equip:
+            save_Equip(std::dynamic_pointer_cast<Equip>(item));
+            break;
+        case Item::Type::Potion:
+            save_Potion(std::dynamic_pointer_cast<Potion>(item));
+            break;
+        case Item::Type::Key:
+        case Item::Type::Lock:
+            save_Key(std::dynamic_pointer_cast<Key>(item));
+            break;
+        default:
+            throw std::runtime_error("Can't save object of type " + enum_name(item->type) + " as Item");
+    }
 }
 ItemPtr Record::load_Item() {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
+    Item::Type type; io >> type;
+    ItemPtr item;
+    switch (type) {
+        case Item::Type::Equip:
+            item = load_Equip();
+            break;
+        case Item::Type::Potion:
+            item = load_Potion();
+            break;
+        case Item::Type::Key:
+        case Item::Type::Lock:
+            item = load_Key();
+            break;
+        default:
+            throw std::runtime_error("Can't load object of type " + enum_name(type) + " as Item");
+    }
+    assert(item->type == type);
+    return item;
 }
 
 void Record::save_Equip(const EquipPtr&) {
