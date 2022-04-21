@@ -257,11 +257,17 @@ NPCPtr Record::load_NPC() {
     return ptr;
 }
 
-void Record::save_Inventory(const InventoryPtr&) {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
+void Record::save_Inventory(const InventoryPtr& ptr) {
+    io _ ptr->size();
+    for(const auto& item: *ptr)
+        save_Object(item);
 }
 InventoryPtr Record::load_Inventory() {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
+    auto ptr = std::make_shared<Inventory>("");
+    int size; io >> size;
+    while (size--)
+        ptr->emplace(std::dynamic_pointer_cast<Item>(load_Object()));
+    return ptr;
 }
 
 void Record::save_Item(const ItemPtr&) {
