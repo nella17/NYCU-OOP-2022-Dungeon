@@ -89,8 +89,6 @@ bool Player::handle_key(int key, ObjectPtr) {
         } catch (RoomPtr room) {
             changeRoom(room);
         } catch (MonsterPtr monster) {
-            while (get_interact() != monster)
-                handle_leave(true);
             done = monster->check_is_dead();
             handle_leave(true);
         }
@@ -118,9 +116,12 @@ bool Player::handle_inventory(bool run) {
 bool Player::handle_leave(bool run) {
     bool available = !interacts.empty();
     if (!run || !available) return available;
-    auto interact = interacts.back();
-    interacts.pop_back();
-    if (done && get_interact()->get_type() == Object::Type::Room) {
+    InteractablePtr interact;
+    do {
+        interact = interacts.back();
+        interacts.pop_back();
+    } while (done && get_interact()->get_type() != Object::Type::Room);
+    if (done) {
         auto room = std::dynamic_pointer_cast<Room>(get_interact());
         for(auto&& [k, o]: room->get_objects())
             if (o == interact) {
