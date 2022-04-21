@@ -56,7 +56,8 @@ bool Inventory::handle_key(int key, ObjectPtr obj) {
         player->add_item(item);
         erase(item);
     } else {
-        item->trigger_event(player);
+        if (item->trigger_event(player))
+            erase(item);
     }
     return empty();
 }
