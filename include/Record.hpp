@@ -31,38 +31,41 @@ public:
     static bool load(Dungeon*);
 
 private:
+    static void save_Dungeon();
+    static void load_Dungeon();
+
     static void save_Object(const ObjectPtr&);
-    static void load_Object(ObjectPtr&);
+    static ObjectPtr load_Object();
 
     static void save_Interactable(const InteractablePtr&);
-    static void load_Interactable(InteractablePtr&);
+    static InteractablePtr load_Interactable();
 
-    static void save_Rooms(const std::vector<RoomPtr>&);
-    static void load_Rooms(std::vector<RoomPtr>&);
+    static void save_Room(const RoomPtr&);
+    static RoomPtr load_Room();
 
     static void save_GameCharacter(const GameCharacterPtr&);
-    static void load_GameCharacter(GameCharacterPtr&);
+    static GameCharacterPtr load_GameCharacter();
 
     static void save_Player(const PlayerPtr&);
-    static void load_Player(PlayerPtr&);
+    static PlayerPtr load_Player();
 
     static void save_NPC(const NPCPtr&);
-    static void load_NPC(NPCPtr&);
+    static NPCPtr load_NPC();
 
     static void save_Inventory(const InventoryPtr&);
-    static void load_Inventory(InventoryPtr&);
+    static InventoryPtr load_Inventory();
 
     static void save_Item(const ItemPtr&);
-    static void load_Item(ItemPtr&);
+    static ItemPtr load_Item();
 
     static void save_Equip(const EquipPtr&);
-    static void load_Equip(EquipPtr&);
+    static EquipPtr load_Equip();
 
     static void save_Potion(const PotionPtr&);
-    static void load_Potion(PotionPtr&);
+    static PotionPtr load_Potion();
 
     static void save_Key(const KeyPtr&);
-    static void load_Key(KeyPtr&);
+    static KeyPtr load_Key();
 
 };
 
