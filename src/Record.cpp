@@ -12,6 +12,20 @@
 std::string Record::file_name = "save.txt";
 namespace {
     std::fstream io;
+
+    template<typename E>
+    std::enable_if_t<std::is_enum_v<E>, std::istream&>
+    operator>>(std::istream& is, E &e) {
+        std::string s; is >> s;
+        e = enum_cast<E>(s).value();
+        return is;
+    }
+
+    template<typename E>
+    std::enable_if_t<std::is_enum_v<E>, std::ostream&>
+    operator<<(std::ostream& os, const E &e) {
+        return os << enum_name(e);
+    }
 };
 
 bool Record::save(const Dungeon& dungeon) {
@@ -64,7 +78,7 @@ void Record::save_Rooms(const std::vector<RoomPtr>& rooms) {
         io _ room->isBlocked _ room->isLocked _ room->isExit _ room->index;
         io _ room->neighbors.size();
         for(const auto& [dir, neighbor] : room->neighbors)
-            io _ enum_name(dir) _ neighbor->index;
+            io _ dir _ neighbor->index;
     }
 }
 void Record::load_Rooms(std::vector<RoomPtr>& rooms) {
@@ -76,10 +90,9 @@ void Record::load_Rooms(std::vector<RoomPtr>& rooms) {
         size_t sz;
         io >> sz;
         while (sz--) {
-            std::string s;
+            Direction dir;
             int index;
-            io >> s >> index;
-            auto dir = magic_enum::enum_cast<Direction>(s).value_or(Direction::None);
+            io >> dir >> index;
             room->neighbors[dir] = rooms[index];
         }
     }
