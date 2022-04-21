@@ -60,17 +60,17 @@ bool Record::load(Dungeon* _dungeon) {
 
 
 void Record::save_Dungeon() {
-    save_Object(dungeon->player);
     io _ dungeon->rooms.size();
     for(const auto& room: dungeon->rooms)
         save_Object(room);
+    save_Object(dungeon->player);
 }
 void Record::load_Dungeon() {
-    dungeon->player = std::dynamic_pointer_cast<Player>(load_Object());
     int size; io >> size;
     dungeon->rooms.resize(size);
     for(auto& room: dungeon->rooms)
         room = std::dynamic_pointer_cast<Room>(load_Object());
+    dungeon->player = std::dynamic_pointer_cast<Player>(load_Object());
 }
 
 void Record::save_Object(const ObjectPtr& ptr) {
@@ -172,11 +172,25 @@ GameCharacterPtr Record::load_GameCharacter(Object::Type type) {
     return ptr;
 }
 
-void Record::save_Player(const PlayerPtr&) {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
+void Record::save_Player(const PlayerPtr& player) {
+    io _ player->currentRoom->index _ player->previousRoom->index;
+    save_Object(player->inventory);
+    io _ player->equips.size();
+    for(const auto& [type, equip]: player->equips) {
+        io _ type;
+        save_Object(equip);
+    }
 }
 PlayerPtr Record::load_Player() {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
+    PlayerPtr player = std::make_shared<Player>("", 0, 0, 0);
+    io >> player->currentRoom->index >> player->previousRoom->index;
+    player->inventory = std::dynamic_pointer_cast<Inventory>(load_Object());
+    int size; io >> size;
+    while (size--) {
+        Equip::Type type; io >> type;
+        player->equips[type] = std::dynamic_pointer_cast<Equip>(load_Object());
+    }
+    return player;
 }
 
 void Record::save_Monster(const MonsterPtr&) {
