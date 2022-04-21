@@ -43,10 +43,19 @@ bool Record::load(Dungeon& dungeon) {
     }
 }
 
-void Record::save_Player(const PlayerPtr& player) {
-}
-void Record::load_Player(PlayerPtr&) {
 
+void Record::save_Object(const ObjectPtr&) {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
+}
+void Record::load_Object(ObjectPtr&) {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
+}
+
+void Record::save_Interactable(const InteractablePtr&) {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
+}
+void Record::load_Interactable(InteractablePtr&) {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
 }
 
 void Record::save_Rooms(const std::vector<RoomPtr>& rooms) {
@@ -74,4 +83,60 @@ void Record::load_Rooms(std::vector<RoomPtr>& rooms) {
             room->neighbors[dir] = rooms[index];
         }
     }
+}
+
+void Record::save_GameCharacter(const GameCharacterPtr&) {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
+}
+void Record::load_GameCharacter(GameCharacterPtr&) {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
+}
+
+void Record::save_Player(const PlayerPtr& player) {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
+}
+void Record::load_Player(PlayerPtr&) {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
+}
+
+void Record::save_NPC(const NPCPtr&) {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
+}
+void Record::load_NPC(NPCPtr&) {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
+}
+
+void Record::save_Inventory(const InventoryPtr&) {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
+}
+void Record::load_Inventory(InventoryPtr&) {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
+}
+
+void Record::save_Item(const ItemPtr&) {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
+}
+void Record::load_Item(ItemPtr&) {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
+}
+
+void Record::save_Equip(const EquipPtr&) {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
+}
+void Record::load_Equip(EquipPtr&) {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
+}
+
+void Record::save_Potion(const PotionPtr&) {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
+}
+void Record::load_Potion(PotionPtr&) {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
+}
+
+void Record::save_Key(const KeyPtr&) {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
+}
+void Record::load_Key(KeyPtr&) {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
 }
