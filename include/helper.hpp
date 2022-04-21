@@ -19,12 +19,12 @@ void set_buffer_mode(int fd = DEFAULT_FD);
 void set_no_echo_mode(int fd = DEFAULT_FD);
 void set_echo_mode(int fd = DEFAULT_FD);
 
-enum class DIRECTION {
+enum class Direction {
     None = 0,
     UP, DOWN, RIGHT, LEFT,
 };
 
-DIRECTION key_to_dir(int);
+Direction key_to_dir(int);
 bool is_dir_key(int);
 
 int read_char(int fd = DEFAULT_FD);

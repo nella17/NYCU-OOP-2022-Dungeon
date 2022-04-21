@@ -24,7 +24,7 @@ Room::Room(int _index, bool _isExit, ObjectsMap _objects):
 
 void Room::print_status(InteractablePtr interact) {
     auto previous = interact->get_type() != Object::Type::Player ? nullptr : std::dynamic_pointer_cast<Player>(interact)->get_previousRoom();
-    auto get_name = [&](DIRECTION dir = DIRECTION::None) {
+    auto get_name = [&](Direction dir = Direction::None) {
         auto ptr = get_neighbor(dir, previous);
         auto name = std::string(name_size+2,' ');
         if (ptr == nullptr) {
@@ -36,9 +36,9 @@ void Room::print_status(InteractablePtr interact) {
         return name;
     };
     std::cout << "  +" << std::string((name_size+2)*3,'-') << "+\n"
-              << "  |" << std::string(name_size+2,'.') << get_name(DIRECTION::UP) << std::string(name_size+2,'.') << "|\n"
-              << "  |" << get_name(DIRECTION::LEFT) << get_name()  << get_name(DIRECTION::RIGHT) << "|\n"
-              << "  |" << std::string(name_size+2,'.') << get_name(DIRECTION::DOWN) << std::string(name_size+2,'.') << "|\n"
+              << "  |" << std::string(name_size+2,'.') << get_name(Direction::UP) << std::string(name_size+2,'.') << "|\n"
+              << "  |" << get_name(Direction::LEFT) << get_name()  << get_name(Direction::RIGHT) << "|\n"
+              << "  |" << std::string(name_size+2,'.') << get_name(Direction::DOWN) << std::string(name_size+2,'.') << "|\n"
               << "  +" << std::string((name_size+2)*3,'-') << "+\n";
 }
 
@@ -94,7 +94,7 @@ bool Room::pop_object(int key) {
 }
 
 /* Set & Get function*/
-void Room::set_room(DIRECTION dir, RoomPtr room) { neighbors[dir] = room; }
+void Room::set_room(Direction dir, RoomPtr room) { neighbors[dir] = room; }
 void Room::set_isExit(bool _isExit) {
     isExit = _isExit;
     set_name(name(index, isExit));
@@ -119,8 +119,8 @@ ObjectsMap Room::get_objects() const {
             ret.emplace(key, obj);
     return ret;
 }
-RoomPtr Room::get_neighbor(DIRECTION dir, RoomPtr previous) {
-    if (dir == DIRECTION::None)
+RoomPtr Room::get_neighbor(Direction dir, RoomPtr previous) {
+    if (dir == Direction::None)
         return std::dynamic_pointer_cast<Room>(shared_from_this());
     auto it = neighbors.find(dir);
     if (it == neighbors.end())

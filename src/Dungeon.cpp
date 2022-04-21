@@ -48,15 +48,15 @@ void Dungeon::create_map() {
     rooms.resize(sz);
     for(int i = 0; i < sz; i++)
         rooms[i] = std::make_shared<Room>(i, i+1==sz);
-    LINK_ROOM(rooms[0], DIRECTION::LEFT, rooms[1], DIRECTION::RIGHT);
-    LINK_ROOM(rooms[1], DIRECTION::DOWN, rooms[2], DIRECTION::UP   );
-    LINK_ROOM(rooms[1], DIRECTION::UP  , rooms[4], DIRECTION::DOWN );
-    LINK_ROOM(rooms[2], DIRECTION::LEFT, rooms[3], DIRECTION::RIGHT);
-    LINK_ROOM(rooms[4], DIRECTION::UP  , rooms[5], DIRECTION::DOWN );
-    LINK_ROOM(rooms[4], DIRECTION::LEFT, rooms[6], DIRECTION::RIGHT);
-    LINK_ROOM(rooms[6], DIRECTION::LEFT, rooms[7], DIRECTION::RIGHT);
-    LINK_ROOM(rooms[3], DIRECTION::UP  , rooms[8], DIRECTION::DOWN );
-    LINK_ROOM(rooms[8], DIRECTION::LEFT, rooms[9], DIRECTION::RIGHT);
+    LINK_ROOM(rooms[0], Direction::LEFT, rooms[1], Direction::RIGHT);
+    LINK_ROOM(rooms[1], Direction::DOWN, rooms[2], Direction::UP   );
+    LINK_ROOM(rooms[1], Direction::UP  , rooms[4], Direction::DOWN );
+    LINK_ROOM(rooms[2], Direction::LEFT, rooms[3], Direction::RIGHT);
+    LINK_ROOM(rooms[4], Direction::UP  , rooms[5], Direction::DOWN );
+    LINK_ROOM(rooms[4], Direction::LEFT, rooms[6], Direction::RIGHT);
+    LINK_ROOM(rooms[6], Direction::LEFT, rooms[7], Direction::RIGHT);
+    LINK_ROOM(rooms[3], Direction::UP  , rooms[8], Direction::DOWN );
+    LINK_ROOM(rooms[8], Direction::LEFT, rooms[9], Direction::RIGHT);
 
     // Monster
     rooms[6]->push_object('M', std::make_shared<Monster>(std::string("GPA"), 43, 20, 5));
