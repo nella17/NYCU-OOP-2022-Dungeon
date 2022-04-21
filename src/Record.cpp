@@ -12,6 +12,7 @@
 std::string Record::file_name = "save.txt";
 namespace {
     std::fstream io;
+    Dungeon* dungeon;
 
     template<typename E>
     std::enable_if_t<std::is_enum_v<E>, std::istream&>
@@ -28,13 +29,14 @@ namespace {
     }
 };
 
-bool Record::save(const Dungeon& dungeon) {
+bool Record::save(Dungeon* _dungeon) {
+    dungeon = _dungeon;
     try {
         io.open(file_name, std::ios::out);
         if (!io.is_open())
             throw std::runtime_error("Can't open file \"" + file_name + "\"");
-        save_Player(dungeon.player);
-        save_Rooms(dungeon.rooms);
+        save_Player(dungeon->player);
+        save_Rooms(dungeon->rooms);
         io.close();
         return true;
     } catch (std::exception& e) {
@@ -42,13 +44,14 @@ bool Record::save(const Dungeon& dungeon) {
         return false;
     }
 }
-bool Record::load(Dungeon& dungeon) {
+bool Record::load(Dungeon* _dungeon) {
+    dungeon = _dungeon;
     try {
         io.open(file_name, std::ios::in);
         if (!io.is_open())
             throw std::runtime_error("Can't open file \"" + file_name + "\"");
-        load_Player(dungeon.player);
-        load_Rooms(dungeon.rooms);
+        load_Player(dungeon->player);
+        load_Rooms(dungeon->rooms);
         io.close();
         return true;
     } catch (std::exception& e) {

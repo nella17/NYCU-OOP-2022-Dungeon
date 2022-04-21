@@ -27,8 +27,8 @@
 class Record {
 public:
     static std::string file_name;
-    static bool save(const Dungeon&);
-    static bool load(Dungeon&);
+    static bool save(Dungeon*);
+    static bool load(Dungeon*);
 
 private:
     static void save_Object(const ObjectPtr&);
