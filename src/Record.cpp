@@ -65,7 +65,6 @@ void Record::save_Dungeon() {
     for(const auto& room: dungeon->rooms)
         save_Object(room);
 }
-
 void Record::load_Dungeon() {
     dungeon->player = std::dynamic_pointer_cast<Player>(load_Object());
     int size; io >> size;
@@ -96,6 +95,8 @@ void Record::save_Object(const ObjectPtr& obj) {
         case Object::Type::Room:
             save_Room(std::dynamic_pointer_cast<Room>(obj));
             break;
+        case Object::Type::None:
+            throw std::runtime_error("Can't save object of type None");
     }
 }
 ObjectPtr Record::load_Object() {
@@ -122,9 +123,12 @@ ObjectPtr Record::load_Object() {
         case Object::Type::Room:
             obj = load_Room();
             break;
+        case Object::Type::None:
+            throw std::runtime_error("Can't save object of type None");
     }
     assert(obj->type == type);
     obj->name = name;
+    return obj;
 }
 
 void Record::save_Interactable(const InteractablePtr&) {
@@ -148,7 +152,7 @@ GameCharacterPtr Record::load_GameCharacter() {
     throw std::runtime_error("Not implemented " + std::string(__func__));
 }
 
-void Record::save_Player(const PlayerPtr& player) {
+void Record::save_Player(const PlayerPtr&) {
     throw std::runtime_error("Not implemented " + std::string(__func__));
 }
 PlayerPtr Record::load_Player() {
