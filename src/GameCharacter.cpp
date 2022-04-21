@@ -39,10 +39,7 @@ void GameCharacter::increase_status(int _health, int _attack, int _defense) {
     defense += _defense;
 }
 void GameCharacter::decrease_status(int _health, int _attack, int _defense) {
-    maxHealth -= _health;
-    currentHealth -= _health;
-    attack -= _attack;
-    defense -= _defense;
+    increase_status(-_health, -_attack, -_defense);
 }
 
 int GameCharacter::get_maxHealth() const { return maxHealth; }

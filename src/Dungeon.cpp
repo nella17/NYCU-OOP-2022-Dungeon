@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <string>
-#include <exception>
+#include <stdexcept>
 #include <memory>
 #include "helper.hpp"
 #include "ASCII_Art.hpp"

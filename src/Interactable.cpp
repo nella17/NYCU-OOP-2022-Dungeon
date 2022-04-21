@@ -1,9 +1,10 @@
 #include "Interactable.hpp"
 
+#include <stdexcept>
 #include "helper.hpp"
 
-bool Interactable::trigger_event(ObjectPtr) {
-    return false;
+bool Interactable::trigger_event(ObjectPtr obj) {
+    throw std::runtime_error("You can't use " + obj->get_name() + " on " + get_name() + ".");
 }
 
 std::ostream& operator<<(std::ostream& os, const Interactable& interact) {

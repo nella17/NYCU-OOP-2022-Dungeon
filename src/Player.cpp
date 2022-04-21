@@ -4,7 +4,7 @@
 #include <iomanip>
 #include <map>
 #include <memory>
-#include <exception>
+#include <stdexcept>
 #include "helper.hpp"
 #include "Room.hpp"
 

@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <string>
-#include <exception>
+#include <stdexcept>
 #include "helper.hpp"
 
 #include "Player.hpp"
