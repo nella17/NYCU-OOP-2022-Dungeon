@@ -9,7 +9,6 @@
 #include "Room.hpp"
 #include "Equip.hpp"
 #include "Inventory.hpp"
-class Record;
 
 class Player;
 using PlayerPtr = std::shared_ptr<Player>;

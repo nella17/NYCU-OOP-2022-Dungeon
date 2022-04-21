@@ -3,7 +3,6 @@
 
 #include <string>
 #include "Interactable.hpp"
-class Record;
 
 class GameCharacter: public Interactable {
     friend class Record;

@@ -4,7 +4,6 @@
 #include <string>
 #include "Object.hpp"
 #include "GameCharacter.hpp"
-class Record;
 
 class Monster: public GameCharacter {
     friend class Record;

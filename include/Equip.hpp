@@ -4,7 +4,6 @@
 #include <iostream>
 #include <string>
 #include "Item.hpp"
-class Record;
 
 class Equip: public Item {
     friend class Record;

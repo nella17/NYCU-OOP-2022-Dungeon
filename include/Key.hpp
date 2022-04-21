@@ -6,7 +6,6 @@
 #include <memory>
 #include <utility>
 #include "Item.hpp"
-class Record;
 
 class Key;
 using KeyPtr = std::shared_ptr<Key>;

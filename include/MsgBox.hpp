@@ -4,7 +4,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-class Record;
 
 class MsgBox {
     friend class Record;

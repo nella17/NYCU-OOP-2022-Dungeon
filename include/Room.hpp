@@ -7,7 +7,6 @@
 #include "helper.hpp"
 #include "Object.hpp"
 #include "Interactable.hpp"
-class Record;
 
 class Room;
 using RoomPtr = std::shared_ptr<Room>;

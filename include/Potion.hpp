@@ -5,7 +5,6 @@
 #include <string>
 #include "Item.hpp"
 #include "GameCharacter.hpp"
-class Record;
 
 class Potion: public Item {
     friend class Record;

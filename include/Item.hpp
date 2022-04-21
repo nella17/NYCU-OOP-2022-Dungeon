@@ -6,7 +6,6 @@
 #include <set>
 #include <memory>
 #include "Object.hpp"
-class Record;
 
 class Item;
 using ItemPtr = std::shared_ptr<Item>;

@@ -6,7 +6,6 @@
 #include "Item.hpp"
 #include "Object.hpp"
 #include "Inventory.hpp"
-class Record;
 
 class NPC: public GameCharacter {
     friend class Record;
