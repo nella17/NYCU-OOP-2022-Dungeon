@@ -143,6 +143,13 @@ ObjectPtr Record::load_Object() {
     return ptr;
 }
 
+void Record::save_Interactable(const InteractablePtr&) {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
+}
+InteractablePtr Record::load_Interactable() {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
+}
+
 int Record::get_room_id(const RoomPtr& r) {
     return (r == nullptr ? -1 : r->index);
 }
