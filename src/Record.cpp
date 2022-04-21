@@ -26,7 +26,7 @@ namespace {
 
 bool Record::save(const PlayerPtr player, const std::vector<RoomPtr>& rooms) {
     try {
-        io.open(file_name);
+        io.open(file_name, std::ios::out);
         if (!io.is_open())
             throw std::runtime_error("Can't open file \"" + file_name + "\"");
         save_player(player);
@@ -40,7 +40,7 @@ bool Record::save(const PlayerPtr player, const std::vector<RoomPtr>& rooms) {
 }
 bool Record::load(PlayerPtr& player, std::vector<RoomPtr>& rooms) {
     try {
-        io.open(file_name);
+        io.open(file_name, std::ios::in);
         if (!io.is_open())
             throw std::runtime_error("Can't open file \"" + file_name + "\"");
         load_player(player);
