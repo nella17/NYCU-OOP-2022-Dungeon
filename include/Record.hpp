@@ -17,8 +17,8 @@
 class Record {
 public:
     static std::string file_name;
-    static void save(const PlayerPtr, const std::vector<RoomPtr>&);
-    static void load(PlayerPtr&, std::vector<RoomPtr>&);
+    static bool save(const PlayerPtr, const std::vector<RoomPtr>&);
+    static bool load(PlayerPtr&, std::vector<RoomPtr>&);
 private:
     static void save_player(const PlayerPtr);
     static void load_player(PlayerPtr&);

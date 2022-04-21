@@ -105,7 +105,8 @@ void Dungeon::create_game() {
 
 void Dungeon::load_game() {
     std::cout << "Loading game..." << std::endl;
-    Record::load(player, rooms);
+    if (!Record::load(player, rooms))
+        create_game();
 }
 
 void Dungeon::save_game() {

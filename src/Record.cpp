@@ -4,6 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include <memory>
+#include <exception>
 #include "helper.hpp"
 
 #include "Object.hpp"
@@ -23,17 +24,33 @@ namespace {
     std::fstream io;
 };
 
-void Record::save(const PlayerPtr player, const std::vector<RoomPtr>& rooms) {
-    io = std::fstream(file_name);
-    save_player(player);
-    save_rooms(rooms);
-    io.close();
+bool Record::save(const PlayerPtr player, const std::vector<RoomPtr>& rooms) {
+    try {
+        io.open(file_name);
+        if (!io.is_open())
+            throw std::runtime_error("Can't open file \"" + file_name + "\"");
+        save_player(player);
+        save_rooms(rooms);
+        io.close();
+        return true;
+    } catch (std::exception& e) {
+        std::cout << "Error: " << e.what() << std::endl;
+        return false;
+    }
 }
-void Record::load(PlayerPtr& player, std::vector<RoomPtr>& rooms) {
-    io = std::fstream(file_name);
-    load_player(player);
-    load_rooms(rooms);
-    io.close();
+bool Record::load(PlayerPtr& player, std::vector<RoomPtr>& rooms) {
+    try {
+        io.open(file_name);
+        if (!io.is_open())
+            throw std::runtime_error("Can't open file \"" + file_name + "\"");
+        load_player(player);
+        load_rooms(rooms);
+        io.close();
+        return true;
+    } catch (std::exception& e) {
+        std::cout << "Error: " << e.what() << std::endl;
+        return false;
+    }
 }
 
 // TODO
