@@ -17,10 +17,11 @@
 #include "Equip.hpp"
 #include "Potion.hpp"
 #include "Key.hpp"
-// Record
+// helper
+#include "MsgBox.hpp"
 #include "Record.hpp"
 
-Dungeon::Dungeon(): quit(false), msg(""), player(nullptr), rooms() {}
+Dungeon::Dungeon(): quit(false), player(nullptr), rooms() {}
 
 void Dungeon::create_player() {
     std::string name;
@@ -88,12 +89,7 @@ void Dungeon::draw_screen() {
     std::cout << "--------- Game Menu ---------\n"
               << "  [Q] Quit\n";
 
-    if (!msg.empty()) {
-        std::cout << '\n' << msg << '\n';
-        msg = "";
-    }
-
-    std::cout << std::endl;
+    std::cout << MsgBox() << std::endl;
 }
 
 void Dungeon::handle_menu() {
@@ -132,7 +128,7 @@ void Dungeon::run() {
         try {
             handle_menu();
         } catch (std::runtime_error& e) {
-            msg = e.what();
+            MsgBox::add(e.what());
         }
     }
 

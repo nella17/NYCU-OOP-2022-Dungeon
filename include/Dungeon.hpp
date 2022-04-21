@@ -35,7 +35,6 @@ public:
 
 private:
     bool quit;
-    std::string msg;
     PlayerPtr player;
     std::vector<RoomPtr> rooms;
 };
