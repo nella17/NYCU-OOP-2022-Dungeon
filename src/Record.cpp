@@ -74,11 +74,57 @@ void Record::load_Dungeon() {
         room = std::dynamic_pointer_cast<Room>(load_Object());
 }
 
-void Record::save_Object(const ObjectPtr&) {
-
+void Record::save_Object(const ObjectPtr& obj) {
+    io _ obj->name _ obj->type;
+    switch (obj->type) {
+        case Object::Type::Item:
+        case Object::Type::Lock:
+            save_Item(std::dynamic_pointer_cast<Item>(obj));
+            break;
+        case Object::Type::Inventory:
+            save_Inventory(std::dynamic_pointer_cast<Inventory>(obj));
+            break;
+        case Object::Type::Player:
+            save_Player(std::dynamic_pointer_cast<Player>(obj));
+            break;
+        case Object::Type::Monster:
+            save_Monster(std::dynamic_pointer_cast<Monster>(obj));
+            break;
+        case Object::Type::NPC:
+            save_NPC(std::dynamic_pointer_cast<NPC>(obj));
+            break;
+        case Object::Type::Room:
+            save_Room(std::dynamic_pointer_cast<Room>(obj));
+            break;
+    }
 }
 ObjectPtr Record::load_Object() {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
+    std::string name; io >> name;
+    Object::Type type; io >> type;
+    ObjectPtr obj;
+    switch (type) {
+        case Object::Type::Item:
+        case Object::Type::Lock:
+            obj = load_Item();
+            break;
+        case Object::Type::Inventory:
+            obj = load_Inventory();
+            break;
+        case Object::Type::Player:
+            obj = load_Player();
+            break;
+        case Object::Type::Monster:
+            obj = load_Monster();
+            break;
+        case Object::Type::NPC:
+            obj = load_NPC();
+            break;
+        case Object::Type::Room:
+            obj = load_Room();
+            break;
+    }
+    assert(obj->type == type);
+    obj->name = name;
 }
 
 void Record::save_Interactable(const InteractablePtr&) {
