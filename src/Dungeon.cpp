@@ -96,6 +96,23 @@ void Dungeon::create_map() {
     std::cout << "Map generated!" << std::endl;
 }
 
+void Dungeon::create_game() {
+    std::cout << "Creating new game..." << std::endl;
+    create_player();
+    create_map();
+    player->changeRoom(rooms[0]);
+}
+
+void Dungeon::load_game() {
+    std::cout << "Loading game..." << std::endl;
+    Record::load(player, rooms);
+}
+
+void Dungeon::save_game() {
+    std::cout << "Saving game..." << std::endl;
+    Record::save(player, rooms);
+}
+
 void Dungeon::draw_screen() {
     clearScreen();
 
@@ -131,13 +148,15 @@ void Dungeon::handle_menu() {
 void Dungeon::start_game() {
     clearScreen();
     std::cout << welcome << '\n'
-            << "Press any key to start..." << std::endl;
-    read_char_no_buffer_echo();
+            << "Press [L] to load game or [N] to start a new game." << std::endl;
+    char c;
+    do c = read_char_no_buffer_echo(); while (c != 'L' && c != 'N');
 
     clearScreen();
-    create_player();
-    create_map();
-    player->changeRoom(rooms[0]);
+    if (c == 'L')
+        load_game();
+    else
+        create_game();
 }
 
 bool Dungeon::check_game_logic() {
@@ -159,12 +178,16 @@ void Dungeon::run() {
         }
     }
 
-    if (quit)
+    if (quit) {
+        std::cout << "Do you want to save your game? Y/[N]" << std::endl;
+        char c = read_char_no_buffer_echo();
+        if (c == 'Y') save_game();
         std::cout << goodbye << std::endl;
-    else if (player->check_is_dead())
+    } else if (player->check_is_dead()) {
         std::cout << you_died << std::endl;
-    else if (player->get_currentRoom()->get_isExit())
+    } else if (player->get_currentRoom()->get_isExit()) {
         std::cout << you_won << std::endl;
-    else
+     } else {
         assert(0 && "unknown error");
+     }
 }

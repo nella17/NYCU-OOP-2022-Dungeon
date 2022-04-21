@@ -13,9 +13,12 @@ public:
 
     /* Create a new player, and give him/her basic status */
     void create_player();
-
     /* Create a map, which include several different rooms */
     void create_map();
+
+    void create_game();
+    void load_game();
+    void save_game();
 
     void draw_screen();
 
