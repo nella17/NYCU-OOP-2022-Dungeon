@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include "Item.hpp"
+#include "GameCharacter.hpp"
 class Record;
 
 class Potion: public Item {
@@ -17,6 +18,7 @@ public:
 
     Potion(std::string, Type, int);
 
+    bool trigger_event(ObjectPtr);
     std::string name_of_type() const;
     std::ostream& show_info(std::ostream&) const;
 
@@ -24,6 +26,7 @@ public:
     int get_value() const;
 
 private:
+    bool apply_effect(std::shared_ptr<GameCharacter>);
     const Type type;
     const int value;
 };

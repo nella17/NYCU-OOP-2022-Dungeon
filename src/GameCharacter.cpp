@@ -10,7 +10,8 @@ GameCharacter::GameCharacter(std::string _name, Object::Type _type, int _maxHeal
 bool GameCharacter::check_is_dead() {
     return currentHealth <= 0;
 }
-int GameCharacter::take_damage(int damage, ObjectPtr obj) {
+
+void GameCharacter::take_damage(int damage, ObjectPtr obj) {
     auto d = damage - defense;
     currentHealth -= d;
     if (currentHealth < 0)
@@ -22,7 +23,29 @@ int GameCharacter::take_damage(int damage, ObjectPtr obj) {
     msg += " actual damage = attack - defense = " + std::to_string(damage) + " - " + std::to_string(defense) + " = " + std::to_string(d) + "\n";
     msg += " and now has " + std::to_string(currentHealth) + " health left.\n";
     MsgBox::add(msg);
-    return currentHealth;
+}
+
+void GameCharacter::heal(int heal, ObjectPtr obj) {
+    currentHealth += heal;
+    if (currentHealth > maxHealth)
+        currentHealth = maxHealth;
+    std::string msg = "";
+    msg += get_name() + " heals " + std::to_string(heal) + " health to " + obj->get_name() + ",\n";
+    msg += " and now has " + std::to_string(currentHealth) + " health left.\n";
+    MsgBox::add(msg);
+}
+
+void GameCharacter::weaken(int weaken, ObjectPtr obj) {
+    attack -= weaken;
+    if (attack < 0)
+        attack = 0;
+    defense -= weaken;
+    if (defense < 0)
+        defense = 0;
+    std::string msg = "";
+    msg += get_name() + " weakens " + std::to_string(weaken) + " attack and defense to " + obj->get_name() + ",\n";
+    msg += " and now has " + std::to_string(attack) + " attack and " + std::to_string(defense) + " defense left.\n";
+    MsgBox::add(msg);
 }
 
 void GameCharacter::print_status(InteractablePtr) {

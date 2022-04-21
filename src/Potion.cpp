@@ -1,10 +1,49 @@
 #include "Potion.hpp"
 
 #include <iostream>
+#include <stdexcept>
 #include "helper.hpp"
+#include "MsgBox.hpp"
+#include "GameCharacter.hpp"
+#include "Monster.hpp"
+#include "Player.hpp"
 
 Potion::Potion(std::string _name, Type _type, int _value):
         Item(_name, Item::Type::Potion), type(_type), value(_value) {}
+
+bool Potion::trigger_event(ObjectPtr obj) {
+    auto game = std::dynamic_pointer_cast<GameCharacter>(obj);
+    if (game == nullptr)
+        return MsgBox::add("Potion only works on GameCharacter"), false;
+    auto player = std::dynamic_pointer_cast<Player>(game);
+    if (player == nullptr)
+        return apply_effect(game);
+    switch (type) {
+        case Type::Heal:
+            return apply_effect(player);
+        case Type::Damage:
+        case Type::Weaken:
+            return trigger_event(player->get_interact());
+        default:
+            return MsgBox::add("Unknown potion type"), false;
+    }
+}
+
+bool Potion::apply_effect(std::shared_ptr<GameCharacter> game) {
+    switch (type) {
+        case Type::Heal:
+            game->heal(value, shared_from_this());
+            return true;
+        case Type::Damage:
+            game->take_damage(value, shared_from_this());
+            return true;
+        case Type::Weaken:
+            game->weaken(value, shared_from_this());
+            return true;
+        default:
+            throw std::runtime_error("Unknown potion type");
+    }
+}
 
 std::string Potion::name_of_type() const {
     return enum_name(get_item_type()) + "(" + enum_name(type) + ")";
