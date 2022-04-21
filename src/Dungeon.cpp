@@ -60,7 +60,7 @@ void Dungeon::create_map() {
 
     // Monster
     rooms[6]->push_object('M', std::make_shared<Monster>(std::string("GPA"), 43, 20, 5));
-    rooms[8]->push_object('M', std::make_shared<Monster>(std::string("Diploma"), 128, 30, 30));
+    rooms[8]->push_object('M', std::make_shared<Monster>(std::string("Diploma"), 128, 50, 50));
 
     // Key
     auto [key, lock] = Key::generate_key_pair();
@@ -76,16 +76,21 @@ void Dungeon::create_map() {
     }));
 
     rooms[7]->push_object('N', std::make_shared<NPC>("Medium", "Wow, you are a good player!\nHere are some gift for you.", ItemsSet{
-        std::make_shared<Equip>("Helmet", Equip::Type::Head, 10, 0, 10),
-        std::make_shared<Equip>("Armor", Equip::Type::Body, 10, 0, 10),
-        std::make_shared<Equip>("Shield", Equip::Type::LeftHand, 0, 0, 20),
-        std::make_shared<Equip>("Sword", Equip::Type::RightHand, 0, 20, 5),
-        std::make_shared<Equip>("Boots", Equip::Type::Feet, 10, 5, 5),
+        std::make_shared<Equip>("Helmet", Equip::Type::Head, 10, 0, 5),
+        std::make_shared<Equip>("Armor", Equip::Type::Body, 10, 0, 5),
+        std::make_shared<Equip>("Shield", Equip::Type::LeftHand, 0, 0, 10),
+        std::make_shared<Equip>("Sword", Equip::Type::RightHand, 0, 20, 2),
+        std::make_shared<Equip>("Boots", Equip::Type::Feet, 10, 5, 2),
         key,
     }));
 
     // Equip
     rooms[5]->push_object('G', std::make_shared<Equip>("Gloves", Equip::Type::LeftHand, 10, 0, 10));
+
+    // Potion
+    rooms[2]->push_object('P', std::make_shared<Potion>("Soup", Potion::Type::Heal, 30));
+    rooms[6]->push_object('P', std::make_shared<Potion>("Toxicant", Potion::Type::Damage, 50));
+    rooms[7]->push_object('P', std::make_shared<Potion>("Beer", Potion::Type::Weaken, 20));
 
     sleep(1);
     std::cout << "Map generated!" << std::endl;
