@@ -308,11 +308,16 @@ ItemPtr Record::load_Item() {
     return item;
 }
 
-void Record::save_Equip(const EquipPtr&) {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
+void Record::save_Equip(const EquipPtr& equip) {
+    io _ equip->type _ equip->health _ equip->attack _ equip->defense;
 }
 EquipPtr Record::load_Equip() {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
+    Equip::Type type; io >> type;
+    int health; io >> health;
+    int attack; io >> attack;
+    int defense; io >> defense;
+    auto equip = std::make_shared<Equip>("", type, health, attack, defense);
+    return equip;
 }
 
 void Record::save_Potion(const PotionPtr&) {
