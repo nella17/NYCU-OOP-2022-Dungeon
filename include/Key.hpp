@@ -18,6 +18,7 @@ public:
     static KeyPair generate_key_pair();
     bool unlock(KeyPtr key);
 
+    bool trigger_event(ObjectPtr);
     std::ostream& show_info(std::ostream&) const;
 
 private:
