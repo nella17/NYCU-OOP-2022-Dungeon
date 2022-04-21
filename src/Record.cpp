@@ -320,11 +320,14 @@ EquipPtr Record::load_Equip() {
     return equip;
 }
 
-void Record::save_Potion(const PotionPtr&) {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
+void Record::save_Potion(const PotionPtr& potion) {
+    io _ potion->type _ potion->value;
 }
 PotionPtr Record::load_Potion() {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
+    Potion::Type type; io >> type;
+    int value; io >> value;
+    auto potion = std::make_shared<Potion>("", type, value);
+    return potion;
 }
 
 void Record::save_Key(const KeyPtr&) {
