@@ -81,10 +81,12 @@ void Player::print_menu() {
 }
 
 bool Player::handle_key(int key, ObjectPtr) {
+    bool run = false;
     if (menus.find(key) != menus.end()) {
         auto menu = menus.at(key);
-        (this->*menu.func)(true);
-    } else {
+        run = (this->*menu.func)(true);
+    }
+    if (!run) {
         try {
             if (get_interact()->handle_key(key, shared_from_this()))
                 handle_leave(true);
