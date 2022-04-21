@@ -55,17 +55,6 @@ void Player::print_status(InteractablePtr) {
         }
     }
 
-    if (!inventory->empty()) {
-        std::cout << "  Inventory\t:\n";
-        std::cout.setf(std::ios::left, std::ios::adjustfield);
-        for(auto&& item: *inventory) {
-            std::cout << "    "
-                << std::setw(20) << item->name_of_type()
-                << std::setw(16) << item->get_name()
-                    << ": " << *item << '\n';
-        }
-    }
-
     std::cout << " Current Status\t: " << *currentRoom;
     for(auto&& it: interacts)
         std::cout << " > " << *it;

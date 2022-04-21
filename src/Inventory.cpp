@@ -7,7 +7,18 @@
 Inventory::Inventory(std::string _name, ItemsSet _items):
         Interactable(_name, Object::Type::Inventory), ItemsSet(_items) {}
 
-void Inventory::print_status(InteractablePtr) {}
+void Inventory::print_status(InteractablePtr) {
+    if (!empty()) {
+        std::cout << "  Inventory\t:\n";
+        std::cout.setf(std::ios::left, std::ios::adjustfield);
+        for(auto&& item: *this) {
+            std::cout << "    "
+                << std::setw(20) << item->name_of_type()
+                << std::setw(16) << item->get_name()
+                    << ": " << *item << '\n';
+        }
+    }
+}
 
 void Inventory::print_menu() {
     if (empty()) return;
