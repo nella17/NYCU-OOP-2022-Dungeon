@@ -12,6 +12,7 @@
 #include "Room.hpp"
 #include "GameCharacter.hpp"
 #include "Player.hpp"
+#include "Monster.hpp"
 #include "NPC.hpp"
 #include "Inventory.hpp"
 #include "Item.hpp"
@@ -48,6 +49,9 @@ private:
 
     static void save_Player(const PlayerPtr&);
     static PlayerPtr load_Player();
+
+    static void save_Monster(const MonsterPtr&);
+    static MonsterPtr load_Monster();
 
     static void save_NPC(const NPCPtr&);
     static NPCPtr load_NPC();

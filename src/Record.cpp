@@ -109,6 +109,13 @@ PlayerPtr Record::load_Player() {
     throw std::runtime_error("Not implemented " + std::string(__func__));
 }
 
+void Record::save_Monster(const MonsterPtr&) {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
+}
+MonsterPtr Record::load_Monster() {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
+}
+
 void Record::save_NPC(const NPCPtr&) {
     throw std::runtime_error("Not implemented " + std::string(__func__));
 }

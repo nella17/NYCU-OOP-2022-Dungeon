@@ -5,6 +5,9 @@
 #include "Object.hpp"
 #include "GameCharacter.hpp"
 
+class Monster;
+using MonsterPtr = std::shared_ptr<Monster>;
+
 class Monster: public GameCharacter {
     friend class Record;
 public:
