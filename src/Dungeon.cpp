@@ -26,7 +26,7 @@ Dungeon::Dungeon(): quit(false), player(nullptr), rooms() {}
 void Dungeon::create_player() {
     std::string name;
     std::cout << "Please enter your name: ";
-    std::cin >> name;
+    std::getline(std::cin, name);
     std::cout << "Hello " << name << "!" << std::endl;
     player = std::make_shared<Player>(name, 50, 10, 5);
 }
