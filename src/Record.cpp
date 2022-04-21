@@ -131,13 +131,6 @@ ObjectPtr Record::load_Object() {
     return obj;
 }
 
-void Record::save_Interactable(const InteractablePtr&) {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
-}
-InteractablePtr Record::load_Interactable() {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
-}
-
 void Record::save_Room(const RoomPtr&) {
     throw std::runtime_error("Not implemented " + std::string(__func__));
 }

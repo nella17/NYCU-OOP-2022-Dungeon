@@ -8,7 +8,6 @@
 
 #include "Dungeon.hpp"
 #include "Object.hpp"
-#include "Interactable.hpp"
 #include "Room.hpp"
 #include "GameCharacter.hpp"
 #include "Player.hpp"
@@ -37,9 +36,6 @@ private:
 
     static void save_Object(const ObjectPtr&);
     static ObjectPtr load_Object();
-
-    static void save_Interactable(const InteractablePtr&);
-    static InteractablePtr load_Interactable();
 
     static void save_Room(const RoomPtr&);
     static RoomPtr load_Room();
