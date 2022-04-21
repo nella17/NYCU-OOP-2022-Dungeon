@@ -13,6 +13,10 @@ bool GameCharacter::check_is_dead() {
 int GameCharacter::take_damage(int damage, ObjectPtr obj) {
     auto d = damage - defense;
     currentHealth -= d;
+    if (currentHealth < 0)
+        currentHealth = 0;
+    if (currentHealth > maxHealth)
+        currentHealth = maxHealth;
     std::string msg = "";
     msg += get_name() + " takes " + std::to_string(damage) + " damage from " + obj->get_name() + ",\n";
     msg += " actual damage = attack - defense = " + std::to_string(damage) + " - " + std::to_string(defense) + " = " + std::to_string(d) + "\n";
