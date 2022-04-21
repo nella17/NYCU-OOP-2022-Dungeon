@@ -138,7 +138,7 @@ ObjectPtr Record::load_Object() {
         case Object::Type::None:
             throw std::runtime_error("Can't save object of type None");
     }
-    assert(ptr->type == type);
+    ptr->type = type;
     ptr->name = name;
     return ptr;
 }
@@ -299,7 +299,7 @@ ItemPtr Record::load_Item() {
             break;
         case Item::Type::Key:
         case Item::Type::Lock:
-            item = load_Key();
+            item = load_Key(type);
             break;
         default:
             throw std::runtime_error("Can't load object of type " + enum_name(type) + " as Item");
@@ -330,9 +330,13 @@ PotionPtr Record::load_Potion() {
     return potion;
 }
 
-void Record::save_Key(const KeyPtr&) {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
+void Record::save_Key(const KeyPtr& key) {
+    io _ key->isLocked _ key->id;
 }
-KeyPtr Record::load_Key() {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
+KeyPtr Record::load_Key(Item::Type type) {
+    bool isLocked; io >> isLocked;
+    uint32_t id; io >> id;
+    KeyPtr key(new Key(id, type, Object::Type::None));
+    key->isLocked = isLocked;
+    return key;
 }

@@ -68,7 +68,7 @@ private:
     static PotionPtr load_Potion();
 
     static void save_Key(const KeyPtr&);
-    static KeyPtr load_Key();
+    static KeyPtr load_Key(Item::Type);
 
 };
 
