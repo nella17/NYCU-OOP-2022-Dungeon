@@ -6,10 +6,6 @@
 Item::Item(std::string _name, Item::Type _type, Object::Type _obj_type):
     Object(_name, _obj_type), type(_type) {}
 
-bool Item::trigger_event(ObjectPtr obj) {
-    return false;
-}
-
 std::string Item::name_of_type() const {
     return enum_name(type);
 }

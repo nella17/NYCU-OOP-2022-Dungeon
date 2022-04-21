@@ -28,7 +28,7 @@ public:
     /* In Item, this function should deal with the   */
     /* pick up action. You should add status to the  */
     /* player.                                       */
-    bool trigger_event(ObjectPtr);
+    virtual bool trigger_event(ObjectPtr) = 0;
 
     virtual std::string name_of_type() const;
     virtual std::ostream& show_info(std::ostream&) const = 0;
