@@ -28,7 +28,7 @@ void Dungeon::create_player() {
     std::cout << "Please enter your name: ";
     std::cin >> name;
     std::cout << "Hello " << name << "!" << std::endl;
-    player = std::make_shared<Player>(name, 100, 10, 5);
+    player = std::make_shared<Player>(name, 50, 10, 5);
 }
 
 void Dungeon::create_map() {
@@ -58,12 +58,34 @@ void Dungeon::create_map() {
     LINK_ROOM(rooms[3], DIRECTION::UP  , rooms[8], DIRECTION::DOWN );
     LINK_ROOM(rooms[8], DIRECTION::LEFT, rooms[9], DIRECTION::RIGHT);
 
-    // TODO: add items
-    rooms[6]->push_object('M', std::make_shared<Monster>(std::string("GPA"), 43, 20, 10));
+    // Monster
+    rooms[6]->push_object('M', std::make_shared<Monster>(std::string("GPA"), 43, 20, 5));
     rooms[8]->push_object('M', std::make_shared<Monster>(std::string("Diploma"), 128, 30, 30));
+
+    // Key
     auto [key, lock] = Key::generate_key_pair();
-    rooms[7]->push_object('K', key);
     rooms[3]->push_object('L', lock);
+
+    // NPC
+    rooms[0]->push_object('N', std::make_shared<NPC>("Starter", "Hello, I am an NPC for starter\nHere are some gift for you.", ItemsSet{
+        std::make_shared<Equip>("Cap", Equip::Type::Head, 1, 0, 1),
+        std::make_shared<Equip>("Shirt", Equip::Type::Body, 1, 0, 1),
+        std::make_shared<Equip>("Watch", Equip::Type::LeftHand, 1, 0, 1),
+        std::make_shared<Equip>("Ring", Equip::Type::RightHand, 1, 0, 1),
+        std::make_shared<Equip>("Shoes", Equip::Type::Feet, 1, 0, 1),
+    }));
+
+    rooms[7]->push_object('N', std::make_shared<NPC>("Medium", "Wow, you are a good player!\nHere are some gift for you.", ItemsSet{
+        std::make_shared<Equip>("Helmet", Equip::Type::Head, 10, 0, 10),
+        std::make_shared<Equip>("Armor", Equip::Type::Body, 10, 0, 10),
+        std::make_shared<Equip>("Shield", Equip::Type::LeftHand, 0, 0, 20),
+        std::make_shared<Equip>("Sword", Equip::Type::RightHand, 0, 20, 5),
+        std::make_shared<Equip>("Boots", Equip::Type::Feet, 10, 5, 5),
+        key,
+    }));
+
+    // Equip
+    rooms[5]->push_object('G', std::make_shared<Equip>("Gloves", Equip::Type::LeftHand, 10, 0, 10));
 
     sleep(1);
     std::cout << "Map generated!" << std::endl;
