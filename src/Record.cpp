@@ -239,11 +239,10 @@ PlayerPtr Record::load_Player() {
     return player;
 }
 
-void Record::save_Monster(const MonsterPtr&) {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
-}
+void Record::save_Monster(const MonsterPtr&) {}
 MonsterPtr Record::load_Monster() {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
+    auto monster = std::make_shared<Monster>("", 0, 0, 0);
+    return monster;
 }
 
 void Record::save_NPC(const NPCPtr& ptr) {
