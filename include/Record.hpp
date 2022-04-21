@@ -39,7 +39,7 @@ private:
     static ObjectPtr load_Object();
 
     static void save_Interactable(const InteractablePtr&);
-    static InteractablePtr load_Interactable();
+    static InteractablePtr load_Interactable(Object::Type);
 
     static int get_room_id(const RoomPtr&);
     static RoomPtr load_room_by_id();

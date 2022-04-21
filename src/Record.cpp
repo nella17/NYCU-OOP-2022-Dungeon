@@ -101,15 +101,11 @@ void Record::save_Object(const ObjectPtr& ptr) {
             save_Item(std::dynamic_pointer_cast<Item>(ptr));
             break;
         case Object::Type::Inventory:
-            save_Inventory(std::dynamic_pointer_cast<Inventory>(ptr));
-            break;
         case Object::Type::Player:
         case Object::Type::Monster:
         case Object::Type::NPC:
-            save_GameCharacter(std::dynamic_pointer_cast<GameCharacter>(ptr));
-            break;
         case Object::Type::Room:
-            save_Room(std::dynamic_pointer_cast<Room>(ptr));
+            save_Interactable(std::dynamic_pointer_cast<Interactable>(ptr));
             break;
         case Object::Type::None:
             throw std::runtime_error("Can't save object of type None");
@@ -125,6 +121,41 @@ ObjectPtr Record::load_Object() {
             ptr = load_Item();
             break;
         case Object::Type::Inventory:
+        case Object::Type::Player:
+        case Object::Type::Monster:
+        case Object::Type::NPC:
+        case Object::Type::Room:
+            ptr = load_Interactable(type);
+            break;
+        case Object::Type::None:
+            throw std::runtime_error("Can't save object of type None");
+    }
+    ptr->type = type;
+    ptr->name = name;
+    return ptr;
+}
+
+void Record::save_Interactable(const InteractablePtr& ptr) {
+    switch (ptr->type) {
+        case Object::Type::Inventory:
+            save_Inventory(std::dynamic_pointer_cast<Inventory>(ptr));
+            break;
+        case Object::Type::Player:
+        case Object::Type::Monster:
+        case Object::Type::NPC:
+            save_GameCharacter(std::dynamic_pointer_cast<GameCharacter>(ptr));
+            break;
+        case Object::Type::Room:
+            save_Room(std::dynamic_pointer_cast<Room>(ptr));
+            break;
+        default:
+            throw std::runtime_error("Can't save object of type " + enum_name(ptr->type) + " as Interactable");
+    }
+}
+InteractablePtr Record::load_Interactable(Object::Type type) {
+    InteractablePtr ptr;
+    switch (type) {
+        case Object::Type::Inventory:
             ptr = load_Inventory();
             break;
         case Object::Type::Player:
@@ -135,19 +166,10 @@ ObjectPtr Record::load_Object() {
         case Object::Type::Room:
             ptr = load_Room();
             break;
-        case Object::Type::None:
-            throw std::runtime_error("Can't save object of type None");
+        default:
+            throw std::runtime_error("Can't load object of type " + enum_name(type) + " as Interactable");
     }
-    ptr->type = type;
-    ptr->name = name;
     return ptr;
-}
-
-void Record::save_Interactable(const InteractablePtr&) {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
-}
-InteractablePtr Record::load_Interactable() {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
 }
 
 int Record::get_room_id(const RoomPtr& r) {
