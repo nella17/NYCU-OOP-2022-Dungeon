@@ -9,7 +9,7 @@ void MsgBox::add(std::string s) {
 
 std::ostream& MsgBox::output(std::ostream& os) {
     for (auto&& s : msg)
-        os << s << '\n';
+        os << '\n' << s;
     msg.clear();
     return os;
 }
