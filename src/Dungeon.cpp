@@ -105,13 +105,13 @@ void Dungeon::create_game() {
 
 void Dungeon::load_game() {
     std::cout << "Loading game..." << std::endl;
-    if (!Record::load(player, rooms))
+    if (!Record::load(*this))
         create_game();
 }
 
 void Dungeon::save_game() {
     std::cout << "Saving game..." << std::endl;
-    Record::save(player, rooms);
+    Record::save(*this);
 }
 
 void Dungeon::draw_screen() {

@@ -7,30 +7,20 @@
 #include <exception>
 #include "helper.hpp"
 
-#include "Object.hpp"
-#include "Room.hpp"
-// GameCharacter
-#include "Player.hpp"
-#include "Monster.hpp"
-#include "NPC.hpp"
-// Item
-#include "Item.hpp"
-#include "Equip.hpp"
-#include "Potion.hpp"
-#include "Key.hpp"
+#define _ <<' '<<
 
 std::string Record::file_name = "save.txt";
 namespace {
     std::fstream io;
 };
 
-bool Record::save(const PlayerPtr player, const std::vector<RoomPtr>& rooms) {
+bool Record::save(const Dungeon& dungeon) {
     try {
         io.open(file_name, std::ios::out);
         if (!io.is_open())
             throw std::runtime_error("Can't open file \"" + file_name + "\"");
-        save_player(player);
-        save_rooms(rooms);
+        save(dungeon.player);
+        save(dungeon.rooms);
         io.close();
         return true;
     } catch (std::exception& e) {
@@ -38,13 +28,13 @@ bool Record::save(const PlayerPtr player, const std::vector<RoomPtr>& rooms) {
         return false;
     }
 }
-bool Record::load(PlayerPtr& player, std::vector<RoomPtr>& rooms) {
+bool Record::load(Dungeon& dungeon) {
     try {
         io.open(file_name, std::ios::in);
         if (!io.is_open())
             throw std::runtime_error("Can't open file \"" + file_name + "\"");
-        load_player(player);
-        load_rooms(rooms);
+        load(dungeon.player);
+        load(dungeon.rooms);
         io.close();
         return true;
     } catch (std::exception& e) {
@@ -53,12 +43,13 @@ bool Record::load(PlayerPtr& player, std::vector<RoomPtr>& rooms) {
     }
 }
 
-// TODO
-void Record::save_player(const PlayerPtr) {}
-// TODO
-void Record::load_player(PlayerPtr&) {}
+void Record::save(const PlayerPtr player) {
+}
 
-// TODO
-void Record::save_rooms(const std::vector<RoomPtr>&) {}
-// TODO
-void Record::load_rooms(std::vector<RoomPtr>&) {}
+void Record::load(PlayerPtr&) {
+}
+
+void Record::save(const std::vector<RoomPtr>& rooms) {
+}
+void Record::load(std::vector<RoomPtr>& rooms) {
+}

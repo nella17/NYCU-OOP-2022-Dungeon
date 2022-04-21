@@ -8,6 +8,7 @@
 #include "Room.hpp"
 
 class Dungeon {
+    friend class Record;
 public:
     Dungeon();
 
