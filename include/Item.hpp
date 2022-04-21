@@ -22,7 +22,7 @@ public:
         Lock,
     };
 
-    Item(std::string, Item::Type);
+    Item(std::string, Item::Type, Object::Type = Object::Type::Item);
 
     /* Virtual function that you need to complete    */
     /* In Item, this function should deal with the   */

@@ -3,7 +3,8 @@
 #include "Player.hpp"
 #include "helper.hpp"
 
-Item::Item(std::string _name, Item::Type _type): Object(_name, Object::Type::Item), type(_type) {}
+Item::Item(std::string _name, Item::Type _type, Object::Type _obj_type):
+    Object(_name, _obj_type), type(_type) {}
 
 bool Item::trigger_event(ObjectPtr obj) {
     return false;
