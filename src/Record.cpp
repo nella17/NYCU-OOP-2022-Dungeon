@@ -143,6 +143,15 @@ ObjectPtr Record::load_Object() {
     return ptr;
 }
 
+int Record::get_room_id(const RoomPtr& r) {
+    return (r == nullptr ? -1 : r->index);
+}
+RoomPtr Record::load_room_by_id() {
+    int id = -1;
+    io >> id;
+    return id == -1 ? nullptr : dungeon->rooms[id];
+}
+
 void Record::save_Room(const RoomPtr& room) {
     io _ room->isBlocked _ room->isLocked _ room->isExit _ room->index;
     io _ room->objects.size();
@@ -171,8 +180,7 @@ void Record::load_Room_neighbors(RoomPtr room) {
     int size; io >> size;
     while (size--) {
         Direction dir; io >> dir;
-        int index; io >> index;
-        room->neighbors[dir] = dungeon->rooms[index];
+        room->neighbors[dir] = load_room_by_id();
     }
 }
 
@@ -219,7 +227,7 @@ GameCharacterPtr Record::load_GameCharacter(Object::Type type) {
 }
 
 void Record::save_Player(const PlayerPtr& player) {
-    io _ player->currentRoom->index _ player->previousRoom->index;
+    io _ get_room_id(player->currentRoom) _ get_room_id(player->previousRoom);
     save_Object(player->inventory);
     io _ player->equips.size();
     for(const auto& [type, equip]: player->equips) {
@@ -229,7 +237,8 @@ void Record::save_Player(const PlayerPtr& player) {
 }
 PlayerPtr Record::load_Player() {
     PlayerPtr player = std::make_shared<Player>("", 0, 0, 0);
-    io >> player->currentRoom->index >> player->previousRoom->index;
+    player->currentRoom = load_room_by_id();
+    player->previousRoom = load_room_by_id();
     player->inventory = std::dynamic_pointer_cast<Inventory>(load_Object());
     int size; io >> size;
     while (size--) {

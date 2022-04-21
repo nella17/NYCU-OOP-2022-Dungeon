@@ -37,6 +37,9 @@ private:
     static void save_Object(const ObjectPtr&);
     static ObjectPtr load_Object();
 
+    static int get_room_id(const RoomPtr&);
+    static RoomPtr load_room_by_id();
+
     static void save_Room(const RoomPtr&);
     static RoomPtr load_Room();
 
