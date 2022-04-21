@@ -13,6 +13,7 @@ class Potion: public Item {
     friend class Record;
 public:
     enum class Type {
+        None = 0,
         Heal,
         Damage,
         Weaken,
