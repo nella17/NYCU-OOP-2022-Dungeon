@@ -41,7 +41,7 @@ private:
     static RoomPtr load_Room();
 
     static void save_GameCharacter(const GameCharacterPtr&);
-    static GameCharacterPtr load_GameCharacter();
+    static GameCharacterPtr load_GameCharacter(Object::Type);
 
     static void save_Player(const PlayerPtr&);
     static PlayerPtr load_Player();

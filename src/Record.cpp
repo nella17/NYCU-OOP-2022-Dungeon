@@ -73,27 +73,23 @@ void Record::load_Dungeon() {
         room = std::dynamic_pointer_cast<Room>(load_Object());
 }
 
-void Record::save_Object(const ObjectPtr& obj) {
-    io _ obj->name _ obj->type;
-    switch (obj->type) {
+void Record::save_Object(const ObjectPtr& ptr) {
+    io _ ptr->name _ ptr->type;
+    switch (ptr->type) {
         case Object::Type::Item:
         case Object::Type::Lock:
-            save_Item(std::dynamic_pointer_cast<Item>(obj));
+            save_Item(std::dynamic_pointer_cast<Item>(ptr));
             break;
         case Object::Type::Inventory:
-            save_Inventory(std::dynamic_pointer_cast<Inventory>(obj));
+            save_Inventory(std::dynamic_pointer_cast<Inventory>(ptr));
             break;
         case Object::Type::Player:
-            save_Player(std::dynamic_pointer_cast<Player>(obj));
-            break;
         case Object::Type::Monster:
-            save_Monster(std::dynamic_pointer_cast<Monster>(obj));
-            break;
         case Object::Type::NPC:
-            save_NPC(std::dynamic_pointer_cast<NPC>(obj));
+            save_GameCharacter(std::dynamic_pointer_cast<GameCharacter>(ptr));
             break;
         case Object::Type::Room:
-            save_Room(std::dynamic_pointer_cast<Room>(obj));
+            save_Room(std::dynamic_pointer_cast<Room>(ptr));
             break;
         case Object::Type::None:
             throw std::runtime_error("Can't save object of type None");
@@ -102,33 +98,29 @@ void Record::save_Object(const ObjectPtr& obj) {
 ObjectPtr Record::load_Object() {
     std::string name; io >> name;
     Object::Type type; io >> type;
-    ObjectPtr obj;
+    ObjectPtr ptr;
     switch (type) {
         case Object::Type::Item:
         case Object::Type::Lock:
-            obj = load_Item();
+            ptr = load_Item();
             break;
         case Object::Type::Inventory:
-            obj = load_Inventory();
+            ptr = load_Inventory();
             break;
         case Object::Type::Player:
-            obj = load_Player();
-            break;
         case Object::Type::Monster:
-            obj = load_Monster();
-            break;
         case Object::Type::NPC:
-            obj = load_NPC();
+            ptr = load_GameCharacter(type);
             break;
         case Object::Type::Room:
-            obj = load_Room();
+            ptr = load_Room();
             break;
         case Object::Type::None:
             throw std::runtime_error("Can't save object of type None");
     }
-    assert(obj->type == type);
-    obj->name = name;
-    return obj;
+    assert(ptr->type == type);
+    ptr->name = name;
+    return ptr;
 }
 
 void Record::save_Room(const RoomPtr&) {
@@ -138,11 +130,46 @@ RoomPtr Record::load_Room() {
     throw std::runtime_error("Not implemented " + std::string(__func__));
 }
 
-void Record::save_GameCharacter(const GameCharacterPtr&) {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
+void Record::save_GameCharacter(const GameCharacterPtr& ptr) {
+    io _ ptr->maxHealth _ ptr->currentHealth _ ptr->attack _ ptr->defense;
+    switch (ptr->type) {
+        case Object::Type::Player:
+            save_Player(std::dynamic_pointer_cast<Player>(ptr));
+            break;
+        case Object::Type::Monster:
+            save_Monster(std::dynamic_pointer_cast<Monster>(ptr));
+            break;
+        case Object::Type::NPC:
+            save_NPC(std::dynamic_pointer_cast<NPC>(ptr));
+            break;
+        default:
+            throw std::runtime_error("Can't save object of type " + enum_name(ptr->type) + " as GameCharacter");
+    }
 }
-GameCharacterPtr Record::load_GameCharacter() {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
+GameCharacterPtr Record::load_GameCharacter(Object::Type type) {
+    int maxHealth; io >> maxHealth;
+    int currentHealth; io >> currentHealth;
+    int attack; io >> attack;
+    int defense; io >> defense;
+    GameCharacterPtr ptr;
+    switch (type) {
+        case Object::Type::Player:
+            ptr = load_Player();
+            break;
+        case Object::Type::Monster:
+            ptr = load_Monster();
+            break;
+        case Object::Type::NPC:
+            ptr = load_NPC();
+            break;
+        default:
+            throw std::runtime_error("Can't load object of type " + enum_name(type) + " as GameCharacter");
+    }
+    ptr->maxHealth = maxHealth;
+    ptr->currentHealth = currentHealth;
+    ptr->attack = attack;
+    ptr->defense = defense;
+    return ptr;
 }
 
 void Record::save_Player(const PlayerPtr&) {
