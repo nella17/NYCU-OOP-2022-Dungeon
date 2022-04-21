@@ -7,6 +7,9 @@
 #include "Object.hpp"
 #include "Inventory.hpp"
 
+class NPC;
+using NPCPtr = std::shared_ptr<NPC>;
+
 class NPC: public GameCharacter {
     friend class Record;
 public:

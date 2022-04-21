@@ -3,7 +3,11 @@
 
 #include <iostream>
 #include <string>
+#include <memory>
 #include "Item.hpp"
+
+class Equip;
+using EquipPtr = std::shared_ptr<Equip>;
 
 class Equip: public Item {
     friend class Record;

@@ -8,12 +8,12 @@
 
 #include "Dungeon.hpp"
 #include "Object.hpp"
+#include "Interactable.hpp"
 #include "Room.hpp"
-// GameCharacter
+#include "GameCharacter.hpp"
 #include "Player.hpp"
-#include "Monster.hpp"
 #include "NPC.hpp"
-// Item
+#include "Inventory.hpp"
 #include "Item.hpp"
 #include "Equip.hpp"
 #include "Potion.hpp"
@@ -31,14 +31,39 @@ public:
     static bool load(Dungeon&);
 
 private:
+    static void save_Object(const ObjectPtr&);
+    static void load_Object(ObjectPtr&);
+
+    static void save_Interactable(const InteractablePtr&);
+    static void load_Interactable(InteractablePtr&);
+
+    static void save_Rooms(const std::vector<RoomPtr>&);
+    static void load_Rooms(std::vector<RoomPtr>&);
+
     static void save_GameCharacter(const GameCharacterPtr&);
     static void load_GameCharacter(GameCharacterPtr&);
 
     static void save_Player(const PlayerPtr&);
     static void load_Player(PlayerPtr&);
 
-    static void save_Rooms(const std::vector<RoomPtr>&);
-    static void load_Rooms(std::vector<RoomPtr>&);
+    static void save_NPC(const NPCPtr&);
+    static void load_NPC(NPCPtr&);
+
+    static void save_Inventory(const InventoryPtr&);
+    static void load_Inventory(InventoryPtr&);
+
+    static void save_Item(const ItemPtr&);
+    static void load_Item(ItemPtr&);
+
+    static void save_Equip(const EquipPtr&);
+    static void load_Equip(EquipPtr&);
+
+    static void save_Potion(const PotionPtr&);
+    static void load_Potion(PotionPtr&);
+
+    static void save_Key(const KeyPtr&);
+    static void load_Key(KeyPtr&);
+
 };
 
 #endif // RECORD_H_INCLUDED

@@ -6,6 +6,9 @@
 #include "Item.hpp"
 #include "GameCharacter.hpp"
 
+class Potion;
+using PotionPtr = std::shared_ptr<Potion>;
+
 class Potion: public Item {
     friend class Record;
 public:
