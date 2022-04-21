@@ -3,6 +3,7 @@
 #include <iostream>
 #include "helper.hpp"
 #include "MsgBox.hpp"
+#include "Monster.hpp"
 
 GameCharacter::GameCharacter(std::string _name, Object::Type _type, int _maxHealth, int _attack, int _defense):
         Interactable(_name, _type), maxHealth(_maxHealth), currentHealth(_maxHealth), attack(_attack), defense(_defense) {}
@@ -23,6 +24,18 @@ void GameCharacter::take_damage(int damage, ObjectPtr obj) {
     msg += " actual damage = attack - defense = " + std::to_string(damage) + " - " + std::to_string(defense) + " = " + std::to_string(d) + "\n";
     msg += " and now has " + std::to_string(currentHealth) + " health left.\n";
     MsgBox::add(msg);
+    if (check_is_dead()) {
+        switch (get_type()) {
+            case Object::Type::Player:
+                throw std::runtime_error("Player is dead!");
+                break;
+            case Object::Type::Monster:
+                throw std::dynamic_pointer_cast<Monster>(shared_from_this());
+                break;
+            default:
+                throw std::runtime_error("GameCharacter::take_damage unknown type");
+        }
+    }
 }
 
 void GameCharacter::heal(int heal, ObjectPtr obj) {

@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include "helper.hpp"
 #include "Room.hpp"
+#include "Monster.hpp"
 
 Player::Player(std::string _name, int _maxHealth, int _attack, int _defense):
         GameCharacter(_name, Object::Type::Player, _maxHealth, _attack, _defense),
@@ -82,12 +83,16 @@ bool Player::handle_key(int key, ObjectPtr) {
             if (get_interact()->handle_key(key, shared_from_this())) {
                 done = true;
                 handle_leave(true);
-                done = false;
             }
         } catch (InteractablePtr obj) {
             add_interact(obj);
         } catch (RoomPtr room) {
             changeRoom(room);
+        } catch (MonsterPtr monster) {
+            while (get_interact() != monster)
+                handle_leave(true);
+            done = monster->check_is_dead();
+            handle_leave(true);
         }
     }
     return false;
@@ -122,6 +127,7 @@ bool Player::handle_leave(bool run) {
                 room->pop_object(k);
                 break;
             }
+        done = false;
     }
     return true;
 }
