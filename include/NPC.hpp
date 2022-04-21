@@ -16,7 +16,6 @@ public:
     void print_status(InteractablePtr = nullptr);
     void print_menu();
     bool handle_key(int, ObjectPtr);
-    bool trigger_event(ObjectPtr);
 
 private:
     std::string script;

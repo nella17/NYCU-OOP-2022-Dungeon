@@ -79,10 +79,6 @@ bool Room::handle_key(int key, ObjectPtr obj) {
     return false;
 }
 
-bool Room::trigger_event(ObjectPtr) {
-    return false;
-}
-
 void Room::push_object(int key, ObjectPtr obj) {
     objects.emplace(key, obj);
     switch_states(true, obj);

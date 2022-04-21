@@ -49,7 +49,3 @@ bool Inventory::handle_key(int key, ObjectPtr obj) {
     }
     return empty();
 }
-
-bool Inventory::trigger_event(ObjectPtr) {
-    return false;
-}

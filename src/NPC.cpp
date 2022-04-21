@@ -20,8 +20,3 @@ void NPC::print_menu() {
 bool NPC::handle_key(int key, ObjectPtr obj) {
     return inventory->handle_key(key, obj);
 }
-
-// TODO
-bool NPC::trigger_event(ObjectPtr) {
-    return false;
-}

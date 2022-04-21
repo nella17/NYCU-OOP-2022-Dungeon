@@ -14,7 +14,7 @@ public:
     virtual void print_status(InteractablePtr = nullptr) = 0;
     virtual void print_menu() = 0;
     virtual bool handle_key(int, ObjectPtr = nullptr) = 0;
-    virtual bool trigger_event(ObjectPtr) = 0;
+    bool trigger_event(ObjectPtr);
 
 private:
 };

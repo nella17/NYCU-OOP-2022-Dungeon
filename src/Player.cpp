@@ -99,11 +99,6 @@ bool Player::handle_key(int key, ObjectPtr) {
     return false;
 }
 
-// TODO
-bool Player::trigger_event(ObjectPtr) {
-    return false;
-}
-
 void Player::add_interact(InteractablePtr interact) { interacts.emplace_back(interact); }
 InteractablePtr Player::get_interact() const { return interacts.empty() ? currentRoom : interacts.back(); }
 RoomPtr Player::get_currentRoom() const { return currentRoom; }
