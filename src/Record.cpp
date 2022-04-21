@@ -127,18 +127,37 @@ ObjectPtr Record::load_Object() {
     return ptr;
 }
 
-void Record::save_Room(const RoomPtr&) {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
+void Record::save_Room(const RoomPtr& room) {
+    io _ room->isBlocked _ room->isLocked _ room->isExit _ room->index;
+    io _ room->objects.size();
+    for(const auto& [key, obj]: room->objects) {
+        io _ key;
+        save_Object(obj);
+    }
 }
 RoomPtr Record::load_Room() {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
+    RoomPtr room = std::make_shared<Room>();
+    io >> room->isBlocked >> room->isLocked >> room->isExit >> room->index;
+    int size; io >> size;
+    while (size--) {
+        char key; io >> key;
+        room->objects[key] = load_Object();
+    }
+    return room;
 }
 
-void Record::save_Room_neighbors(const RoomPtr&) {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
+void Record::save_Room_neighbors(const RoomPtr& room) {
+    io _ room->neighbors.size();
+    for(const auto& [dir, neighbor]: room->neighbors)
+        io _ dir _ neighbor->index;
 }
-void Record::load_Room_neighbors(RoomPtr) {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
+void Record::load_Room_neighbors(RoomPtr room) {
+    int size; io >> size;
+    while (size--) {
+        Direction dir; io >> dir;
+        int index; io >> index;
+        room->neighbors[dir] = dungeon->rooms[index];
+    }
 }
 
 void Record::save_GameCharacter(const GameCharacterPtr& ptr) {
