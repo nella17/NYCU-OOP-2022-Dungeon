@@ -47,7 +47,7 @@ void Player::print_status(InteractablePtr) {
     if (!equips.empty()) {
         std::cout << "  Equipments\t:\n";
         std::cout.setf(std::ios::left, std::ios::adjustfield);
-        for (auto [_type, equip] : equips) {
+        for(auto&& [_type, equip] : equips) {
             std::cout << "    "
                 << std::setw(20) << enum_name(equip->get_equip_type())
                 << std::setw(16) << equip->get_name()
@@ -58,7 +58,7 @@ void Player::print_status(InteractablePtr) {
     if (!inventory->empty()) {
         std::cout << "  Inventory\t:\n";
         std::cout.setf(std::ios::left, std::ios::adjustfield);
-        for (auto& item: *inventory) {
+        for(auto&& item: *inventory) {
             std::cout << "    "
                 << std::setw(20) << item->name_of_type()
                 << std::setw(16) << item->get_name()
@@ -67,7 +67,7 @@ void Player::print_status(InteractablePtr) {
     }
 
     std::cout << " Current Status\t: " << *currentRoom;
-    for(auto it: interacts)
+    for(auto&& it: interacts)
         std::cout << " > " << *it;
     std::cout << '\n';
 }

@@ -31,7 +31,7 @@ bool Inventory::handle_key(int key, ObjectPtr obj) {
 
     char c = '0';
     ItemPtr item = nullptr;
-    for(auto it: *this)
+    for(auto&& it: *this)
         if (key == c++) {
             item = it;
             break;

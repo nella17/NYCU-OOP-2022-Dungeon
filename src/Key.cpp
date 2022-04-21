@@ -20,7 +20,7 @@ bool Key::trigger_event(ObjectPtr obj) {
 
     switch (get_item_type()) {
         case Item::Type::Key:
-            for(auto [k,o]: player->get_currentRoom()->get_objects())
+            for(auto&& [k,o]: player->get_currentRoom()->get_objects())
                 if (o->get_type() == Object::Type::Lock) {
                     auto lock = std::dynamic_pointer_cast<Key>(o);
                     auto key = std::dynamic_pointer_cast<Key>(shared_from_this());
@@ -31,7 +31,7 @@ bool Key::trigger_event(ObjectPtr obj) {
                 }
             throw std::runtime_error("No lock found in this room !");
         case Item::Type::Lock:
-            for(auto item: *player->get_inventory())
+            for(auto&& item: *player->get_inventory())
                 if (item->get_item_type() == Item::Type::Key) {
                     auto key = std::dynamic_pointer_cast<Key>(item);
                     if (unlock(key)) {

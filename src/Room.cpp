@@ -118,7 +118,7 @@ ObjectPtr Room::get_object(int key) const {
 }
 ObjectsMap Room::get_objects() const {
     ObjectsMap ret;
-    for (auto [key, obj]: objects)
+    for(auto&& [key, obj]: objects)
         if (check_object(obj) != nullptr)
             ret.emplace(key, obj);
     return ret;
