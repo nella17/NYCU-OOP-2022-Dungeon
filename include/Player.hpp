@@ -28,7 +28,7 @@ public:
 
     /* Set & Get function*/
     void add_interact(InteractablePtr);
-    InteractablePtr get_interact() const;
+    InteractablePtr get_interact(int = 0) const;
     RoomPtr get_currentRoom() const;
     RoomPtr get_previousRoom() const;
     InventoryPtr get_inventory() const;

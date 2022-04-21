@@ -94,13 +94,17 @@ bool Player::handle_key(int key, ObjectPtr) {
 }
 
 void Player::add_interact(InteractablePtr interact) { interacts.emplace_back(interact); }
-InteractablePtr Player::get_interact() const { return interacts.empty() ? currentRoom : interacts.back(); }
+InteractablePtr Player::get_interact(int top) const {
+    int sz = interacts.size();
+    if (top < sz) return interacts[sz-1-top];
+    return currentRoom;
+}
 RoomPtr Player::get_currentRoom() const { return currentRoom; }
 RoomPtr Player::get_previousRoom() const { return previousRoom; }
 InventoryPtr Player::get_inventory() const { return inventory; }
 
 bool Player::handle_inventory(bool run) {
-    bool available = get_interact() != inventory && !inventory->empty();
+    bool available = get_interact() != inventory;
     if (!run || !available) return available;
     add_interact(std::dynamic_pointer_cast<Interactable>(inventory));
     return true;

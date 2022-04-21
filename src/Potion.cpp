@@ -23,9 +23,9 @@ bool Potion::trigger_event(ObjectPtr obj) {
             return apply_effect(player);
         case Type::Damage:
         case Type::Weaken:
-            return trigger_event(player->get_interact());
+            return trigger_event(player->get_interact(1));
         default:
-            return MsgBox::add("Unknown potion type"), false;
+            throw std::runtime_error("Unknown potion type");
     }
 }
 
