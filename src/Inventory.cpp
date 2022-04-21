@@ -8,7 +8,9 @@ Inventory::Inventory(std::string _name, ItemsSet _items):
         Interactable(_name, Object::Type::Inventory), ItemsSet(_items) {}
 
 void Inventory::print_status(InteractablePtr) {
-    if (!empty()) {
+    if (empty()) {
+        std::cout << "  Inventory is empty.\n";
+    } else {
         std::cout << "  Inventory\t:\n";
         std::cout.setf(std::ios::left, std::ios::adjustfield);
         for(auto&& item: *this) {

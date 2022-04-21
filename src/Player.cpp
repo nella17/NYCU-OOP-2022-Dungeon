@@ -57,7 +57,7 @@ void Player::print_status(InteractablePtr) {
         }
     }
 
-    std::cout << " Current Status\t: " << *currentRoom;
+    std::cout << "  Current State\t: " << *currentRoom;
     for(auto&& it: interacts)
         std::cout << " > " << *it;
     std::cout << '\n';
