@@ -18,21 +18,30 @@
 #include "Potion.hpp"
 #include "Key.hpp"
 
+const std::string Record::file_name = "save.txt";
+namespace {
+    std::fstream io;
+};
+
 void Record::save_to_file(const PlayerPtr player, const std::vector<Room>& rooms) {
-    save_player(player, std::ofstream("data/player.txt"));
-    save_rooms(rooms, std::ofstream("data/rooms.txt"));
+    io = std::fstream(file_name);
+    save_player(player);
+    save_rooms(rooms);
+    io.close();
 }
 void Record::load_from_file(PlayerPtr& player, std::vector<Room>& rooms) {
-    load_player(player, std::ifstream("data/player.txt"));
-    load_rooms(rooms, std::ifstream("data/rooms.txt"));
+    io = std::fstream(file_name);
+    load_player(player);
+    load_rooms(rooms);
+    io.close();
 }
 
 // TODO
-void Record::save_player(const PlayerPtr, std::ofstream&&) {}
+void Record::save_player(const PlayerPtr) {}
 // TODO
-void Record::load_player(PlayerPtr&, std::ifstream&&) {}
+void Record::load_player(PlayerPtr&) {}
 
 // TODO
-void Record::save_rooms(const std::vector<Room>&, std::ofstream&&) {}
+void Record::save_rooms(const std::vector<Room>&) {}
 // TODO
-void Record::load_rooms(std::vector<Room>&, std::ifstream&&) {}
+void Record::load_rooms(std::vector<Room>&) {}
