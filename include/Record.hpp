@@ -40,6 +40,9 @@ private:
     static void save_Room(const RoomPtr&);
     static RoomPtr load_Room();
 
+    static void save_Room_neighbors(const RoomPtr&);
+    static void load_Room_neighbors(RoomPtr);
+
     static void save_GameCharacter(const GameCharacterPtr&);
     static GameCharacterPtr load_GameCharacter(Object::Type);
 

@@ -63,6 +63,8 @@ void Record::save_Dungeon() {
     io _ dungeon->rooms.size();
     for(const auto& room: dungeon->rooms)
         save_Object(room);
+    for(const auto& room: dungeon->rooms)
+        save_Room_neighbors(room);
     save_Object(dungeon->player);
 }
 void Record::load_Dungeon() {
@@ -70,6 +72,8 @@ void Record::load_Dungeon() {
     dungeon->rooms.resize(size);
     for(auto& room: dungeon->rooms)
         room = std::dynamic_pointer_cast<Room>(load_Object());
+    for(auto& room: dungeon->rooms)
+        load_Room_neighbors(room);
     dungeon->player = std::dynamic_pointer_cast<Player>(load_Object());
 }
 
@@ -127,6 +131,13 @@ void Record::save_Room(const RoomPtr&) {
     throw std::runtime_error("Not implemented " + std::string(__func__));
 }
 RoomPtr Record::load_Room() {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
+}
+
+void Record::save_Room_neighbors(const RoomPtr&) {
+    throw std::runtime_error("Not implemented " + std::string(__func__));
+}
+void Record::load_Room_neighbors(RoomPtr) {
     throw std::runtime_error("Not implemented " + std::string(__func__));
 }
 
