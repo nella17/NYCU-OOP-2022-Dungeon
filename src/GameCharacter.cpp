@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include "helper.hpp"
+#include "MsgBox.hpp"
 
 GameCharacter::GameCharacter(std::string _name, Object::Type _type, int _maxHealth, int _attack, int _defense):
         Interactable(_name, _type), maxHealth(_maxHealth), currentHealth(_maxHealth), attack(_attack), defense(_defense) {}
@@ -9,8 +10,15 @@ GameCharacter::GameCharacter(std::string _name, Object::Type _type, int _maxHeal
 bool GameCharacter::check_is_dead() {
     return currentHealth <= 0;
 }
-int GameCharacter::take_damage(int damage) {
-    return currentHealth -= std::max(0, damage - defense);
+int GameCharacter::take_damage(int damage, ObjectPtr obj) {
+    auto d = damage - defense;
+    currentHealth -= d;
+    std::string msg = "";
+    msg += get_name() + " takes " + std::to_string(damage) + " damage from " + obj->get_name() + ",\n";
+    msg += " actual damage = attack - defense = " + std::to_string(damage) + " - " + std::to_string(defense) + " = " + std::to_string(d) + "\n";
+    msg += " and now has " + std::to_string(currentHealth) + " health left.\n";
+    MsgBox::add(msg);
+    return currentHealth;
 }
 
 void GameCharacter::print_status(InteractablePtr) {

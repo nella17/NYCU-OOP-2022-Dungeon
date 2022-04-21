@@ -10,7 +10,7 @@ class GameCharacter: public Interactable {
 public:
     GameCharacter(std::string, Object::Type, int = 0, int = 0, int = 0);
     bool check_is_dead();
-    int take_damage(int);
+    int take_damage(int, ObjectPtr);
 
     void print_status(InteractablePtr = nullptr);
 
