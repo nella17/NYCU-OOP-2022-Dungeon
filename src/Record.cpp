@@ -140,7 +140,7 @@ RoomPtr Record::load_Room() {
     io >> room->isBlocked >> room->isLocked >> room->isExit >> room->index;
     int size; io >> size;
     while (size--) {
-        char key; io >> key;
+        int key; io >> key;
         room->objects[key] = load_Object();
     }
     return room;
