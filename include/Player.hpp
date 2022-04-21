@@ -34,6 +34,7 @@ public:
     InventoryPtr get_inventory() const;
 
 private:
+    bool done;
     std::vector<InteractablePtr> interacts;
     RoomPtr currentRoom, previousRoom;
     InventoryPtr inventory;

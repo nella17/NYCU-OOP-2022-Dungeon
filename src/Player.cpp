@@ -10,7 +10,7 @@
 
 Player::Player(std::string _name, int _maxHealth, int _attack, int _defense):
         GameCharacter(_name, Object::Type::Player, _maxHealth, _attack, _defense),
-        inventory(std::make_shared<Inventory>("Inventory")) {}
+        done(false), inventory(std::make_shared<Inventory>("Inventory")) {}
 
 void Player::add_item(ItemPtr item) {
     inventory->emplace(item);
@@ -79,8 +79,11 @@ bool Player::handle_key(int key, ObjectPtr) {
     }
     if (!run) {
         try {
-            if (get_interact()->handle_key(key, shared_from_this()))
+            if (get_interact()->handle_key(key, shared_from_this())) {
+                done = true;
                 handle_leave(true);
+                done = false;
+            }
         } catch (InteractablePtr obj) {
             add_interact(obj);
         } catch (RoomPtr room) {
@@ -106,7 +109,16 @@ bool Player::handle_inventory(bool run) {
 bool Player::handle_leave(bool run) {
     bool available = !interacts.empty();
     if (!run || !available) return available;
+    auto interact = interacts.back();
     interacts.pop_back();
+    if (done && get_interact()->get_type() == Object::Type::Room) {
+        auto room = std::dynamic_pointer_cast<Room>(get_interact());
+        for(auto&& [k, o]: room->get_objects())
+            if (o == interact) {
+                room->pop_object(k);
+                break;
+            }
+    }
     return true;
 }
 
