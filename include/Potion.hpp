@@ -25,7 +25,7 @@ public:
     int get_value() const;
 
 private:
-    bool apply_effect(std::shared_ptr<GameCharacter>);
+    bool apply_effect(GameCharacterPtr);
     const Type type;
     const int value;
 };

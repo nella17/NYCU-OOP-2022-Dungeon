@@ -4,6 +4,9 @@
 #include <string>
 #include "Interactable.hpp"
 
+class GameCharacter;
+using GameCharacterPtr = std::shared_ptr<GameCharacter>;
+
 class GameCharacter: public Interactable {
     friend class Record;
 public:

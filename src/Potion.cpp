@@ -29,7 +29,7 @@ bool Potion::trigger_event(ObjectPtr obj) {
     }
 }
 
-bool Potion::apply_effect(std::shared_ptr<GameCharacter> game) {
+bool Potion::apply_effect(GameCharacterPtr game) {
     switch (type) {
         case Type::Heal:
             game->heal(value, shared_from_this());
