@@ -44,6 +44,8 @@ void Player::changeRoom(RoomPtr room) {
 void Player::print_status(InteractablePtr) {
     GameCharacter::print_status();
 
+    if (!inventory->empty())
+        std::cout << "Inventory\t: " << inventory->size() << " item(s)" << std::endl;
     if (!equips.empty()) {
         std::cout << "  Equipments\t:\n";
         std::cout.setf(std::ios::left, std::ios::adjustfield);
