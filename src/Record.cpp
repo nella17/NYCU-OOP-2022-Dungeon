@@ -246,11 +246,15 @@ MonsterPtr Record::load_Monster() {
     throw std::runtime_error("Not implemented " + std::string(__func__));
 }
 
-void Record::save_NPC(const NPCPtr&) {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
+void Record::save_NPC(const NPCPtr& ptr) {
+    save_str(ptr->script);
+    save_Object(ptr->inventory);
 }
 NPCPtr Record::load_NPC() {
-    throw std::runtime_error("Not implemented " + std::string(__func__));
+    auto ptr = std::make_shared<NPC>("", "");
+    ptr->script = load_str();
+    ptr->inventory = std::dynamic_pointer_cast<Inventory>(load_Object());
+    return ptr;
 }
 
 void Record::save_Inventory(const InventoryPtr&) {
