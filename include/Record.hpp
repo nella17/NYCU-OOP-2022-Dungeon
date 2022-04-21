@@ -31,11 +31,14 @@ public:
     static bool load(Dungeon&);
 
 private:
-    static void save(const PlayerPtr);
-    static void load(PlayerPtr&);
+    static void save_GameCharacter(const GameCharacterPtr&);
+    static void load_GameCharacter(GameCharacterPtr&);
 
-    static void save(const std::vector<RoomPtr>&);
-    static void load(std::vector<RoomPtr>&);
+    static void save_Player(const PlayerPtr&);
+    static void load_Player(PlayerPtr&);
+
+    static void save_Rooms(const std::vector<RoomPtr>&);
+    static void load_Rooms(std::vector<RoomPtr>&);
 };
 
 #endif // RECORD_H_INCLUDED

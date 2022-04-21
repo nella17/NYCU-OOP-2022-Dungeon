@@ -19,8 +19,8 @@ bool Record::save(const Dungeon& dungeon) {
         io.open(file_name, std::ios::out);
         if (!io.is_open())
             throw std::runtime_error("Can't open file \"" + file_name + "\"");
-        save(dungeon.player);
-        save(dungeon.rooms);
+        save_Player(dungeon.player);
+        save_Rooms(dungeon.rooms);
         io.close();
         return true;
     } catch (std::exception& e) {
@@ -33,8 +33,8 @@ bool Record::load(Dungeon& dungeon) {
         io.open(file_name, std::ios::in);
         if (!io.is_open())
             throw std::runtime_error("Can't open file \"" + file_name + "\"");
-        load(dungeon.player);
-        load(dungeon.rooms);
+        load_Player(dungeon.player);
+        load_Rooms(dungeon.rooms);
         io.close();
         return true;
     } catch (std::exception& e) {
@@ -43,13 +43,13 @@ bool Record::load(Dungeon& dungeon) {
     }
 }
 
-void Record::save(const PlayerPtr player) {
+void Record::save_Player(const PlayerPtr& player) {
+}
+void Record::load_Player(PlayerPtr&) {
+
 }
 
-void Record::load(PlayerPtr&) {
-}
-
-void Record::save(const std::vector<RoomPtr>& rooms) {
+void Record::save_Rooms(const std::vector<RoomPtr>& rooms) {
     io _ rooms.size();
     for(const auto& room : rooms) {
         io _ room->isBlocked _ room->isLocked _ room->isExit _ room->index;
@@ -58,7 +58,7 @@ void Record::save(const std::vector<RoomPtr>& rooms) {
             io _ enum_name(dir) _ neighbor->index;
     }
 }
-void Record::load(std::vector<RoomPtr>& rooms) {
+void Record::load_Rooms(std::vector<RoomPtr>& rooms) {
     int size;
     io >> size;
     rooms.resize(size);
