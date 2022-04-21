@@ -18,18 +18,18 @@
 #include "Potion.hpp"
 #include "Key.hpp"
 
-const std::string Record::file_name = "save.txt";
+std::string Record::file_name = "save.txt";
 namespace {
     std::fstream io;
 };
 
-void Record::save_to_file(const PlayerPtr player, const std::vector<Room>& rooms) {
+void Record::save(const PlayerPtr player, const std::vector<RoomPtr>& rooms) {
     io = std::fstream(file_name);
     save_player(player);
     save_rooms(rooms);
     io.close();
 }
-void Record::load_from_file(PlayerPtr& player, std::vector<Room>& rooms) {
+void Record::load(PlayerPtr& player, std::vector<RoomPtr>& rooms) {
     io = std::fstream(file_name);
     load_player(player);
     load_rooms(rooms);
@@ -42,6 +42,6 @@ void Record::save_player(const PlayerPtr) {}
 void Record::load_player(PlayerPtr&) {}
 
 // TODO
-void Record::save_rooms(const std::vector<Room>&) {}
+void Record::save_rooms(const std::vector<RoomPtr>&) {}
 // TODO
-void Record::load_rooms(std::vector<Room>&) {}
+void Record::load_rooms(std::vector<RoomPtr>&) {}

@@ -16,14 +16,14 @@
 
 class Record {
 public:
-    static const std::string file_name;
-    static void save_to_file(const PlayerPtr, const std::vector<Room>&);
-    static void load_from_file(PlayerPtr&, std::vector<Room>&);
+    static std::string file_name;
+    static void save(const PlayerPtr, const std::vector<RoomPtr>&);
+    static void load(PlayerPtr&, std::vector<RoomPtr>&);
 private:
     static void save_player(const PlayerPtr);
     static void load_player(PlayerPtr&);
-    static void save_rooms(const std::vector<Room>&);
-    static void load_rooms(std::vector<Room>&);
+    static void save_rooms(const std::vector<RoomPtr>&);
+    static void load_rooms(std::vector<RoomPtr>&);
 };
 
 #endif // RECORD_H_INCLUDED
