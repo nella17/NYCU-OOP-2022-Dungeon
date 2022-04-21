@@ -27,6 +27,21 @@ namespace {
     operator<<(std::ostream& os, const E &e) {
         return os << enum_name(e);
     }
+
+    void save_str(std::string& s) {
+        io _ '@' << s << '@';
+    }
+    std::string load_str() {
+        std::string s = "";
+        char c;
+        do c = io.get(); while (c != '@');
+        c = io.get();
+        while (c != '@') {
+            s += c;
+            c = io.get();
+        }
+        return s;
+    }
 };
 
 bool Record::save(Dungeon* _dungeon) {
@@ -78,7 +93,8 @@ void Record::load_Dungeon() {
 }
 
 void Record::save_Object(const ObjectPtr& ptr) {
-    io _ ptr->name _ ptr->type;
+    save_str(ptr->name);
+    io _ ptr->type;
     switch (ptr->type) {
         case Object::Type::Item:
         case Object::Type::Lock:
@@ -100,7 +116,7 @@ void Record::save_Object(const ObjectPtr& ptr) {
     }
 }
 ObjectPtr Record::load_Object() {
-    std::string name; io >> name;
+    std::string name = load_str();
     Object::Type type; io >> type;
     ObjectPtr ptr;
     switch (type) {
