@@ -112,6 +112,11 @@ void Dungeon::load_game() {
 void Dungeon::save_game() {
     std::cout << "Saving game..." << std::endl;
     Record::save(this);
+    sleep(1);
+    if (quit)
+        std::cout << "Game saved!" << std::endl;
+    else
+        MsgBox::add("Game saved!");
 }
 
 void Dungeon::draw_screen() {
@@ -132,6 +137,7 @@ void Dungeon::draw_screen() {
     std::cout << "Actions:\n";
     player->print_menu();
     std::cout << "--------- Game Menu ---------\n"
+              << "  [S] Save\n"
               << "  [Q] Quit\n";
 
     std::cout << MsgBox() << std::endl;
@@ -139,11 +145,16 @@ void Dungeon::draw_screen() {
 
 void Dungeon::handle_menu() {
     int key = read_char_no_buffer_echo();
-    if (key == 'Q') {
-        quit = true;
-        return;
+    switch (key) {
+        case 'S':
+            save_game();
+            break;
+        case 'Q':
+            quit = true;
+            return;
+        default:
+            player->handle_key(key);
     }
-    player->handle_key(key);
 }
 
 void Dungeon::start_game() {
