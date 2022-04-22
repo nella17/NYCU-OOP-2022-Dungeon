@@ -203,7 +203,7 @@ bool Dungeon::check_game_logic() {
 
 void Dungeon::run() {
     start_game();
-
+Start:
     while (!quit && !check_game_logic()) {
         draw_screen();
         try {
@@ -220,9 +220,17 @@ void Dungeon::run() {
         std::cout << goodbye << std::endl;
     } else if (player->check_is_dead()) {
         std::cout << you_died << std::endl;
+        if (Record::exists()) {
+            std::cout << "Do you want to load your last record? Y/[N]" << std::endl;
+            char c = read_char_no_buffer_echo();
+            if (c == 'Y') {
+                load_game();
+                goto Start;
+            }
+        }
     } else if (player->get_currentRoom()->get_isExit()) {
         std::cout << you_won << std::endl;
-     } else {
+    } else {
         assert(0 && "unknown error");
-     }
+    }
 }

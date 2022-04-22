@@ -44,6 +44,11 @@ namespace {
     }
 };
 
+
+bool Record::exists() {
+    return std::ifstream(file_name).good();
+}
+
 bool Record::save(Dungeon* _dungeon) {
     dungeon = _dungeon;
     try {

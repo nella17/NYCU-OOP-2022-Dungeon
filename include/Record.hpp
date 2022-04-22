@@ -28,6 +28,7 @@
 class Record {
 public:
     static std::string file_name;
+    static bool exists();
     static bool save(Dungeon*);
     static bool load(Dungeon*);
 
