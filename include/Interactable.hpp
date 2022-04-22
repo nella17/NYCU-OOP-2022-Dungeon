@@ -13,6 +13,7 @@ constexpr int LEAVE_KEY = 0x4C4C;
 class Interactable: public Object {
 public:
     Interactable(std::string _name, Object::Type _type): Object(_name, _type) {}
+    std::string get_name_type() const;
     virtual void print_status(InteractablePtr = nullptr) = 0;
     virtual void print_menu() = 0;
     virtual bool handle_key(int, ObjectPtr = nullptr) = 0;

@@ -25,6 +25,7 @@ void GameCharacter::take_damage(int damage, ObjectPtr obj) {
     msg += " and now has " + std::to_string(currentHealth) + " health left.\n";
     MsgBox::add(msg);
     if (check_is_dead()) {
+        MsgBox::add(get_name_type() + " is dead.\n");
         switch (get_type()) {
             case Object::Type::Player:
                 throw std::runtime_error("Player is dead!");
