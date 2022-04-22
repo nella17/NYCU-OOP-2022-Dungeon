@@ -24,12 +24,15 @@ SRCS		:= $(wildcard $(SDIR)/*.cpp)
 OBJS		:= $(SRCS:$(SDIR)/%.cpp=$(ODIR)/%.o)
 DEPS		:= $(SRCS:$(SDIR)/%.cpp=$(ODIR)/%.d)
 
-all: run
+run: $(EXE)
+	$<
 
 build: $(EXE)
 
-run: $(EXE)
-	$<
+docs:
+	# TODO
+
+all: build docs
 
 $(EXE): dirs $(OBJS)
 	$(CXX) $(CXXFLAGS) $(OBJS) -o $@
