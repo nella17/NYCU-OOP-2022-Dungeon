@@ -31,6 +31,7 @@ void Room::print_status(InteractablePtr interact) {
             if (isBlocked) name = "[❓ ]";
         } else {
             name = '[' + ptr->get_name() + ']';
+            if (ptr->isBlocked) name = "[👹 ]";
             if (ptr->isLocked) name = "[🔒 ]";
         }
         return name;

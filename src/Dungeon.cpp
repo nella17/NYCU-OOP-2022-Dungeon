@@ -78,7 +78,7 @@ void Dungeon::create_map() {
     rooms[7]->push_object('N', std::make_shared<NPC>("Medium", "Wow, you are a good player!\nHere are some gift for you.", ItemsSet{
         std::make_shared<Equip>("Helmet", Equip::Type::Head, 10, 0, 5),
         std::make_shared<Equip>("Armor", Equip::Type::Body, 10, 0, 5),
-        std::make_shared<Equip>("Shield", Equip::Type::LeftHand, 0, 0, 10),
+        std::make_shared<Equip>("Shield", Equip::Type::LeftHand, 5, 0, 20),
         std::make_shared<Equip>("Sword", Equip::Type::RightHand, 0, 20, 2),
         std::make_shared<Equip>("Boots", Equip::Type::Feet, 10, 5, 2),
         key,
