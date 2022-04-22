@@ -15,6 +15,8 @@ bool Potion::trigger_event(ObjectPtr obj) {
     auto game = std::dynamic_pointer_cast<GameCharacter>(obj);
     if (game == nullptr)
         return MsgBox::add("Potion only works on GameCharacter"), false;
+    if (game->get_type() == Object::Type::NPC)
+        return MsgBox::add("Potion cannot be used on NPC"), false;
     auto player = std::dynamic_pointer_cast<Player>(game);
     if (player == nullptr)
         return apply_effect(game);
