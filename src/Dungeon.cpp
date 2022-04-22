@@ -163,7 +163,8 @@ void Dungeon::handle_record() {
             default:
                 continue;
         }
-    } while (false);
+        break;
+    } while (true);
 }
 
 void Dungeon::handle_menu() {
