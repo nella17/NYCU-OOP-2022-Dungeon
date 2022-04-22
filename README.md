@@ -12,3 +12,4 @@
 - https://stackoverflow.com/questions/31963835/how-to-read-terminals-input-buffer-immediately-after-keypress
 - https://github.com/Neargye/magic_enum
 - http://www.figlet.org
+- https://github.com/doxygen/doxygen
