@@ -20,6 +20,9 @@ void Monster::print_menu() {
 }
 
 bool Monster::handle_key(int key, ObjectPtr obj) {
+    if (key == LEAVE_KEY && obj == nullptr)
+        return check_is_dead();
+
     auto player = std::dynamic_pointer_cast<Player>(obj);
     if (player == nullptr)
         return false;

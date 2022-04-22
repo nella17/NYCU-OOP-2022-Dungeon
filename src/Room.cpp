@@ -51,6 +51,9 @@ void Room::print_menu() {
 }
 
 bool Room::handle_key(int key, ObjectPtr obj) {
+    if (key == LEAVE_KEY && obj == nullptr)
+        return false;
+
     if (is_dir_key(key)) {
         auto dir = key_to_dir(key);
         auto previous = std::dynamic_pointer_cast<Player>(obj)->get_previousRoom();;

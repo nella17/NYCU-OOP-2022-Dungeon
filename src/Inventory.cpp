@@ -37,6 +37,9 @@ void Inventory::print_menu() {
 }
 
 bool Inventory::handle_key(int key, ObjectPtr obj) {
+    if (key == LEAVE_KEY && obj == nullptr)
+        return false;
+
     auto player = std::dynamic_pointer_cast<Player>(obj);
     if (player == nullptr)
         return false;

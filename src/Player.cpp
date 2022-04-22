@@ -72,7 +72,10 @@ void Player::print_menu() {
     get_interact()->print_menu();
 }
 
-bool Player::handle_key(int key, ObjectPtr) {
+bool Player::handle_key(int key, ObjectPtr obj) {
+    if (key == LEAVE_KEY && obj == nullptr)
+        return check_is_dead();
+
     bool run = false;
     if (menus.find(key) != menus.end()) {
         auto menu = menus.at(key);
@@ -80,16 +83,13 @@ bool Player::handle_key(int key, ObjectPtr) {
     }
     if (!run) {
         try {
-            if (get_interact()->handle_key(key, shared_from_this())) {
-                done = true;
+            if (get_interact()->handle_key(key, shared_from_this()))
                 handle_leave(true);
-            }
-        } catch (InteractablePtr obj) {
-            add_interact(obj);
+        } catch (InteractablePtr interact) {
+            add_interact(interact);
         } catch (RoomPtr room) {
             changeRoom(room);
         } catch (MonsterPtr monster) {
-            done = monster->check_is_dead();
             handle_leave(true);
         }
     }
@@ -119,6 +119,7 @@ bool Player::handle_leave(bool run) {
     InteractablePtr interact;
     do {
         interact = interacts.back();
+        done |= interact->handle_key(LEAVE_KEY, nullptr);
         interacts.pop_back();
     } while (done && get_interact()->get_type() != Object::Type::Room);
     if (done) {

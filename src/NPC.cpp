@@ -19,5 +19,8 @@ void NPC::print_menu() {
     inventory->print_menu();
 }
 bool NPC::handle_key(int key, ObjectPtr obj) {
+    if (key == LEAVE_KEY && obj == nullptr)
+        return inventory->empty();
+
     return inventory->handle_key(key, obj);
 }

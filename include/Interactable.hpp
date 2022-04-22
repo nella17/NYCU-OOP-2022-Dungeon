@@ -8,6 +8,8 @@
 class Interactable;
 using InteractablePtr = std::shared_ptr<Interactable>;
 
+constexpr int LEAVE_KEY = 0x4C4C;
+
 class Interactable: public Object {
 public:
     Interactable(std::string _name, Object::Type _type): Object(_name, _type) {}
