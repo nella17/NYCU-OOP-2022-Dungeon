@@ -28,11 +28,10 @@ bool Monster::handle_key(int key, ObjectPtr obj) {
         return false;
 
     switch (key) {
-        case 'A': {
+        case 'A':
             take_damage(player->get_attack(), player);
             player->take_damage(get_attack(), shared_from_this());
             return check_is_dead();
-        }
         default:
             return false;
     }
