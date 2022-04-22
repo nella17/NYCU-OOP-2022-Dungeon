@@ -204,6 +204,7 @@ bool Dungeon::check_game_logic() {
 void Dungeon::run() {
     start_game();
 Start:
+    MsgBox::clear();
     while (!quit && !check_game_logic()) {
         draw_screen();
         try {

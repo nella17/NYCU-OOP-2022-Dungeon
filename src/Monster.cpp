@@ -16,7 +16,7 @@ void Monster::print_status(InteractablePtr) {
 
 void Monster::print_menu() {
     std::cout << "------ Monster Menu ---------\n";
-    std::cout << "  [A] \tAttack\n";
+    std::cout << "  [A] Attack\n";
 }
 
 bool Monster::handle_key(int key, ObjectPtr obj) {

@@ -9,6 +9,7 @@ class MsgBox {
     friend class Record;
 public:
     static void add(std::string);
+    static void clear();
     static std::ostream& output(std::ostream&);
 private:
     static std::vector<std::string> msg;

@@ -7,10 +7,14 @@ void MsgBox::add(std::string s) {
     msg.emplace_back(s);
 }
 
+void MsgBox::clear() {
+    msg.clear();
+}
+
 std::ostream& MsgBox::output(std::ostream& os) {
     for (auto&& s : msg)
         os << '\n' << s;
-    msg.clear();
+    clear();
     return os;
 }
 
