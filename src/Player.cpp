@@ -90,6 +90,7 @@ bool Player::handle_key(int key, ObjectPtr obj) {
         } catch (RoomPtr room) {
             changeRoom(room);
         } catch (MonsterPtr monster) {
+            done = monster->check_is_dead();
             handle_leave(true);
         }
     }
