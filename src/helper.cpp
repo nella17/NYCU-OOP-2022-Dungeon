@@ -38,16 +38,16 @@ void set_echo_mode(int fd) {
 }
 
 namespace {
-const auto key2dir = std::map<int,Direction>{
-    { 'W', Direction::UP },
-    { 'S', Direction::DOWN },
-    { 'D', Direction::RIGHT },
-    { 'A', Direction::LEFT },
-    { 0x1B5B41, Direction::UP },
-    { 0x1B5B42, Direction::DOWN },
-    { 0x1B5B43, Direction::RIGHT },
-    { 0x1B5B44, Direction::LEFT },
-};
+    const auto key2dir = std::map<int,Direction>{
+        { 'W', Direction::UP },
+        { 'S', Direction::DOWN },
+        { 'D', Direction::RIGHT },
+        { 'A', Direction::LEFT },
+        { 0x1B5B41, Direction::UP },
+        { 0x1B5B42, Direction::DOWN },
+        { 0x1B5B43, Direction::RIGHT },
+        { 0x1B5B44, Direction::LEFT },
+    };
 }
 Direction key_to_dir(int key) {
     auto it = key2dir.find(key);
@@ -60,12 +60,12 @@ bool is_dir_key(int key) {
 }
 
 namespace {
-inline char getchar(int fd) {
-    char c;
-    read(fd, &c, 1);
-    return c;
-}
-const auto special_char = std::set<int>{ 0x1B, 0x5B };
+    inline char getchar(int fd) {
+        char c;
+        read(fd, &c, 1);
+        return c;
+    }
+    const auto special_char = std::set<int>{ 0x1B, 0x5B };
 }
 
 int read_char(int fd) {
