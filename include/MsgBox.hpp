@@ -1,7 +1,7 @@
 #ifndef MSGBOX_H_INCLUDED
 #define MSGBOX_H_INCLUDED
 
-#include <iostream>
+#include <iosfwd>
 #include <string>
 #include <vector>
 

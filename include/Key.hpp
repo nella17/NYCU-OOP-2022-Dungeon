@@ -1,7 +1,7 @@
 #ifndef KEY_H_INCLUDED
 #define KEY_H_INCLUDED
 
-#include <iostream>
+#include <iosfwd>
 #include <string>
 #include <memory>
 #include <utility>

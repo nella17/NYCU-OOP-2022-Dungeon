@@ -1,7 +1,7 @@
 #ifndef POTION_H_INCLUDED
 #define POTION_H_INCLUDED
 
-#include <iostream>
+#include <iosfwd>
 #include <string>
 #include "Item.hpp"
 #include "GameCharacter.hpp"

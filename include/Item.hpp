@@ -1,7 +1,7 @@
 #ifndef ITEM_H_INCLUDED
 #define ITEM_H_INCLUDED
 
-#include <iostream>
+#include <iosfwd>
 #include <string>
 #include <set>
 #include <memory>

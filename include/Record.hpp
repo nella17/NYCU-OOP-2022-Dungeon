@@ -1,7 +1,7 @@
 #ifndef RECORD_H_INCLUDED
 #define RECORD_H_INCLUDED
 
-#include <iostream>
+#include <iosfwd>
 #include <string>
 #include <vector>
 #include <memory>

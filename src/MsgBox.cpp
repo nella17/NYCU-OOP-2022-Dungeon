@@ -1,5 +1,7 @@
 #include "MsgBox.hpp"
 
+#include <iostream>
+
 std::vector<std::string> MsgBox::msg{};
 
 void MsgBox::add(std::string s) {
