@@ -23,6 +23,7 @@ public:
 
     void draw_screen();
 
+    void handle_record();
     /* Deal with player's action */
     void handle_menu();
 

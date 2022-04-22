@@ -137,17 +137,40 @@ void Dungeon::draw_screen() {
     std::cout << "Actions:\n";
     player->print_menu();
     std::cout << "--------- Game Menu ---------\n"
-              << "  [S] Save\n"
+              << "  [R] Record System\n"
               << "  [Q] Quit\n";
 
     std::cout << MsgBox() << std::endl;
 }
 
+
+void Dungeon::handle_record() {
+    std::cout << "------- Record Menu ---------\n"
+              << "  [S] Save\n"
+              << "  [L] Load\n"
+              << "  [B] Back\n";
+    do {
+        int key = read_char_no_buffer_echo();
+        switch (key) {
+            case 'S':
+                save_game();
+                break;
+            case 'L':
+                load_game();
+                break;
+            case 'B':
+                break;
+            default:
+                continue;
+        }
+    } while (false);
+}
+
 void Dungeon::handle_menu() {
     int key = read_char_no_buffer_echo();
     switch (key) {
-        case 'S':
-            save_game();
+        case 'R':
+            handle_record();
             break;
         case 'Q':
             quit = true;
