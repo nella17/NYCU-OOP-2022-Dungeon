@@ -52,10 +52,8 @@ bool Inventory::handle_key(int key, ObjectPtr obj) {
             item = it;
             break;
         }
-
     if (item == nullptr)
         return false;
-
 
     if (!is_in_player) {
         player->add_item(item);
